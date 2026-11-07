@@ -1,0 +1,15 @@
+# Compilación y dependencias
+dist/
+.astro/
+node_modules/
+.vercel/
+
+# Secretos y configuración local
+.env
+.env.*
+!.env.example
+
+# Sistema
+.DS_Store
+Thumbs.db
+npm-debug.log*

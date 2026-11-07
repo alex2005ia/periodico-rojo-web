@@ -1,0 +1,33 @@
+---
+import Base from "../../layouts/Base.astro";
+import ListaNotas from "../../components/ListaNotas.astro";
+import { notasPublicadas } from "../../lib/notas";
+import { CATEGORIAS } from "../../lib/sitio";
+
+export function getStaticPaths() {
+  return CATEGORIAS.map((c) => ({ params: { categoria: c.id }, props: { nombre: c.nombre } }));
+}
+
+const { categoria } = Astro.params;
+const { nombre } = Astro.props;
+const notas = (await notasPublicadas()).filter((n) => n.data.categoria === categoria);
+---
+
+<Base titulo={nombre} descripcion={`${nombre}: noticias de la zona metropolitana de Monterrey con fuentes oficiales.`}>
+  <section class="contenedor cabeza">
+    <p class="antetitulo">Sección</p>
+    <h1>{nombre}</h1>
+  </section>
+  <section class="contenedor seccion" aria-labelledby="noticias">
+    <div class="seccion-cabeza">
+      <h2 id="noticias">Noticias de {nombre.toLowerCase()}</h2>
+      <span class="conteo">{notas.length} {notas.length === 1 ? "noticia" : "noticias"}</span>
+    </div>
+    <ListaNotas notas={notas} vacio="Todavía no hay noticias en esta sección." />
+  </section>
+</Base>
+
+<style>
+  .cabeza { padding-top: 48px; }
+  h1 { font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -0.04em; }
+</style>

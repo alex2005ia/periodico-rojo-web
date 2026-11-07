@@ -1,0 +1,19 @@
+---
+import type { Nota } from "../lib/notas";
+import Tarjeta from "./Tarjeta.astro";
+
+interface Props { notas: Nota[]; vacio?: string }
+const { notas, vacio = "Todavía no hay noticias en esta sección." } = Astro.props;
+---
+
+{notas.length ? (
+  <ul class="rejilla" data-lista-notas>
+    {notas.map((n, i) => <Tarjeta nota={n} prioridad={i < 2} />)}
+  </ul>
+) : (
+  <p class="vacio">{vacio}</p>
+)}
+
+<style>
+  .vacio { color: var(--tinta-suave); padding: 24px 0; }
+</style>

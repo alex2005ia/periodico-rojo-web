@@ -1,0 +1,117 @@
+---
+import Base from "../layouts/Base.astro";
+import ListaNotas from "../components/ListaNotas.astro";
+import ExploraMunicipios from "../components/ExploraMunicipios.astro";
+import { notasPublicadas } from "../lib/notas";
+import { CATEGORIAS, MUNICIPIOS } from "../lib/sitio";
+
+const notas = await notasPublicadas();
+---
+
+<Base activo="portada">
+  <section class="contenedor portada">
+    <p class="antetitulo">Edición metropolitana</p>
+    <h1>Tu ciudad. Tu información.</h1>
+    <p class="entrada">
+      Lo que pasa y lo que viene en tu municipio.<br />
+      Cultura, comunidad, deportes y servicios, con fuentes oficiales.
+    </p>
+  </section>
+
+  <section class="contenedor seccion" aria-labelledby="noticias">
+    <div class="seccion-cabeza">
+      <h2 id="noticias">Noticias municipales</h2>
+      <span class="conteo" data-conteo>{notas.length} noticias</span>
+    </div>
+
+    <form class="filtros" data-filtros hidden>
+      <label>
+        <span>Municipio</span>
+        <select name="municipio">
+          <option value="">Todos los municipios</option>
+          {MUNICIPIOS.map((m) => <option value={m.id}>{m.nombre}</option>)}
+        </select>
+      </label>
+      <label>
+        <span>Categoría</span>
+        <select name="categoria">
+          <option value="">Todas las categorías</option>
+          {CATEGORIAS.map((c) => <option value={c.id}>{c.nombre}</option>)}
+        </select>
+      </label>
+      <button type="reset" class="restablecer">Restablecer filtros <span aria-hidden="true">↗</span></button>
+    </form>
+
+    <ListaNotas notas={notas} />
+    <p class="sin-resultados" data-sin-resultados hidden>Todavía no hay noticias con estos filtros.</p>
+  </section>
+
+  <ExploraMunicipios />
+</Base>
+
+<script>
+  // Filtros de la portada. Sin JavaScript se ven todas las notas; con él, se filtran en el navegador
+  // y la selección queda en la dirección (?municipio=...&categoria=...) para poder compartirla.
+  const form = document.querySelector<HTMLFormElement>("[data-filtros]");
+  const tarjetas = [...document.querySelectorAll<HTMLElement>("[data-lista-notas] > li")];
+  const conteo = document.querySelector("[data-conteo]");
+  const vacio = document.querySelector<HTMLElement>("[data-sin-resultados]");
+
+  if (form && conteo && vacio) {
+    const municipio = form.elements.namedItem("municipio") as HTMLSelectElement;
+    const categoria = form.elements.namedItem("categoria") as HTMLSelectElement;
+    const valido = (sel: HTMLSelectElement, v: string | null) =>
+      v && [...sel.options].some((o) => o.value === v) ? v : "";
+
+    const aplicar = (actualizarDireccion = true) => {
+      let visibles = 0;
+      for (const t of tarjetas) {
+        const ok = (!municipio.value || t.dataset.municipio === municipio.value) &&
+                   (!categoria.value || t.dataset.categoria === categoria.value);
+        t.hidden = !ok;
+        if (ok) visibles++;
+      }
+      conteo.textContent = `${visibles} ${visibles === 1 ? "noticia" : "noticias"}`;
+      vacio.hidden = visibles > 0;
+      if (actualizarDireccion) {
+        const q = new URLSearchParams();
+        if (municipio.value) q.set("municipio", municipio.value);
+        if (categoria.value) q.set("categoria", categoria.value);
+        const texto = q.toString();
+        history.replaceState(null, "", texto ? `?${texto}` : location.pathname);
+      }
+    };
+
+    const q = new URLSearchParams(location.search);
+    municipio.value = valido(municipio, q.get("municipio"));
+    categoria.value = valido(categoria, q.get("categoria"));
+    form.hidden = false;
+    form.addEventListener("change", () => aplicar());
+    form.addEventListener("reset", () => setTimeout(() => aplicar(), 0));
+    aplicar(false);
+  }
+</script>
+
+<style>
+  .portada { padding-top: 56px; padding-bottom: 24px; }
+  h1 { font-size: clamp(2rem, 6vw, 3.1rem); letter-spacing: -0.04em; max-width: 18ch; }
+  .entrada { margin: 22px 0 0; color: var(--tinta-suave); font-size: 1.05rem; line-height: 1.7; }
+
+  .filtros {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; margin-bottom: 34px; align-items: end;
+  }
+  .filtros[hidden] { display: none; }
+  label { display: grid; gap: 8px; }
+  label span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  select {
+    font: inherit; font-size: 0.95rem; color: var(--tinta); background: #fff;
+    border: 1px solid var(--linea); border-radius: 2px; padding: 11px 14px; width: 100%;
+  }
+  .restablecer {
+    grid-column: 1 / -1; justify-self: start; font: inherit; font-size: 0.82rem; color: var(--tinta-suave);
+    background: none; border: none; border-bottom: 1px solid var(--linea); padding: 4px 18px 10px 0; cursor: pointer;
+  }
+  .restablecer:hover { color: var(--rojo); }
+  .sin-resultados { color: var(--tinta-suave); padding: 16px 0; }
+  @media (max-width: 520px) { .filtros { grid-template-columns: 1fr; } }
+</style>

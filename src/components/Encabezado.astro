@@ -1,0 +1,75 @@
+---
+import { MUNICIPIOS } from "../lib/sitio";
+
+interface Props {
+  activo?: string; // "portada" o el id de un municipio
+}
+const { activo } = Astro.props;
+const enlaces = [
+  { id: "portada", nombre: "Portada", href: "/" },
+  ...MUNICIPIOS.map((m) => ({ id: m.id, nombre: m.nombre, href: `/municipios/${m.id}` })),
+];
+---
+
+<header class="encabezado">
+  <div class="contenedor franja">
+    <span>Nuevo León · México</span>
+    <span>Periodismo local, fuentes claras</span>
+  </div>
+  <div class="contenedor cabecera">
+    <a class="marca" href="/" aria-label="Periódico Rojo, ir a la portada">
+      <span class="nombre">PERIÓDICO <span class="rojo">ROJO</span></span>
+      <span class="lema">La información cerca de ti</span>
+    </a>
+    <p class="zona">Noticias y eventos de la<br /><strong>zona metropolitana de Monterrey</strong></p>
+  </div>
+  <nav class="menu" aria-label="Secciones">
+    <ul class="contenedor">
+      {enlaces.map((e) => (
+        <li>
+          <a href={e.href} aria-current={activo === e.id ? "page" : undefined}>{e.nombre}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .franja {
+    display: flex; justify-content: space-between; gap: 12px;
+    padding-top: 10px; padding-bottom: 10px;
+    font-size: 0.78rem; color: var(--tinta);
+    border-bottom: 1px solid var(--linea);
+  }
+  .cabecera {
+    display: flex; justify-content: space-between; align-items: center; gap: 20px;
+    padding-top: 32px; padding-bottom: 34px;
+  }
+  .marca { text-decoration: none; display: grid; gap: 10px; }
+  .nombre {
+    font-family: var(--serif); font-weight: 700; letter-spacing: -0.03em;
+    font-size: clamp(1.7rem, 5vw, 2.2rem); line-height: 1;
+  }
+  .rojo { color: var(--rojo); }
+  .lema { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 600; }
+  .zona { margin: 0; text-align: right; font-size: 0.86rem; color: var(--tinta-suave); line-height: 1.6; }
+  .zona strong { color: var(--tinta); font-weight: 600; }
+
+  .menu { border-top: 1px solid var(--tinta); border-bottom: 1px solid var(--tinta); }
+  .menu ul {
+    list-style: none; margin: 0 auto; display: flex; gap: 26px;
+    overflow-x: auto; scrollbar-width: thin; white-space: nowrap;
+  }
+  .menu a {
+    display: block; padding: 15px 0 13px; text-decoration: none;
+    font-size: 0.86rem; font-weight: 700; border-bottom: 3px solid transparent;
+  }
+  .menu a:hover { color: var(--rojo); }
+  .menu a[aria-current="page"] { color: var(--rojo); border-bottom-color: var(--rojo); }
+
+  @media (max-width: 560px) {
+    .franja span:last-child { display: none; }
+    .zona { display: none; }
+    .cabecera { padding-top: 24px; padding-bottom: 24px; }
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+import type { Nota } from "../lib/notas";
+import { fechaSinHora } from "../lib/fechas";
+import { nombreCategoria, nombreMunicipio } from "../lib/sitio";
+import Sello from "./Sello.astro";
+
+interface Props {
+  nota: Nota;
+  prioridad?: boolean; // las primeras tarjetas cargan la foto sin esperar
+}
+const { nota, prioridad = false } = Astro.props;
+const { data } = nota;
+const href = `/articles/${nota.id}`;
+---
+
+<li class="tarjeta" data-municipio={data.municipio} data-categoria={data.categoria}>
+  <a class="imagen" href={href} tabindex="-1" aria-hidden="true">
+    {data.foto ? (
+      <Image src={data.foto.archivo} alt="" widths={[400, 720]} sizes="(max-width: 640px) 100vw, 360px"
+             loading={prioridad ? "eager" : "lazy"} />
+    ) : (
+      <Sello municipio={nombreMunicipio(data.municipio)} />
+    )}
+  </a>
+  <p class="etiquetas">
+    <a href={`/municipios/${data.municipio}`}>{nombreMunicipio(data.municipio)}</a>
+    <span aria-hidden="true">·</span>
+    <a href={`/categorias/${data.categoria}`}>{nombreCategoria(data.categoria)}</a>
+  </p>
+  <h3><a href={href}>{data.titulo}</a></h3>
+  <p class="descripcion">{data.descripcion}</p>
+  <p class="fecha">Comunicado: <time datetime={data.fecha_original}>{fechaSinHora(data.fecha_original)}</time></p>
+</li>
+
+<style>
+  .tarjeta { display: flex; flex-direction: column; gap: 10px; padding-bottom: 22px; border-bottom: 1px solid var(--linea); }
+  .imagen { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--papel-hondo); margin-bottom: 6px; }
+  .imagen :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+  .tarjeta:hover .imagen :global(img) { transform: scale(1.02); }
+  h3 { font-size: 1.32rem; }
+  h3 a { text-decoration: none; }
+  h3 a:hover { color: var(--rojo); }
+  .descripcion { margin: 0; color: var(--tinta-suave); font-size: 0.92rem; }
+  .fecha { margin: 0; color: var(--tinta-suave); font-size: 0.75rem; }
+  @media (prefers-reduced-motion: reduce) { .imagen :global(img) { transition: none; } }
+</style>

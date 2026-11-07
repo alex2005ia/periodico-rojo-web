@@ -1,0 +1,51 @@
+---
+import { CATEGORIAS, MUNICIPIOS } from "../lib/sitio";
+const anio = new Date().getFullYear();
+---
+
+<footer class="pie">
+  <div class="contenedor columnas">
+    <div class="marca">
+      <p class="nombre">PERIÓDICO <span>ROJO</span></p>
+      <p class="lema">La información cerca de ti.</p>
+      <p class="texto">Noticias, eventos y avisos de la zona metropolitana de Monterrey. Cada nota incluye su fuente.</p>
+    </div>
+    <nav aria-label="Municipios">
+      <h2>Municipios</h2>
+      <ul>{MUNICIPIOS.map((m) => <li><a href={`/municipios/${m.id}`}>{m.nombre}</a></li>)}</ul>
+    </nav>
+    <nav aria-label="Secciones">
+      <h2>Secciones</h2>
+      <ul>{CATEGORIAS.map((c) => <li><a href={`/categorias/${c.id}`}>{c.nombre}</a></li>)}</ul>
+    </nav>
+  </div>
+  <div class="contenedor legal">
+    <span>© {anio} Periódico Rojo</span>
+    <span><a href="/about">Sobre el periódico</a> · <a href="/rss.xml">RSS</a></span>
+  </div>
+</footer>
+
+<style>
+  .pie { margin-top: 72px; border-top: 2px solid var(--tinta); background: var(--papel-hondo); }
+  .columnas {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px;
+    padding-top: 40px; padding-bottom: 32px;
+  }
+  .nombre { margin: 0; font-family: var(--serif); font-weight: 700; font-size: 1.35rem; letter-spacing: -0.02em; }
+  .nombre span { color: var(--rojo); }
+  .lema { margin: 6px 0 12px; font-weight: 600; }
+  .texto { margin: 0; color: var(--tinta-suave); font-size: 0.9rem; max-width: 34ch; }
+  h2 {
+    font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--rojo); margin-bottom: 12px;
+  }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 0.92rem; }
+  a { text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .legal {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    padding-top: 16px; padding-bottom: 24px; border-top: 1px solid var(--linea);
+    font-size: 0.82rem; color: var(--tinta-suave);
+  }
+  @media (max-width: 720px) { .columnas { grid-template-columns: 1fr 1fr; } .marca { grid-column: 1 / -1; } }
+</style>

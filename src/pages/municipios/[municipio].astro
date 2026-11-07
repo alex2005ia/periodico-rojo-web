@@ -1,0 +1,34 @@
+---
+import Base from "../../layouts/Base.astro";
+import ListaNotas from "../../components/ListaNotas.astro";
+import { notasPublicadas } from "../../lib/notas";
+import { MUNICIPIOS } from "../../lib/sitio";
+
+export function getStaticPaths() {
+  return MUNICIPIOS.map((m) => ({ params: { municipio: m.id }, props: { nombre: m.nombre } }));
+}
+
+const { municipio } = Astro.params;
+const { nombre } = Astro.props;
+const notas = (await notasPublicadas()).filter((n) => n.data.municipio === municipio);
+---
+
+<Base titulo={nombre} descripcion={`Noticias, eventos y avisos de ${nombre}, Nuevo León, con fuentes oficiales.`}
+      activo={municipio}>
+  <section class="contenedor cabeza">
+    <p class="antetitulo">Edición municipal</p>
+    <h1>{nombre}</h1>
+  </section>
+  <section class="contenedor seccion" aria-labelledby="noticias">
+    <div class="seccion-cabeza">
+      <h2 id="noticias">Noticias de {nombre}</h2>
+      <span class="conteo">{notas.length} {notas.length === 1 ? "noticia" : "noticias"}</span>
+    </div>
+    <ListaNotas notas={notas} vacio={`Todavía no hay noticias publicadas de ${nombre}.`} />
+  </section>
+</Base>
+
+<style>
+  .cabeza { padding-top: 48px; }
+  h1 { font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -0.04em; }
+</style>

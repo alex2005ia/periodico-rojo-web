@@ -1,0 +1,51 @@
+---
+import "../styles/global.css";
+import Encabezado from "../components/Encabezado.astro";
+import Pie from "../components/Pie.astro";
+import { SITIO } from "../lib/sitio";
+
+interface Props {
+  titulo?: string;
+  descripcion?: string;
+  activo?: string;
+  imagen?: string;       // URL absoluta o ruta de la imagen para compartir
+  tipo?: "website" | "article";
+  publicado?: Date;
+}
+const { titulo, descripcion = SITIO.descripcion, activo, imagen, tipo = "website", publicado } = Astro.props;
+const tituloCompleto = titulo ? `${titulo} | Periódico Rojo` : "Periódico Rojo · La información cerca de ti";
+const canonica = new URL(Astro.url.pathname, Astro.site);
+const imagenCompartir = new URL(imagen ?? "/compartir.svg", Astro.site);
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonica} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="Periódico Rojo" href="/rss.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#f9f7f3" />
+    <meta property="og:site_name" content="Periódico Rojo" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:type" content={tipo} />
+    <meta property="og:title" content={titulo ?? "Periódico Rojo"} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:image" content={imagenCompartir} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {publicado && <meta property="article:published_time" content={publicado.toISOString()} />}
+  </head>
+  <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <Encabezado activo={activo} />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Pie />
+  </body>
+</html>

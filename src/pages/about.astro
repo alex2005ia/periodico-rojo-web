@@ -1,0 +1,32 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base titulo="Sobre el periódico" descripcion="Qué es Periódico Rojo, qué cubre y cómo revisa la información que publica.">
+  <article class="contenedor sobre">
+    <p class="antetitulo">Sobre el periódico</p>
+    <h1>Sobre Periódico Rojo</h1>
+    <div class="prosa">
+      <p>Periódico Rojo es un proyecto informativo local enfocado en noticias, eventos y avisos de la zona metropolitana de Monterrey.</p>
+      <p>Nuestra cobertura inicial incluye García, San Nicolás de los Garza, Monterrey, General Escobedo, San Pedro Garza García y Guadalupe.</p>
+
+      <h2>Cómo organizamos la información</h2>
+      <p>Cada nota se identifica por municipio y categoría: Cultura, Deportes, Comunidad, Obras y servicios, o Avisos. Las fechas de publicación se distinguen de las fechas de los eventos.</p>
+
+      <h2>Fuentes y revisión</h2>
+      <p>Partimos de comunicados y publicaciones oficiales. Antes de publicar, revisamos fechas, lugares y datos, redactamos una síntesis propia y enlazamos la fuente original. Las declaraciones y cifras de una autoridad se atribuyen a esa fuente.</p>
+      <p>Publicar información de un gobierno municipal no implica pertenecer a ese gobierno.</p>
+
+      <h2>Fotografías</h2>
+      <p>Las fotografías deben corresponder al evento o noticia. Utilizamos imágenes propias o facilitadas o autorizadas para difusión, con el crédito correspondiente. Si no contamos con una fotografía, mostramos una identificación visual del periódico.</p>
+
+      <h2>Cambios y correcciones</h2>
+      <p>Los cambios de horario, ubicación o cancelación se indican en la nota cuando se verifican. No se publican automáticamente noticias que no hayan pasado por revisión.</p>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .sobre { max-width: 820px; padding-top: 48px; }
+  h1 { font-size: clamp(2rem, 6vw, 2.8rem); letter-spacing: -0.04em; margin-bottom: 28px; }
+</style>
