@@ -1,0 +1,232 @@
+---
+// El tiempo por municipio. Los datos llegan del navegador a /api/clima (función de Cloudflare con MET Norway).
+// Sin JavaScript se muestra un aviso y el enlace a la fuente.
+import { MUNICIPIOS } from "../lib/sitio";
+
+interface Props { municipio?: string }
+const { municipio = "monterrey" } = Astro.props;
+---
+
+<section class="contenedor seccion tiempo" aria-labelledby="tiempo-titulo" data-tiempo data-inicial={municipio}>
+  <div class="cabeza">
+    <div>
+      <p class="antetitulo">Para organizar tu día</p>
+      <h2 id="tiempo-titulo">El tiempo en tu municipio</h2>
+    </div>
+    <label class="selector">
+      <span>Consultar municipio</span>
+      <select data-tiempo-municipio aria-label="Municipio del pronóstico">
+        {MUNICIPIOS.map((m) => <option value={m.id} selected={m.id === municipio}>{m.nombre}</option>)}
+      </select>
+    </label>
+  </div>
+
+  <p class="estado" data-tiempo-estado role="status" aria-live="polite">Cargando el pronóstico…</p>
+  <noscript><p class="estado">Activa JavaScript para ver el pronóstico, o consulta el <a href="https://smn.conagua.gob.mx/es/">SMN</a>.</p></noscript>
+  <button type="button" class="reintentar" data-tiempo-reintentar hidden>Volver a intentar</button>
+
+  <div class="cuerpo" data-tiempo-cuerpo hidden>
+    <div class="ahora">
+      <p class="lugar" data-t="lugar"></p>
+      <p class="cuando" data-t="cuando"></p>
+      <p class="grados"><span data-t="icono" aria-hidden="true"></span><strong data-t="temp"></strong><span>°C</span></p>
+      <p class="cielo" data-t="cielo"></p>
+      <p class="detalle" data-t="rango"></p>
+      <p class="detalle" data-t="viento"></p>
+    </div>
+    <div class="horas-caja">
+      <h3 data-t="horas-titulo">Próximas horas</h3>
+      <ol class="horas" data-t="horas" tabindex="0" aria-label="Pronóstico por hora"></ol>
+      <p class="nota">Desliza para ver más horas. Hora de Nuevo León.</p>
+    </div>
+  </div>
+
+  <div data-tiempo-dias-caja hidden>
+    <h3 class="dias-titulo">Los próximos siete días <span>Elige un día para ver sus horarios</span></h3>
+    <ol class="dias" data-t="dias"></ol>
+  </div>
+
+  <details class="lluvia">
+    <summary>¿Qué significa la cantidad de lluvia?</summary>
+    <p>Son milímetros de lluvia previstos en el intervalo. Menos de 0.5 mm es lluvia escasa; de 0.5 a 4 mm, lluvia
+       ligera a moderada; más de 4 mm, lluvia abundante para ese periodo.</p>
+  </details>
+  <p class="creditos" data-t="actualizado"></p>
+  <p class="creditos">Referencia: cabecera municipal; puede variar entre colonias y montañas. Horarios de Nuevo León.
+    El cielo y la lluvia describen el intervalo indicado, no una hora exacta de inicio. El pronóstico puede cambiar.</p>
+  <p class="creditos">Datos de <a href="https://www.met.no/en" rel="noopener">MET Norway</a>, instituto meteorológico de
+    Noruega · <a data-t="fuente" href="https://api.met.no/" rel="noopener">Fuente</a> ·
+    <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a>. Presentación y traducción de
+    Periódico Rojo. <a href="https://smn.conagua.gob.mx/es/" rel="noopener">Consulta avisos del SMN</a>.</p>
+</section>
+
+<script>
+  type Cond = { label: string; icon: string };
+  type Periodo = { time: string; temperature: number; wind: number; condition: Cond; periodHours: number; precipitation: number };
+  type Dia = { date: string; minimum: number; maximum: number; precipitation: number; partial: boolean; condition: Cond };
+  type Clima = { name: string; latitude: number; longitude: number; updatedAt: string | null; current: Periodo; days: Dia[]; periods: Periodo[] };
+
+  const ZONA = "America/Monterrey";
+  const LLAVE = "periodico-rojo:municipio-clima";
+  const horaFmt = new Intl.DateTimeFormat("es-MX", { timeZone: ZONA, hour: "numeric", minute: "2-digit" });
+  const diaFmt = new Intl.DateTimeFormat("es-MX", { timeZone: ZONA, weekday: "short", day: "numeric", month: "short" });
+  const fechaFmt = new Intl.DateTimeFormat("es-MX", { timeZone: ZONA, day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" });
+  const diaLocal = new Intl.DateTimeFormat("en-CA", { timeZone: ZONA, year: "numeric", month: "2-digit", day: "2-digit" });
+  const n = (x: number) => (Math.round(x * 10) / 10).toLocaleString("es-MX");
+  const mayuscula = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
+  const lluvia = (mm: number) => (mm === 0 ? "Sin lluvia prevista" : mm < 0.5 ? "Lluvia escasa" : `Se prevé lluvia · ${n(mm)} mm`);
+
+  const raiz = document.querySelector<HTMLElement>("[data-tiempo]");
+  if (raiz) {
+    const $ = <T extends HTMLElement>(sel: string) => raiz.querySelector<T>(sel)!;
+    const t = (nombre: string) => $(`[data-t="${nombre}"]`);
+    const select = $<HTMLSelectElement>("[data-tiempo-municipio]");
+    const estado = $("[data-tiempo-estado]");
+    const reintentar = $<HTMLButtonElement>("[data-tiempo-reintentar]");
+    const cuerpo = $("[data-tiempo-cuerpo]");
+    const diasCaja = $("[data-tiempo-dias-caja]");
+    let datos: Clima | null = null;
+    let diaElegido = "";
+
+    const pintarHoras = () => {
+      if (!datos) return;
+      const hoy = diaLocal.format(new Date());
+      const lista = diaElegido && diaElegido !== hoy
+        ? datos.periods.filter((p) => diaLocal.format(new Date(p.time)) === diaElegido)
+        : datos.periods.slice(0, 24);
+      t("horas-titulo").textContent = diaElegido && diaElegido !== hoy
+        ? `Horarios del ${diaFmt.format(new Date(diaElegido + "T12:00:00-06:00"))}` : "Próximas horas";
+      t("horas").replaceChildren(...lista.map((p) => {
+        const li = document.createElement("li");
+        const fin = new Date(new Date(p.time).getTime() + p.periodHours * 3600000);
+        li.innerHTML = `<span class="h"></span><span class="i" aria-hidden="true"></span><strong></strong><span class="ll"></span>`;
+        li.querySelector(".h")!.textContent = p.periodHours === 1 ? horaFmt.format(new Date(p.time)) : `${horaFmt.format(new Date(p.time))}–${horaFmt.format(fin)}`;
+        li.querySelector(".i")!.textContent = p.condition.icon;
+        li.querySelector("strong")!.textContent = `${Math.round(p.temperature)}°`;
+        li.querySelector(".ll")!.textContent = p.precipitation ? `${n(p.precipitation)} mm` : p.condition.label;
+        li.title = `${p.condition.label} · viento ${n(p.wind)} km/h`;
+        return li;
+      }));
+    };
+
+    const pintar = (d: Clima) => {
+      datos = d;
+      const c = d.current;
+      t("lugar").textContent = d.name;
+      t("cuando").textContent = `Hoy · ${horaFmt.format(new Date(c.time))}`;
+      t("icono").textContent = c.condition.icon;
+      t("temp").textContent = String(Math.round(c.temperature));
+      t("cielo").textContent = c.condition.label;
+      const hoy = d.days[0];
+      t("rango").textContent = hoy ? `Máx. ${n(hoy.maximum)}° · mín. ${n(hoy.minimum)}° · ${lluvia(hoy.precipitation)}` : "";
+      t("viento").textContent = `Viento: ${n(c.wind)} km/h`;
+      (t("fuente") as HTMLAnchorElement).href =
+        `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${d.latitude}&lon=${d.longitude}`;
+      t("actualizado").textContent = d.updatedAt
+        ? `Fuente actualizada: ${fechaFmt.format(new Date(d.updatedAt))} · hora de Nuevo León. En los días: máxima / mínima de los intervalos disponibles.` : "";
+      t("dias").replaceChildren(...d.days.map((dia, i) => {
+        const li = document.createElement("li");
+        const b = document.createElement("button");
+        b.type = "button";
+        b.dataset.fecha = dia.date;
+        b.setAttribute("aria-pressed", String(dia.date === diaElegido || (!diaElegido && i === 0)));
+        b.innerHTML = `<span class="d"></span><span class="i" aria-hidden="true"></span><span class="c"></span><strong></strong><span class="ll"></span>`;
+        b.querySelector(".d")!.textContent = i === 0 ? "Hoy" : mayuscula(diaFmt.format(new Date(dia.date + "T12:00:00-06:00")));
+        b.querySelector(".i")!.textContent = dia.condition.icon;
+        b.querySelector(".c")!.textContent = dia.condition.label;
+        b.querySelector("strong")!.textContent = `${n(dia.maximum)}° / ${n(dia.minimum)}°`;
+        b.querySelector(".ll")!.textContent = lluvia(dia.precipitation) + (i === 0 && dia.partial ? " · desde ahora" : "");
+        b.addEventListener("click", () => {
+          diaElegido = i === 0 ? "" : dia.date;
+          for (const otro of t("dias").querySelectorAll("button")) otro.setAttribute("aria-pressed", String(otro === b));
+          pintarHoras();
+        });
+        li.append(b);
+        return li;
+      }));
+      pintarHoras();
+      cuerpo.hidden = false;
+      diasCaja.hidden = false;
+    };
+
+    const cargar = async () => {
+      const m = select.value;
+      try { localStorage.setItem(LLAVE, m); } catch { /* sin almacenamiento */ }
+      estado.textContent = "Cargando el pronóstico…";
+      reintentar.hidden = true;
+      try {
+        const r = await fetch(`/api/clima?municipio=${encodeURIComponent(m)}`);
+        const d = await r.json();
+        if (!r.ok) throw new Error(d.error || "Sin pronóstico");
+        if (select.value !== m) return; // cambió de municipio mientras cargaba
+        diaElegido = "";
+        pintar(d);
+        estado.textContent = `Pronóstico de ${d.name} disponible.`;
+        estado.classList.add("oculto");
+      } catch (e) {
+        estado.classList.remove("oculto");
+        estado.textContent = `No se pudo cargar el pronóstico. ${e instanceof Error ? e.message : ""}`;
+        reintentar.hidden = false;
+        cuerpo.hidden = true;
+        diasCaja.hidden = true;
+      }
+    };
+
+    let guardado = "";
+    try { guardado = localStorage.getItem(LLAVE) ?? ""; } catch { /* sin almacenamiento */ }
+    // En la página de un municipio manda ese municipio; en la portada, el último consultado.
+    if (raiz.dataset.inicial === "monterrey" && guardado && [...select.options].some((o) => o.value === guardado)) {
+      select.value = guardado;
+    }
+    select.addEventListener("change", cargar);
+    reintentar.addEventListener("click", cargar);
+    cargar();
+  }
+</script>
+
+<style>
+  .tiempo { border-top: 1px solid var(--linea); padding-top: 40px; }
+  .cabeza { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 18px; margin-bottom: 22px; }
+  .cabeza h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); }
+  .selector { display: grid; gap: 6px; min-width: min(100%, 260px); }
+  .selector span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+  .selector select { font: inherit; font-size: 0.95rem; color: var(--tinta); background: #fff; border: 1px solid var(--linea);
+                     border-radius: 2px; padding: 10px 12px; }
+  .estado { color: var(--tinta-suave); margin: 0 0 12px; }
+  .estado.oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .reintentar { font: inherit; font-weight: 700; border: 1px solid var(--tinta); background: #fff; padding: 8px 14px; cursor: pointer; }
+  .cuerpo { display: grid; grid-template-columns: minmax(200px, 260px) 1fr; gap: 24px; background: var(--papel-hondo);
+            border: 1px solid var(--linea); padding: 22px; }
+  .ahora p { margin: 0; }
+  .lugar { font-weight: 700; }
+  .cuando { color: var(--rojo); font-weight: 700; font-size: 0.85rem; margin-bottom: 10px !important; }
+  .grados { display: flex; align-items: flex-start; gap: 10px; font-size: 1rem; }
+  .grados [data-t="icono"] { font-size: 2.2rem; line-height: 1.2; }
+  .grados strong { font-family: var(--serif); font-size: 3.6rem; line-height: 1; font-weight: 500; }
+  .cielo { font-weight: 700; margin-top: 8px !important; }
+  .detalle { font-size: 0.85rem; color: var(--tinta-suave); margin-top: 4px !important; }
+  .horas-caja { min-width: 0; }
+  .horas-caja h3 { font-size: 1rem; margin-bottom: 10px; }
+  .horas { list-style: none; margin: 0; padding: 0 0 8px; display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x proximity; }
+  .horas :global(li) { flex: 0 0 auto; width: 92px; display: grid; justify-items: center; gap: 4px; background: #fff;
+                       border: 1px solid var(--linea); padding: 10px 8px; scroll-snap-align: start; text-align: center; }
+  .horas :global(.h) { font-size: 0.72rem; color: var(--tinta-suave); }
+  .horas :global(.i) { font-size: 1.3rem; }
+  .horas :global(.ll) { font-size: 0.68rem; color: var(--tinta-suave); overflow-wrap: anywhere; }
+  .nota { font-size: 0.75rem; color: var(--tinta-suave); margin: 6px 0 0; }
+  .dias-titulo { font-size: 1rem; margin: 26px 0 10px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; }
+  .dias-titulo span { font-family: var(--sans); font-weight: 400; font-size: 0.8rem; color: var(--tinta-suave); }
+  .dias { list-style: none; margin: 0; padding: 0 0 8px; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(118px, 1fr);
+          gap: 8px; overflow-x: auto; }
+  .dias :global(button) { width: 100%; height: 100%; display: grid; justify-items: center; gap: 4px; font: inherit; text-align: center;
+                          background: #fff; border: 1px solid var(--linea); padding: 12px 8px; cursor: pointer; color: var(--tinta); }
+  .dias :global(button[aria-pressed="true"]) { border-color: var(--rojo); box-shadow: inset 0 3px 0 var(--rojo); }
+  .dias :global(.d) { font-size: 0.78rem; font-weight: 700; }
+  .dias :global(.i) { font-size: 1.4rem; }
+  .dias :global(.c), .dias :global(.ll) { font-size: 0.72rem; color: var(--tinta-suave); }
+  .lluvia { margin: 14px 0 8px; font-size: 0.85rem; }
+  .lluvia summary { cursor: pointer; color: var(--rojo); }
+  .creditos { font-size: 0.78rem; color: var(--tinta-suave); margin: 6px 0; max-width: 90ch; }
+  .creditos a { color: var(--tinta); }
+  @media (max-width: 640px) { .cuerpo { grid-template-columns: 1fr; padding: 16px; } }
+</style>

@@ -73,6 +73,19 @@ Si un expediente cita una fuente o una nota que no existe, o un valor no es vál
 
 Los expedientes guardados por cada lector viven sólo en su navegador (no hay cuentas ni servidor).
 
+## El tiempo por municipio
+
+La portada y cada página de municipio muestran el pronóstico (hora actual, próximas horas y siete días).
+El navegador lo pide a `/api/clima?municipio=<id>`, una función de Cloudflare Pages (`functions/api/clima.js`)
+que consulta MET Norway (Locationforecast 2.0, licencia CC BY 4.0) y guarda la respuesta en la caché de
+Cloudflare hasta su `Expires` (mínimo 10 minutos). La conversión al español está en `src/lib/clima-met.js`.
+
+- Costo: gratis. Las funciones de Cloudflare incluyen 100 000 solicitudes al día en el plan gratuito; si se
+  rebasan, la función responde error ese día (no genera cobro sin un plan de pago).
+- MET Norway pide identificarse (la función manda `PeriodicoRojo/1.0` con la dirección del sitio), respetar la
+  caché y dar crédito; el crédito está al pie del módulo.
+- Pruebas: `npm test`.
+
 ## Publicación
 
 El sitio es estático y se publica en **Cloudflare Pages** (plan gratuito): cada cambio en `main` ejecuta
