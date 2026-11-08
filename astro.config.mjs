@@ -3,7 +3,7 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
 // Dirección pública del sitio. Se usa en el RSS, el sitemap y los enlaces para compartir.
-// Al cambiar de dominio, se define SITE_URL en Vercel sin tocar el código.
+// Al cambiar de dominio, se define SITE_URL en Cloudflare Pages sin tocar el código.
 const SITE = process.env.SITE_URL ?? "https://periodico-rojo-web.vercel.app";
 
 export default defineConfig({

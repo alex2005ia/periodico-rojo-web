@@ -1,0 +1,38 @@
+---
+// Botón para guardar un expediente en este navegador (localStorage). Sin JavaScript no aparece.
+interface Props { slug: string; titulo: string }
+const { slug, titulo } = Astro.props;
+---
+
+<button type="button" class="guardar" data-guardar={slug} aria-pressed="false" hidden
+        aria-label={`Guardar el expediente ${titulo}`}>
+  <span data-texto>Guardar</span>
+</button>
+
+<script>
+  import { alternar, guardados } from "../lib/guardados";
+
+  const pintar = (b: HTMLButtonElement) => {
+    const activo = guardados().has(b.dataset.guardar!);
+    b.setAttribute("aria-pressed", String(activo));
+    b.querySelector("[data-texto]")!.textContent = activo ? "Guardado ✓" : "Guardar";
+  };
+  for (const b of document.querySelectorAll<HTMLButtonElement>("[data-guardar]")) {
+    b.hidden = false;
+    pintar(b);
+    b.addEventListener("click", () => {
+      alternar(b.dataset.guardar!);
+      for (const otro of document.querySelectorAll<HTMLButtonElement>(`[data-guardar="${b.dataset.guardar}"]`)) pintar(otro);
+      document.dispatchEvent(new CustomEvent("guardados-cambiaron"));
+    });
+  }
+</script>
+
+<style>
+  .guardar {
+    font: inherit; font-size: 0.8rem; font-weight: 700; color: var(--tinta); background: #fff;
+    border: 1px solid var(--linea); padding: 6px 12px; cursor: pointer;
+  }
+  .guardar[aria-pressed="true"] { color: var(--rojo); border-color: var(--rojo); }
+  .guardar:hover { border-color: var(--tinta); }
+</style>

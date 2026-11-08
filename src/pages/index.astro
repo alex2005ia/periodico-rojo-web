@@ -97,21 +97,4 @@ const notas = await notasPublicadas();
   h1 { font-size: clamp(2rem, 6vw, 3.1rem); letter-spacing: -0.04em; max-width: 18ch; }
   .entrada { margin: 22px 0 0; color: var(--tinta-suave); font-size: 1.05rem; line-height: 1.7; }
 
-  .filtros {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; margin-bottom: 34px; align-items: end;
-  }
-  .filtros[hidden] { display: none; }
-  label { display: grid; gap: 8px; }
-  label span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
-  select {
-    font: inherit; font-size: 0.95rem; color: var(--tinta); background: #fff;
-    border: 1px solid var(--linea); border-radius: 2px; padding: 11px 14px; width: 100%;
-  }
-  .restablecer {
-    grid-column: 1 / -1; justify-self: start; font: inherit; font-size: 0.82rem; color: var(--tinta-suave);
-    background: none; border: none; border-bottom: 1px solid var(--linea); padding: 4px 18px 10px 0; cursor: pointer;
-  }
-  .restablecer:hover { color: var(--rojo); }
-  .sin-resultados { color: var(--tinta-suave); padding: 16px 0; }
-  @media (max-width: 520px) { .filtros { grid-template-columns: 1fr; } }
 </style>

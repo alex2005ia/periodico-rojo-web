@@ -55,17 +55,37 @@ se detiene y dice qué archivo y qué campo revisar.
 
 Las fotos van en `src/assets/fotos/`. Astro las reduce y convierte a WebP al compilar.
 
+## Agregar o actualizar un expediente de proyecto
+
+Cada expediente es un archivo JSON en `src/content/proyectos/`. El nombre es su dirección:
+`limpieza-canal-medular.json` se publica en `/proyectos/limpieza-canal-medular`. Copia uno existente y cambia:
+
+- `municipio` (los mismos de las notas), `tema` (`Obras y servicios`, `Planeación urbana`, `Energía`, `Industria`,
+  `Logística`) y `estado` (`Anuncio documentado`, `Avance reportado`, `Concluido según la fuente`,
+  `Suspendido según la fuente`, `Sin novedades`).
+- `eventos`: un hito por documento nuevo, con su `url` y `donde_comprobarlo` (qué párrafo o dato lo sustenta).
+  Al agregar un hito, actualiza también `fecha_fuente` y `ultimo_cotejo` del expediente.
+- `pendientes`: lo que todavía no está confirmado. No disponer de un dato no significa que sea cero.
+- `fuentes`: nombres de archivo de `src/content/fuentes/` (sin `.json`). `nota_relacionada`: nombre de una nota.
+
+Las fuentes son archivos JSON en `src/content/fuentes/`. Sus expedientes no se escriben a mano: se calculan.
+Si un expediente cita una fuente o una nota que no existe, o un valor no es válido, `npm run build` se detiene.
+
+Los expedientes guardados por cada lector viven sólo en su navegador (no hay cuentas ni servidor).
+
 ## Publicación
 
-El sitio es estático: Vercel ejecuta `npm run build` y publica `dist/`. La dirección pública se define con la
-variable de entorno `SITE_URL` (si no existe, se usa `https://periodico-rojo-web.vercel.app`); el RSS y el
-sitemap la usan.
+El sitio es estático y se publica en **Cloudflare Pages** (plan gratuito): cada cambio en `main` ejecuta
+`npm run build` y publica `dist/`. Otra rama genera una vista previa en `https://<rama>.periodico-rojo-web.pages.dev`.
+La dirección pública se define con la variable `SITE_URL` en Cloudflare; el RSS y el sitemap la usan.
 
 ## Estructura
 
 | Ruta | Qué es |
 | --- | --- |
 | `src/content/articulos/` | Las notas (Markdown con datos al inicio) |
+| `src/content/proyectos/`, `src/content/fuentes/` | Expedientes de seguimiento y catálogo de fuentes (JSON) |
+| `src/lib/seguimiento.ts` | Temas, estados y textos fijos de la sección de proyectos |
 | `src/content.config.ts` | Esquema que valida cada nota |
 | `src/lib/sitio.ts` | Municipios, categorías y datos del periódico |
 | `src/pages/` | Portada, notas, municipios, categorías, «Sobre», RSS y 404 |
@@ -74,7 +94,6 @@ sitemap la usan.
 
 ## Pendiente de reconstruir
 
-- **P2**: proyectos y seguimiento (`/proyectos`) y catálogo de fuentes (`/fuentes`). Los datos están rescatados.
 - **P3**: el tiempo por municipio (`/api/clima`, MET Norway) y la agenda de próximos eventos.
 - Búsqueda (`/search`).
 

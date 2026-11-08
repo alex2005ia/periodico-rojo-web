@@ -1,0 +1,42 @@
+{
+  "titulo": "Limpieza preventiva del Canal Medular",
+  "subtitulo": "Expediente de seguimiento de los comunicados municipales sobre el mantenimiento del canal.",
+  "municipio": "monterrey",
+  "tema": "Obras y servicios",
+  "estado": "Avance reportado",
+  "resumen": "Servicios Públicos reportó labores de mantenimiento en el Canal Medular y señaló que continuarían. El comunicado describe actividad en el tramo de Sierra Verde a Ocaso; no acredita la conclusión de la intervención.",
+  "fecha_fuente": "2026-10-23",
+  "ultimo_cotejo": "2026-10-30",
+  "base": "Declaración oficial",
+  "eventos": [
+    {
+      "titulo": "El municipio informa de trabajos de limpieza",
+      "estado": "Avance reportado",
+      "base": "Declaración oficial",
+      "fecha_fuente": "2026-10-23",
+      "fecha_hecho": null,
+      "incorporado": "2026-10-30",
+      "cotejo": "2026-10-30 · Revisión editorial asistida por IA",
+      "documentos": [
+        {
+          "titulo": "Comunicado sobre la limpieza del Canal Medular",
+          "url": "https://www.monterrey.gob.mx/noticias/retira-gobierno-de-monterrey-4-mil-toneladas-de-basura-y-escombro-del-canal-medular/",
+          "emisor": "Gobierno de Monterrey",
+          "fecha": "2026-10-23",
+          "donde_comprobarlo": "Fecha bajo el título; párrafos sobre el tramo de Sierra Verde a Ocaso y continuidad de las labores."
+        }
+      ]
+    }
+  ],
+  "pendientes": [
+    "Fecha de conclusión de las labores descritas.",
+    "Presupuesto o contrato asociado a esta intervención.",
+    "Delimitación geográfica verificada del tramo."
+  ],
+  "ubicacion": "Tramo de Sierra Verde a Ocaso, zona norte de Monterrey, según el comunicado municipal.",
+  "precision": "tramo descrito, sin geometría verificada",
+  "fuentes": [
+    "monterrey-comunicados"
+  ],
+  "nota_relacionada": "monterrey-limpieza-canal-medular"
+}

@@ -8,6 +8,8 @@ const { activo } = Astro.props;
 const enlaces = [
   { id: "portada", nombre: "Portada", href: "/" },
   ...MUNICIPIOS.map((m) => ({ id: m.id, nombre: m.nombre, href: `/municipios/${m.id}` })),
+  { id: "proyectos", nombre: "Proyectos", href: "/proyectos" },
+  { id: "fuentes", nombre: "Fuentes", href: "/fuentes" },
 ];
 ---
 

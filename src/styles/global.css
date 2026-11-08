@@ -105,3 +105,36 @@ h1, h2, h3 {
 .prosa h3 { font-size: 1.15rem; margin: 1.4em 0 0.5em; }
 .prosa a { color: var(--rojo); text-underline-offset: 2px; }
 .prosa strong { font-weight: 700; }
+
+/* Filtros (portada y proyectos). Sin JavaScript quedan ocultos y se ve todo. */
+.filtros {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 16px 18px; margin-bottom: 34px; align-items: end;
+}
+.filtros[hidden] { display: none; }
+.filtros label { display: grid; gap: 8px; }
+.filtros label span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.filtros select {
+  font: inherit; font-size: 0.95rem; color: var(--tinta); background: #fff;
+  border: 1px solid var(--linea); border-radius: 2px; padding: 11px 14px; width: 100%;
+}
+.restablecer {
+  grid-column: 1 / -1; justify-self: start; font: inherit; font-size: 0.82rem; color: var(--tinta-suave);
+  background: none; border: none; border-bottom: 1px solid var(--linea); padding: 4px 18px 10px 0; cursor: pointer;
+}
+.restablecer:hover { color: var(--rojo); }
+.sin-resultados { color: var(--tinta-suave); padding: 16px 0; }
+
+/* Avisos editoriales (proyectos y fuentes) */
+.aviso {
+  border-left: 4px solid var(--tinta-suave); background: var(--papel-hondo);
+  padding: 14px 18px; margin: 0 0 28px; font-size: 0.92rem; color: var(--tinta); max-width: 72ch;
+}
+.aviso p { margin: 0; }
+.ficha-datos { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 0; font-size: 0.92rem; }
+.ficha-datos dt { color: var(--tinta-suave); }
+.ficha-datos dd { margin: 0; }
+.estado {
+  display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid currentColor; padding: 2px 8px; color: var(--rojo);
+}

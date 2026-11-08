@@ -1,0 +1,69 @@
+---
+import Base from "../layouts/Base.astro";
+import { fechaSinHora } from "../lib/fechas";
+import { TEXTOS, proyectosDeFuente, verificarReferencias } from "../lib/seguimiento";
+import { getCollection } from "astro:content";
+
+await verificarReferencias();
+const fuentes = (await getCollection("fuentes")).sort((a, b) => a.data.titulo.localeCompare(b.data.titulo, "es"));
+const conExpedientes = await Promise.all(fuentes.map(async (f) => ({ f, expedientes: await proyectosDeFuente(f.id) })));
+---
+
+<Base titulo="Catálogo de fuentes" descripcion={TEXTOS.fuentes_intro} activo="fuentes">
+  <section class="contenedor cabeza">
+    <p class="antetitulo">Transparencia</p>
+    <h1>Catálogo de fuentes</h1>
+    <p class="entrada">{TEXTOS.fuentes_intro}</p>
+  </section>
+
+  <section class="contenedor seccion" aria-labelledby="lista">
+    <div class="seccion-cabeza">
+      <h2 id="lista">Fuentes</h2>
+      <span class="conteo">{fuentes.length} {fuentes.length === 1 ? "fuente" : "fuentes"}</span>
+    </div>
+    <div class="aviso"><p>{TEXTOS.fuentes_aviso}</p></div>
+
+    <ul class="lista">
+      {conExpedientes.map(({ f, expedientes }) => (
+        <li id={f.id}>
+          <article>
+            <p class="antetitulo">{f.data.tipo}</p>
+            <h3><a href={f.data.url} target="_blank" rel="noopener noreferrer">{f.data.titulo} ↗</a></h3>
+            <dl class="ficha-datos">
+              <dt>Emisor</dt><dd>{f.data.emisor}</dd>
+              <dt>Cobertura</dt><dd>{f.data.cobertura}</dd>
+              <dt>Acceso</dt><dd>{f.data.estado_acceso}</dd>
+              <dt>Última comprobación</dt><dd><time datetime={f.data.ultima_comprobacion}>{fechaSinHora(f.data.ultima_comprobacion)}</time></dd>
+              <dt>Incorporación</dt><dd>{f.data.incorporacion}</dd>
+              <dt>Reutilización</dt><dd>{f.data.reutilizacion}</dd>
+            </dl>
+            <p class="licencia">{f.data.nota_licencia}</p>
+            {expedientes.length > 0 && (
+              <p class="expedientes">
+                Expedientes que la citan: {expedientes.map((p, i) => (
+                  <>{i > 0 && ", "}<a href={`/proyectos/${p.id}`}>{p.data.titulo}</a></>
+                ))}
+              </p>
+            )}
+          </article>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .cabeza { padding-top: 48px; }
+  h1 { font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -0.04em; }
+  .entrada { margin: 18px 0 0; color: var(--tinta-suave); font-size: 1.05rem; max-width: 60ch; }
+  .lista { list-style: none; margin: 0; padding: 0; }
+  .lista > li { border-bottom: 1px solid var(--linea); padding: 26px 0; scroll-margin-top: 20px; }
+  .lista > li:first-child { padding-top: 0; }
+  h3 { font-size: 1.35rem; margin: 0 0 14px; }
+  h3 a { text-decoration: none; }
+  h3 a:hover { color: var(--rojo); }
+  .licencia { font-size: 0.9rem; color: var(--tinta-suave); max-width: 72ch; margin: 14px 0; }
+  .expedientes { font-size: 0.9rem; margin: 0; }
+  .expedientes a { color: var(--rojo); font-weight: 600; }
+  @media (max-width: 560px) { .ficha-datos { grid-template-columns: 1fr; } .ficha-datos dd { margin-bottom: 8px; } }
+</style>

@@ -1,0 +1,41 @@
+{
+  "titulo": "Visor Urbano y Geoportal de Escobedo",
+  "subtitulo": "Expediente de seguimiento de la presentación de las herramientas municipales de consulta territorial.",
+  "municipio": "escobedo",
+  "tema": "Planeación urbana",
+  "estado": "Anuncio documentado",
+  "resumen": "El gobierno municipal presentó el Visor Urbano y el Geoportal para consultar información urbanística y territorial. Este registro acredita la declaración publicada; el funcionamiento y la cobertura de las plataformas requieren una comprobación separada.",
+  "fecha_fuente": "2026-10-22",
+  "ultimo_cotejo": "2026-10-30",
+  "base": "Declaración oficial",
+  "eventos": [
+    {
+      "titulo": "Escobedo presenta dos herramientas de consulta territorial",
+      "estado": "Anuncio",
+      "base": "Declaración oficial",
+      "fecha_fuente": "2026-10-22",
+      "fecha_hecho": null,
+      "incorporado": "2026-10-30",
+      "cotejo": "2026-10-30 · Revisión editorial asistida por IA",
+      "documentos": [
+        {
+          "titulo": "Habilita Escobedo Visor Urbano y Geoportal",
+          "url": "https://escobedo.gob.mx/?a=20261022&p=notas",
+          "emisor": "Gobierno de General Escobedo",
+          "fecha": "2026-10-22",
+          "donde_comprobarlo": "Fecha de la nota y párrafos que describen la presentación, el Visor Urbano y el Geoportal."
+        }
+      ]
+    }
+  ],
+  "pendientes": [
+    "Comprobación de acceso y funcionamiento de cada herramienta.",
+    "Cobertura, fecha de actualización y condiciones de reutilización de sus capas."
+  ],
+  "ubicacion": "General Escobedo, Nuevo León. El alcance descrito es municipal; no corresponde a un predio específico.",
+  "precision": "municipal",
+  "fuentes": [
+    "escobedo-comunicados"
+  ],
+  "nota_relacionada": "escobedo-visor-urbano-geoportal"
+}

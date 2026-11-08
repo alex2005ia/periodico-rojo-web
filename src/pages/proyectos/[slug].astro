@@ -1,0 +1,125 @@
+---
+import Base from "../../layouts/Base.astro";
+import GuardarProyecto from "../../components/GuardarProyecto.astro";
+import { fechaSinHora } from "../../lib/fechas";
+import { nombreMunicipio } from "../../lib/sitio";
+import { TEXTOS, fuentesDe, notaDe, proyectosPublicados, type Proyecto } from "../../lib/seguimiento";
+
+export async function getStaticPaths() {
+  const proyectos = await proyectosPublicados();
+  return proyectos.map((p) => ({ params: { slug: p.id }, props: { p } }));
+}
+
+interface Props { p: Proyecto }
+const { p } = Astro.props;
+const d = p.data;
+const fuentes = await fuentesDe(p);
+const nota = await notaDe(p);
+const hitos = [...d.eventos].sort((a, b) => b.fecha_fuente.localeCompare(a.fecha_fuente));
+---
+
+<Base titulo={d.titulo} descripcion={d.subtitulo} activo="proyectos">
+  <article class="contenedor ficha">
+    <a class="volver" href="/proyectos">← Todos los expedientes</a>
+    <p class="etiquetas">
+      <a href={`/proyectos?municipio=${d.municipio}`}>{nombreMunicipio(d.municipio)}</a>
+      <span aria-hidden="true">·</span>
+      <a href={`/proyectos?tema=${encodeURIComponent(d.tema)}`}>{d.tema}</a>
+    </p>
+    <h1>{d.titulo}</h1>
+    <p class="subtitulo">{d.subtitulo}</p>
+    <div class="acciones">
+      <span class="estado">{d.estado}</span>
+      <GuardarProyecto slug={p.id} titulo={d.titulo} />
+    </div>
+
+    <section aria-labelledby="resumen">
+      <h2 id="resumen">Qué se sabe</h2>
+      <p class="prosa">{d.resumen}</p>
+      <dl class="ficha-datos">
+        <dt>Fecha de la última fuente</dt><dd><time datetime={d.fecha_fuente}>{fechaSinHora(d.fecha_fuente)}</time></dd>
+        <dt>Último cotejo editorial</dt><dd><time datetime={d.ultimo_cotejo}>{fechaSinHora(d.ultimo_cotejo)}</time></dd>
+        <dt>Base</dt><dd>{d.base}</dd>
+        <dt>Ubicación</dt><dd>{d.ubicacion}</dd>
+        <dt>Precisión</dt><dd>{d.precision}</dd>
+      </dl>
+      <div class="aviso"><p>{TEXTOS.expediente_aviso}</p></div>
+    </section>
+
+    <section aria-labelledby="hitos">
+      <h2 id="hitos">Hitos documentados</h2>
+      <ol class="hitos">
+        {hitos.map((h) => (
+          <li>
+            <p class="hito-fecha">
+              <time datetime={h.fecha_fuente}>{fechaSinHora(h.fecha_fuente)}</time>
+              {h.fecha_hecho && h.fecha_hecho !== h.fecha_fuente && (
+                <> · ocurrió el <time datetime={h.fecha_hecho}>{fechaSinHora(h.fecha_hecho)}</time></>
+              )}
+            </p>
+            <h3>{h.titulo}</h3>
+            <p class="hito-meta">{h.estado} · {h.base} · incorporado el {fechaSinHora(h.incorporado)} · cotejo: {h.cotejo}</p>
+            {h.documentos.map((doc) => (
+              <div class="documento">
+                <p><a href={doc.url} target="_blank" rel="noopener noreferrer">{doc.titulo} ↗</a></p>
+                <p class="doc-meta">{doc.emisor} · {fechaSinHora(doc.fecha)}</p>
+                <p class="doc-donde"><strong>Dónde comprobarlo:</strong> {doc.donde_comprobarlo}</p>
+              </div>
+            ))}
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    {d.pendientes.length > 0 && (
+      <section aria-labelledby="pendientes">
+        <h2 id="pendientes">Lo que falta por confirmar</h2>
+        <ul class="pendientes">{d.pendientes.map((x) => <li>{x}</li>)}</ul>
+        <p class="nota-pendiente">{TEXTOS.pendiente_aviso}</p>
+      </section>
+    )}
+
+    <section aria-labelledby="fuentes">
+      <h2 id="fuentes">Fuentes</h2>
+      <ul class="fuentes">
+        {fuentes.map((f) => (
+          <li><a href={`/fuentes#${f.id}`}>{f.data.titulo}</a> · {f.data.emisor} · reutilización: {f.data.reutilizacion.toLowerCase()}</li>
+        ))}
+      </ul>
+      {nota && (
+        <p class="relacionada">Nota relacionada: <a href={`/articles/${nota.id}`}>{nota.data.titulo}</a></p>
+      )}
+    </section>
+  </article>
+</Base>
+
+<style>
+  .ficha { max-width: 860px; padding-top: 36px; }
+  .volver { display: inline-block; margin-bottom: 22px; font-size: 0.85rem; color: var(--tinta-suave); text-decoration: none; }
+  .volver:hover { color: var(--rojo); }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.6rem); letter-spacing: -0.035em; margin-top: 12px; }
+  .subtitulo { font-size: 1.1rem; color: var(--tinta-suave); margin: 14px 0 18px; }
+  .acciones { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+  section { margin-top: 38px; }
+  section > h2 { font-size: 1.35rem; padding-bottom: 10px; margin-bottom: 18px; border-bottom: 2px solid var(--tinta); }
+  .ficha-datos { margin: 18px 0 22px; }
+  .hitos { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--linea); }
+  .hitos > li { padding: 0 0 26px 20px; position: relative; }
+  .hitos > li::before { content: ""; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px;
+                        background: var(--rojo); border-radius: 50%; }
+  .hito-fecha { margin: 0; font-size: 0.8rem; font-weight: 700; color: var(--rojo); }
+  .hitos h3 { font-size: 1.15rem; margin: 6px 0; }
+  .hito-meta { margin: 0 0 12px; font-size: 0.82rem; color: var(--tinta-suave); }
+  .documento { background: #fff; border: 1px solid var(--linea); padding: 12px 16px; margin-top: 10px; }
+  .documento p { margin: 4px 0; }
+  .documento a { color: var(--rojo); font-weight: 600; }
+  .doc-meta { font-size: 0.82rem; color: var(--tinta-suave); }
+  .doc-donde { font-size: 0.9rem; }
+  .pendientes { margin: 0 0 12px; padding-left: 1.2em; }
+  .pendientes li { margin: 6px 0; }
+  .nota-pendiente { font-size: 0.85rem; color: var(--tinta-suave); }
+  .fuentes { margin: 0; padding-left: 1.2em; }
+  .fuentes a, .relacionada a { color: var(--rojo); font-weight: 600; }
+  .relacionada { margin-top: 18px; }
+  @media (max-width: 560px) { .ficha-datos { grid-template-columns: 1fr; } .ficha-datos dd { margin-bottom: 8px; } }
+</style>

@@ -6,6 +6,7 @@ import Sello from "../../components/Sello.astro";
 import { fechaHora, fechaSinHora } from "../../lib/fechas";
 import { notasPublicadas, type Nota } from "../../lib/notas";
 import { nombreCategoria, nombreMunicipio } from "../../lib/sitio";
+import { proyectoDeNota } from "../../lib/seguimiento";
 
 export async function getStaticPaths() {
   const notas = await notasPublicadas();
@@ -16,6 +17,7 @@ interface Props { nota: Nota }
 const { nota } = Astro.props;
 const { data } = nota;
 const { Content } = await render(nota);
+const expediente = await proyectoDeNota(nota.id);
 const compartir = data.foto ? (await getImage({ src: data.foto.archivo, width: 1200, format: "jpg" })).src : undefined;
 ---
 
@@ -64,6 +66,14 @@ const compartir = data.foto ? (await getImage({ src: data.foto.archivo, width: 1
 
     <div class="prosa"><Content /></div>
 
+    {expediente && (
+      <aside class="seguimiento" aria-label="Seguimiento">
+        <p class="antetitulo">Seguimiento</p>
+        <p>Esta nota forma parte de un expediente: <a href={`/proyectos/${expediente.id}`}>{expediente.data.titulo}</a>.
+           Ahí se registran los hitos documentados y lo que falta por confirmar.</p>
+      </aside>
+    )}
+
     <p class="fuente">
       Fuente oficial: <a href={data.fuente.url} target="_blank" rel="noopener noreferrer">{data.fuente.nombre} ↗</a>
     </p>
@@ -88,6 +98,9 @@ const compartir = data.foto ? (await getImage({ src: data.foto.archivo, width: 1
   }
   .evento p { margin: 4px 0; }
   .evento .antetitulo { margin-bottom: 8px; }
+  .seguimiento { border: 1px solid var(--linea); background: #fff; padding: 14px 18px; margin: 28px 0 0; max-width: 68ch; }
+  .seguimiento p { margin: 4px 0; }
+  .seguimiento a { color: var(--rojo); font-weight: 600; }
   .fuente { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--linea); font-size: 0.92rem; }
   .fuente a { color: var(--rojo); font-weight: 600; }
 </style>

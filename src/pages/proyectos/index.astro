@@ -1,0 +1,143 @@
+---
+import Base from "../../layouts/Base.astro";
+import GuardarProyecto from "../../components/GuardarProyecto.astro";
+import { fechaSinHora } from "../../lib/fechas";
+import { MUNICIPIOS, nombreMunicipio } from "../../lib/sitio";
+import { TEMAS, TEXTOS, proyectosPublicados, verificarReferencias } from "../../lib/seguimiento";
+
+await verificarReferencias();
+const proyectos = await proyectosPublicados();
+---
+
+<Base titulo="Proyectos y seguimiento" descripcion={TEXTOS.proyectos_intro} activo="proyectos">
+  <section class="contenedor cabeza">
+    <p class="antetitulo">Seguimiento</p>
+    <h1>Proyectos y seguimiento</h1>
+    <p class="entrada">{TEXTOS.proyectos_intro}</p>
+  </section>
+
+  <section class="contenedor seccion" aria-labelledby="expedientes">
+    <div class="seccion-cabeza">
+      <h2 id="expedientes">Expedientes</h2>
+      <span class="conteo" data-conteo>{proyectos.length} {proyectos.length === 1 ? "expediente" : "expedientes"}</span>
+    </div>
+    <div class="aviso"><p>{TEXTOS.proyectos_aviso}</p></div>
+
+    <form class="filtros" data-filtros hidden>
+      <label>
+        <span>Municipio</span>
+        <select name="municipio">
+          <option value="">Todos los municipios</option>
+          {MUNICIPIOS.map((m) => <option value={m.id}>{m.nombre}</option>)}
+        </select>
+      </label>
+      <label>
+        <span>Tema</span>
+        <select name="tema">
+          <option value="">Todos los temas</option>
+          {TEMAS.map((t) => <option value={t}>{t}</option>)}
+        </select>
+      </label>
+      <label>
+        <span>Mostrar</span>
+        <select name="ver">
+          <option value="">Todos</option>
+          <option value="guardados">Sólo mis guardados</option>
+        </select>
+      </label>
+      <button type="reset" class="restablecer">Restablecer filtros <span aria-hidden="true">↗</span></button>
+    </form>
+
+    <ul class="lista" data-lista-proyectos>
+      {proyectos.map((p) => (
+        <li data-municipio={p.data.municipio} data-tema={p.data.tema} data-slug={p.id}>
+          <article class="expediente">
+            <p class="etiquetas">
+              <span>{nombreMunicipio(p.data.municipio)}</span><span aria-hidden="true">·</span><span>{p.data.tema}</span>
+            </p>
+            <h3><a href={`/proyectos/${p.id}`}>{p.data.titulo}</a></h3>
+            <p class="resumen">{p.data.resumen}</p>
+            <p class="meta">
+              <span class="estado">{p.data.estado}</span>
+              <span>Última fuente: <time datetime={p.data.fecha_fuente}>{fechaSinHora(p.data.fecha_fuente)}</time></span>
+              <span>Base: {p.data.base}</span>
+              <span>{p.data.pendientes.length} {p.data.pendientes.length === 1 ? "dato pendiente" : "datos pendientes"}</span>
+            </p>
+            <GuardarProyecto slug={p.id} titulo={p.data.titulo} />
+          </article>
+        </li>
+      ))}
+    </ul>
+    <p class="sin-resultados" data-sin-resultados hidden>No hay expedientes con estos filtros.</p>
+    <p class="nota-guardados" data-nota-guardados hidden>{TEXTOS.guardados}</p>
+    <p class="mas"><a href="/fuentes">Catálogo de fuentes de esta sección →</a></p>
+  </section>
+</Base>
+
+<script>
+  // Mismo patrón que la portada: sin JavaScript se ven todos; con él se filtran y la selección queda en la dirección.
+  import { guardados } from "../../lib/guardados";
+
+  const form = document.querySelector<HTMLFormElement>("[data-filtros]");
+  const items = [...document.querySelectorAll<HTMLElement>("[data-lista-proyectos] > li")];
+  const conteo = document.querySelector("[data-conteo]");
+  const vacio = document.querySelector<HTMLElement>("[data-sin-resultados]");
+  const nota = document.querySelector<HTMLElement>("[data-nota-guardados]");
+
+  if (form && conteo && vacio && nota) {
+    const campos = ["municipio", "tema", "ver"].map((n) => form.elements.namedItem(n) as HTMLSelectElement);
+    const [municipio, tema, ver] = campos;
+    const valido = (sel: HTMLSelectElement, v: string | null) =>
+      v && [...sel.options].some((o) => o.value === v) ? v : "";
+
+    const aplicar = (actualizarDireccion = true) => {
+      const mios = guardados();
+      let visibles = 0;
+      for (const li of items) {
+        const ok = (!municipio.value || li.dataset.municipio === municipio.value) &&
+                   (!tema.value || li.dataset.tema === tema.value) &&
+                   (ver.value !== "guardados" || mios.has(li.dataset.slug!));
+        li.hidden = !ok;
+        if (ok) visibles++;
+      }
+      conteo.textContent = `${visibles} ${visibles === 1 ? "expediente" : "expedientes"}`;
+      vacio.hidden = visibles > 0;
+      vacio.textContent = ver.value === "guardados" && mios.size === 0
+        ? "Todavía no guardas ningún expediente." : "No hay expedientes con estos filtros.";
+      nota.hidden = ver.value !== "guardados";
+      if (actualizarDireccion) {
+        const q = new URLSearchParams();
+        for (const c of campos) if (c.value) q.set(c.name, c.value);
+        const texto = q.toString();
+        history.replaceState(null, "", texto ? `?${texto}` : location.pathname);
+      }
+    };
+
+    const q = new URLSearchParams(location.search);
+    for (const c of campos) c.value = valido(c, q.get(c.name));
+    form.hidden = false;
+    form.addEventListener("change", () => aplicar());
+    form.addEventListener("reset", () => setTimeout(() => aplicar(), 0));
+    document.addEventListener("guardados-cambiaron", () => aplicar(false));
+    aplicar(false);
+  }
+</script>
+
+<style>
+  .cabeza { padding-top: 48px; }
+  h1 { font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -0.04em; }
+  .entrada { margin: 18px 0 0; color: var(--tinta-suave); font-size: 1.05rem; max-width: 60ch; }
+  .lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+  .lista > li { border-bottom: 1px solid var(--linea); padding: 26px 0; }
+  .lista > li:first-child { padding-top: 0; }
+  .expediente h3 { font-size: clamp(1.3rem, 3vw, 1.6rem); margin: 8px 0 10px; }
+  .expediente h3 a { text-decoration: none; }
+  .expediente h3 a:hover { color: var(--rojo); }
+  .resumen { margin: 0 0 14px; max-width: 72ch; color: var(--tinta); }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; margin: 0 0 14px;
+          font-size: 0.82rem; color: var(--tinta-suave); }
+  .nota-guardados { font-size: 0.85rem; color: var(--tinta-suave); max-width: 72ch; }
+  .mas { margin-top: 28px; }
+  .mas a { color: var(--rojo); font-weight: 600; text-decoration: none; }
+  .mas a:hover { text-decoration: underline; }
+</style>
