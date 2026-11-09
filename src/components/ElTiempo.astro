@@ -1,6 +1,7 @@
 ---
 // El tiempo por municipio. Los datos llegan del navegador a /api/clima (función de Cloudflare con MET Norway).
-// Sin JavaScript se muestra un aviso y el enlace a la fuente.
+// Gráfica por hora con franjas de madrugada, mañana, tarde y noche; dibujos según el cielo y la intensidad de
+// la lluvia; la lluvia se describe con palabras (la fuente no publica probabilidad de lluvia para la zona).
 import { MUNICIPIOS } from "../lib/sitio";
 
 interface Props { municipio?: string }
@@ -12,6 +13,7 @@ const { municipio = "monterrey" } = Astro.props;
     <div>
       <p class="antetitulo">Para organizar tu día</p>
       <h2 id="tiempo-titulo">El tiempo en tu municipio</h2>
+      <p class="sub">Consulta el día y desliza para explorar sus horarios</p>
     </div>
     <label class="selector">
       <span>Consultar municipio</span>
@@ -25,19 +27,34 @@ const { municipio = "monterrey" } = Astro.props;
   <noscript><p class="estado">Activa JavaScript para ver el pronóstico, o consulta el <a href="https://smn.conagua.gob.mx/es/">SMN</a>.</p></noscript>
   <button type="button" class="reintentar" data-tiempo-reintentar hidden>Volver a intentar</button>
 
-  <div class="cuerpo" data-tiempo-cuerpo hidden>
-    <div class="ahora">
+  <div class="panel" data-tiempo-cuerpo hidden>
+    <div class="lectura">
       <p class="lugar" data-t="lugar"></p>
       <p class="cuando" data-t="cuando"></p>
-      <p class="grados"><span data-t="icono" aria-hidden="true"></span><strong data-t="temp"></strong><span>°C</span></p>
+      <div class="grados"><span class="icono-grande" data-t="icono" aria-hidden="true"></span><strong data-t="temp"></strong><span class="unidad">°C</span></div>
       <p class="cielo" data-t="cielo"></p>
-      <p class="detalle" data-t="rango"></p>
+      <p class="lluvia-texto" data-t="lluvia"></p>
       <p class="detalle" data-t="viento"></p>
+      <p class="detalle" data-t="rango"></p>
+      <p class="detalle" data-t="sol"></p>
     </div>
-    <div class="horas-caja">
-      <h3 data-t="horas-titulo">Próximas horas</h3>
-      <ol class="horas" data-t="horas" tabindex="0" aria-label="Pronóstico por hora"></ol>
-      <p class="nota">Desliza para ver más horas. Hora de Nuevo León.</p>
+    <div class="grafica-caja">
+      <div class="grafica-cabeza">
+        <div>
+          <h3 data-t="horas-titulo">Pronóstico por hora</h3>
+          <p class="detalle" data-t="horas-sub"></p>
+        </div>
+        <div class="flechas">
+          <button type="button" data-t="antes" aria-label="Hora anterior">←</button>
+          <span data-t="hora-elegida"></span>
+          <button type="button" data-t="despues" aria-label="Hora siguiente">→</button>
+        </div>
+      </div>
+      <div class="grafica" data-t="grafica-scroll">
+        <svg data-t="grafica" role="img" aria-label="Temperatura y lluvia por hora"></svg>
+      </div>
+      <input class="barra" type="range" min="0" max="0" value="0" data-t="barra" aria-label="Elegir hora del pronóstico" />
+      <p class="nota">Desliza la barra o usa las flechas para cambiar de hora. Hora de Nuevo León.</p>
     </div>
   </div>
 
@@ -46,10 +63,17 @@ const { municipio = "monterrey" } = Astro.props;
     <ol class="dias" data-t="dias"></ol>
   </div>
 
-  <details class="lluvia">
-    <summary>¿Qué significa la cantidad de lluvia?</summary>
-    <p>Son milímetros de lluvia previstos en el intervalo. Menos de 0.5 mm es lluvia escasa; de 0.5 a 4 mm, lluvia
-       ligera a moderada; más de 4 mm, lluvia abundante para ese periodo.</p>
+  <details class="explica">
+    <summary>¿Cómo describimos la lluvia?</summary>
+    <ul>
+      <li><strong>Chispea:</strong> gotas aisladas; casi no moja.</li>
+      <li><strong>Lluvia ligera:</strong> moja, pero un paraguas basta.</li>
+      <li><strong>Lluvia:</strong> constante; puede haber charcos.</li>
+      <li><strong>Lluvia fuerte:</strong> abundante; posibles encharcamientos.</li>
+      <li><strong>Tormenta eléctrica:</strong> se prevén rayos; evita espacios abiertos.</li>
+    </ul>
+    <p>La fuente no publica la probabilidad de lluvia para esta zona, por eso no mostramos porcentajes. La palabra
+       resume la cantidad prevista en el intervalo.</p>
   </details>
   <p class="creditos" data-t="actualizado"></p>
   <p class="creditos">Referencia: cabecera municipal; puede variar entre colonias y montañas. Horarios de Nuevo León.
@@ -61,97 +85,226 @@ const { municipio = "monterrey" } = Astro.props;
 </section>
 
 <script>
-  type Cond = { label: string; icon: string };
-  type Periodo = { time: string; temperature: number; wind: number; condition: Cond; periodHours: number; precipitation: number };
-  type Dia = { date: string; minimum: number; maximum: number; precipitation: number; partial: boolean; condition: Cond };
-  type Clima = { name: string; latitude: number; longitude: number; updatedAt: string | null; current: Periodo; days: Dia[]; periods: Periodo[] };
+  type Lluvia = { level: number; label: string };
+  type Periodo = { time: string; temperature: number; wind: number; condition: { label: string };
+    periodHours: number; precipitation: number; sky: string; isDay: boolean; phase: string; rain: Lluvia };
+  type Dia = { date: string; minimum: number; maximum: number; partial: boolean; condition: { label: string };
+    sky: string; rain: Lluvia; sunrise: string; sunset: string };
+  type Clima = { name: string; latitude: number; longitude: number; updatedAt: string | null; current: Periodo;
+    days: Dia[]; periods: Periodo[] };
 
   const ZONA = "America/Monterrey";
   const LLAVE = "periodico-rojo:municipio-clima";
+  const SVG = "http://www.w3.org/2000/svg";
   const horaFmt = new Intl.DateTimeFormat("es-MX", { timeZone: ZONA, hour: "numeric", minute: "2-digit" });
+  const horaCorta = new Intl.DateTimeFormat("es-MX", { timeZone: ZONA, hour: "numeric" });
   const diaFmt = new Intl.DateTimeFormat("es-MX", { timeZone: ZONA, weekday: "short", day: "numeric", month: "short" });
   const fechaFmt = new Intl.DateTimeFormat("es-MX", { timeZone: ZONA, day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" });
   const diaLocal = new Intl.DateTimeFormat("en-CA", { timeZone: ZONA, year: "numeric", month: "2-digit", day: "2-digit" });
   const n = (x: number) => (Math.round(x * 10) / 10).toLocaleString("es-MX");
   const mayuscula = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
-  const lluvia = (mm: number) => (mm === 0 ? "Sin lluvia prevista" : mm < 0.5 ? "Lluvia escasa" : `Se prevé lluvia · ${n(mm)} mm`);
+  const MOMENTO: Record<string, string> = { madrugada: "Madrugada", "mañana": "Mañana", tarde: "Tarde", noche: "Noche" };
+
+  // ---------- dibujos (propios, en SVG): el sol o la luna según la hora; gotas según la intensidad
+  const SOL = `<circle cx="16" cy="16" r="6" fill="#f2b233"/><g stroke="#f2b233" stroke-width="2" stroke-linecap="round">${
+    [0, 45, 90, 135, 180, 225, 270, 315].map((a) => {
+      const r = (a * Math.PI) / 180;
+      return `<line x1="${16 + 9 * Math.cos(r)}" y1="${16 + 9 * Math.sin(r)}" x2="${16 + 12 * Math.cos(r)}" y2="${16 + 12 * Math.sin(r)}"/>`;
+    }).join("")}</g>`;
+  const LUNA = `<path d="M20 5a11 11 0 1 0 7 19A9 9 0 0 1 20 5z" fill="#8f98ad"/>`;
+  const nube = (x: number, y: number, s: number, color: string) =>
+    `<path transform="translate(${x} ${y}) scale(${s})" d="M7 20h17a6 6 0 0 0 0-12 8 8 0 0 0-15-1A6.5 6.5 0 0 0 7 20z" fill="${color}"/>`;
+  const gotas = (k: number, color: string) =>
+    Array.from({ length: k }, (_, i) => {
+      const x = 9 + i * (k > 3 ? 4.5 : 6) + (k === 1 ? 6 : 0);
+      return `<line x1="${x}" y1="23" x2="${x - 2}" y2="${k >= 3 ? 30 : 28}" stroke="${color}" stroke-width="2" stroke-linecap="round"/>`;
+    }).join("");
+  const RAYO = `<path d="M17 18l-4 7h4l-2 6 7-9h-4l2-4z" fill="#f2b233" stroke="#7a5a00" stroke-width="0.6"/>`;
+
+  function icono(sky: string, isDay: boolean, nivel: number, tam = 32): string {
+    const astro = isDay ? SOL : LUNA;
+    let dentro = "";
+    if (nivel >= 5 || /thunder/.test(sky)) dentro = nube(0, -2, 1, "#7d8594") + gotas(2, "#3b74b8") + RAYO;
+    else if (/snow/.test(sky)) dentro = nube(0, -2, 1, "#aab2bf") + `<text x="9" y="30" font-size="9" fill="#5d86b8">✻ ✻</text>`;
+    else if (nivel >= 1) {
+      const gris = nivel >= 3 ? "#8a919d" : "#b3b9c3";
+      const cielo = nivel <= 2 && /^(light)?rainshowers|fair|partly/.test(sky)
+        ? `<g transform="translate(-4 -5) scale(0.7)">${astro}</g>` : "";
+      dentro = cielo + nube(0, -2, 1, gris) + gotas(Math.min(nivel, 4), nivel >= 4 ? "#24589b" : "#3b74b8");
+    } else if (/fog/.test(sky)) dentro = nube(0, -4, 1, "#c4c9d1") +
+      `<g stroke="#9aa1ab" stroke-width="2" stroke-linecap="round"><line x1="5" y1="24" x2="27" y2="24"/><line x1="8" y1="28" x2="24" y2="28"/></g>`;
+    else if (/^cloudy/.test(sky)) dentro = nube(0, 2, 1, "#b8bec8");
+    else if (/partlycloudy|fair/.test(sky)) dentro = `<g transform="translate(-3 -4) scale(${/fair/.test(sky) ? 0.9 : 0.8})">${astro}</g>` +
+      (/fair/.test(sky) ? nube(10, 10, 0.6, "#d3d7de") : nube(4, 6, 0.85, "#c9ced6"));
+    else dentro = astro;
+    return `<svg xmlns="${SVG}" viewBox="0 0 32 32" width="${tam}" height="${tam}" aria-hidden="true">${dentro}</svg>`;
+  }
+
+  const textoCielo = (sky: string, isDay: boolean, nivel: number, label: string) => {
+    if (nivel > 0) return label;
+    if (/^cloudy/.test(sky)) return "Nublado";
+    if (/partlycloudy/.test(sky)) return "Parcialmente nublado";
+    if (/fair/.test(sky)) return "Poco nublado";
+    if (/fog/.test(sky)) return "Niebla";
+    return isDay ? "Despejado" : "Cielo despejado";
+  };
 
   const raiz = document.querySelector<HTMLElement>("[data-tiempo]");
   if (raiz) {
-    const $ = <T extends HTMLElement>(sel: string) => raiz.querySelector<T>(sel)!;
-    const t = (nombre: string) => $(`[data-t="${nombre}"]`);
+    const $ = <T extends Element>(sel: string) => raiz.querySelector<T>(sel)!;
+    const t = <T extends Element = HTMLElement>(nombre: string) => $<T>(`[data-t="${nombre}"]`);
     const select = $<HTMLSelectElement>("[data-tiempo-municipio]");
-    const estado = $("[data-tiempo-estado]");
+    const estado = $<HTMLElement>("[data-tiempo-estado]");
     const reintentar = $<HTMLButtonElement>("[data-tiempo-reintentar]");
-    const cuerpo = $("[data-tiempo-cuerpo]");
-    const diasCaja = $("[data-tiempo-dias-caja]");
+    const cuerpo = $<HTMLElement>("[data-tiempo-cuerpo]");
+    const diasCaja = $<HTMLElement>("[data-tiempo-dias-caja]");
+    const barra = t<HTMLInputElement>("barra");
+    const svg = t<SVGSVGElement>("grafica");
     let datos: Clima | null = null;
     let diaElegido = "";
+    let lista: Periodo[] = [];
 
-    const pintarHoras = () => {
-      if (!datos) return;
-      const hoy = diaLocal.format(new Date());
-      const lista = diaElegido && diaElegido !== hoy
-        ? datos.periods.filter((p) => diaLocal.format(new Date(p.time)) === diaElegido)
-        : datos.periods.slice(0, 24);
-      t("horas-titulo").textContent = diaElegido && diaElegido !== hoy
-        ? `Horarios del ${diaFmt.format(new Date(diaElegido + "T12:00:00-06:00"))}` : "Próximas horas";
-      t("horas").replaceChildren(...lista.map((p) => {
-        const li = document.createElement("li");
-        const fin = new Date(new Date(p.time).getTime() + p.periodHours * 3600000);
-        li.innerHTML = `<span class="h"></span><span class="i" aria-hidden="true"></span><strong></strong><span class="ll"></span>`;
-        li.querySelector(".h")!.textContent = p.periodHours === 1 ? horaFmt.format(new Date(p.time)) : `${horaFmt.format(new Date(p.time))}–${horaFmt.format(fin)}`;
-        li.querySelector(".i")!.textContent = p.condition.icon;
-        li.querySelector("strong")!.textContent = `${Math.round(p.temperature)}°`;
-        li.querySelector(".ll")!.textContent = p.precipitation ? `${n(p.precipitation)} mm` : p.condition.label;
-        li.title = `${p.condition.label} · viento ${n(p.wind)} km/h`;
-        return li;
-      }));
+    const elemento = (nombre: string, attrs: Record<string, string | number>, texto?: string) => {
+      const e = document.createElementNS(SVG, nombre);
+      for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, String(v));
+      if (texto !== undefined) e.textContent = texto;
+      return e;
     };
 
-    const pintar = (d: Clima) => {
-      datos = d;
-      const c = d.current;
-      t("lugar").textContent = d.name;
-      t("cuando").textContent = `Hoy · ${horaFmt.format(new Date(c.time))}`;
-      t("icono").textContent = c.condition.icon;
-      t("temp").textContent = String(Math.round(c.temperature));
-      t("cielo").textContent = c.condition.label;
-      const hoy = d.days[0];
-      t("rango").textContent = hoy ? `Máx. ${n(hoy.maximum)}° · mín. ${n(hoy.minimum)}° · ${lluvia(hoy.precipitation)}` : "";
-      t("viento").textContent = `Viento: ${n(c.wind)} km/h`;
-      (t("fuente") as HTMLAnchorElement).href =
-        `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${d.latitude}&lon=${d.longitude}`;
-      t("actualizado").textContent = d.updatedAt
-        ? `Fuente actualizada: ${fechaFmt.format(new Date(d.updatedAt))} · hora de Nuevo León. En los días: máxima / mínima de los intervalos disponibles.` : "";
-      t("dias").replaceChildren(...d.days.map((dia, i) => {
+    // ---------- lectura de la hora elegida
+    const leer = (i: number) => {
+      const p = lista[i];
+      if (!p || !datos) return;
+      const ini = new Date(p.time);
+      const fin = new Date(ini.getTime() + p.periodHours * 3600000);
+      const hoy = diaLocal.format(new Date());
+      const dia = diaLocal.format(ini);
+      t("lugar").textContent = datos.name;
+      t("cuando").textContent = `${dia === hoy ? "Hoy" : mayuscula(diaFmt.format(ini))} · ${horaFmt.format(ini)} · ${MOMENTO[p.phase] ?? ""}`;
+      t("icono").innerHTML = icono(p.sky, p.isDay, p.rain.level, 64);
+      t("temp").textContent = String(Math.round(p.temperature));
+      t("cielo").textContent = textoCielo(p.sky, p.isDay, p.rain.level, p.rain.label);
+      t("lluvia").textContent = p.rain.level === 0 ? "Sin lluvia prevista"
+        : `Entre ${horaFmt.format(ini)} y ${horaFmt.format(fin)}`;
+      t("viento").textContent = `Viento: ${n(p.wind)} km/h`;
+      const d = datos.days.find((x) => x.date === dia);
+      t("rango").textContent = d ? `Máx. ${n(d.maximum)}° · mín. ${n(d.minimum)}°` : "";
+      t("sol").textContent = d ? `Sale el sol ${horaFmt.format(new Date(d.sunrise))} · se pone ${horaFmt.format(new Date(d.sunset))}` : "";
+      t("hora-elegida").textContent = horaFmt.format(ini);
+      barra.value = String(i);
+      for (const m of svg.querySelectorAll("[data-sel]")) m.remove();
+      const ancho = Number(svg.dataset.paso);
+      const x = ancho * i + ancho / 2;
+      const y = Number(svg.querySelectorAll("[data-punto]")[i]?.getAttribute("cy") ?? 0);
+      svg.append(elemento("line", { x1: x, y1: 44, x2: x, y2: 168, stroke: "#ac202b", "stroke-dasharray": "3 3", "data-sel": 1 }));
+      svg.append(elemento("circle", { cx: x, cy: y, r: 5.5, fill: "#ac202b", stroke: "#fff", "stroke-width": 2, "data-sel": 1 }));
+      const caja = t<HTMLElement>("grafica-scroll");
+      const visible = x - caja.scrollLeft;
+      if (visible < 40 || visible > caja.clientWidth - 40) caja.scrollLeft = x - caja.clientWidth / 2;
+    };
+
+    // ---------- gráfica
+    const graficar = () => {
+      if (!datos) return;
+      const hoy = diaLocal.format(new Date());
+      lista = diaElegido && diaElegido !== hoy
+        ? datos.periods.filter((p) => diaLocal.format(new Date(p.time)) === diaElegido)
+        : datos.periods.slice(0, 24);
+      const dia = datos.days.find((d) => d.date === (diaElegido || hoy));
+      t("horas-titulo").textContent = diaElegido && diaElegido !== hoy
+        ? `Horarios del ${diaFmt.format(new Date(diaElegido + "T12:00:00-06:00"))}` : "Próximas 24 horas";
+      t("horas-sub").textContent = dia ? `${dia.date === hoy ? "Hoy" : "Ese día"}: ${dia.rain.level ? dia.rain.label.toLowerCase() : "sin lluvia prevista"}` : "";
+      const paso = lista.some((p) => p.periodHours > 1) ? 70 : 48;
+      const W = Math.max(lista.length * paso, 320);
+      const H = 200;
+      svg.dataset.paso = String(paso);
+      svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+      svg.setAttribute("width", String(W));
+      svg.setAttribute("height", String(H));
+      svg.replaceChildren();
+      const temps = lista.map((p) => p.temperature);
+      const lo = Math.min(...temps) - 1, hi = Math.max(...temps) + 1;
+      const y = (v: number) => 128 - ((v - lo) / (hi - lo || 1)) * 62;
+      const FRANJA: Record<string, string> = { madrugada: "#e7e9f0", "mañana": "#fbf4e4", tarde: "#f8ecdb", noche: "#e2e5ee" };
+      lista.forEach((p, i) => svg.append(elemento("rect", { x: i * paso, y: 0, width: paso, height: 172, fill: FRANJA[p.phase] ?? "#fff" })));
+      let previa = "";
+      lista.forEach((p, i) => {
+        const x0 = i * paso;
+        if (p.phase !== previa) {
+          svg.append(elemento("text", { x: x0 + 4, y: 12, class: "g-momento" }, MOMENTO[p.phase] ?? ""));
+          if (i > 0) svg.append(elemento("line", { x1: x0, y1: 0, x2: x0, y2: 172, stroke: "#d6d1c7" }));
+          previa = p.phase;
+        }
+      });
+      // dibujo del cielo en cada hora: cambia con el sol, la luna, las nubes y la intensidad de la lluvia
+      lista.forEach((p, i) => {
+        const g = elemento("g", { transform: `translate(${i * paso + paso / 2 - 13} 16)` });
+        g.innerHTML = icono(p.sky, p.isDay, p.rain.level, 26);
+        svg.append(g);
+      });
+      // área y línea de temperatura
+      const pts = lista.map((p, i) => [i * paso + paso / 2, y(p.temperature)]);
+      svg.append(elemento("path", { d: `M${pts[0][0]} 168 L${pts.map((q) => q.join(" ")).join(" L")} L${pts[pts.length - 1][0]} 168 Z`, fill: "rgba(196,134,60,0.18)" }));
+      svg.append(elemento("polyline", { points: pts.map((q) => q.join(",")).join(" "), fill: "none", stroke: "#b07a33", "stroke-width": 2.5, "stroke-linejoin": "round" }));
+      pts.forEach(([x, yy], i) => {
+        svg.append(elemento("circle", { cx: x, cy: yy, r: 2.5, fill: "#b07a33", "data-punto": 1 }));
+        if (lista.length <= 12 || i % 2 === 0) svg.append(elemento("text", { x, y: yy - 9, class: "g-temp" }, `${Math.round(lista[i].temperature)}°`));
+      });
+      // lluvia: barras de intensidad
+      lista.forEach((p, i) => {
+        if (!p.rain.level) return;
+        const h = [0, 4, 8, 13, 18, 22][p.rain.level];
+        const r = elemento("rect", { x: i * paso + paso / 2 - 9, y: 168 - h, width: 18, height: h, rx: 2,
+          fill: p.rain.level >= 5 ? "#5b4a9e" : p.rain.level >= 4 ? "#24589b" : "#5b8fc9" });
+        r.append(elemento("title", {}, p.rain.label));
+        svg.append(r);
+      });
+      // horas
+      lista.forEach((p, i) => {
+        if (lista.length > 12 && i % 2 !== 0) return;
+        svg.append(elemento("text", { x: i * paso + paso / 2, y: 188, class: "g-hora" },
+          p.periodHours > 1 ? `${horaCorta.format(new Date(p.time))}` : horaCorta.format(new Date(p.time))));
+      });
+      // tocar la gráfica elige la hora
+      const zona = elemento("rect", { x: 0, y: 0, width: W, height: H, fill: "transparent", style: "cursor:pointer" });
+      zona.addEventListener("click", (ev) => {
+        const caja = svg.getBoundingClientRect();
+        leer(Math.min(lista.length - 1, Math.max(0, Math.floor(((ev as MouseEvent).clientX - caja.left) / (caja.width / lista.length)))));
+      });
+      svg.append(zona);
+      barra.max = String(lista.length - 1);
+      t<HTMLElement>("grafica-scroll").scrollLeft = 0;
+      leer(0);
+    };
+
+    // ---------- días
+    const pintarDias = () => {
+      if (!datos) return;
+      t("dias").replaceChildren(...datos.days.map((dia, i) => {
         const li = document.createElement("li");
         const b = document.createElement("button");
         b.type = "button";
-        b.dataset.fecha = dia.date;
-        b.setAttribute("aria-pressed", String(dia.date === diaElegido || (!diaElegido && i === 0)));
-        b.innerHTML = `<span class="d"></span><span class="i" aria-hidden="true"></span><span class="c"></span><strong></strong><span class="ll"></span>`;
+        b.setAttribute("aria-pressed", String(i === 0 ? !diaElegido : dia.date === diaElegido));
+        b.innerHTML = `<span class="d"></span><span class="i"></span><span class="c"></span><strong></strong><span class="ll"></span>`;
         b.querySelector(".d")!.textContent = i === 0 ? "Hoy" : mayuscula(diaFmt.format(new Date(dia.date + "T12:00:00-06:00")));
-        b.querySelector(".i")!.textContent = dia.condition.icon;
-        b.querySelector(".c")!.textContent = dia.condition.label;
+        b.querySelector(".i")!.innerHTML = icono(dia.sky, true, dia.rain.level, 36);
+        b.querySelector(".c")!.textContent = dia.rain.level ? dia.rain.label : textoCielo(dia.sky, true, 0, "");
         b.querySelector("strong")!.textContent = `${n(dia.maximum)}° / ${n(dia.minimum)}°`;
-        b.querySelector(".ll")!.textContent = lluvia(dia.precipitation) + (i === 0 && dia.partial ? " · desde ahora" : "");
+        b.querySelector(".ll")!.textContent = i === 0 && dia.partial ? "Desde la hora actual" : "";
         b.addEventListener("click", () => {
           diaElegido = i === 0 ? "" : dia.date;
           for (const otro of t("dias").querySelectorAll("button")) otro.setAttribute("aria-pressed", String(otro === b));
-          pintarHoras();
+          graficar();
         });
         li.append(b);
         return li;
       }));
-      pintarHoras();
-      cuerpo.hidden = false;
-      diasCaja.hidden = false;
     };
 
     const cargar = async () => {
       const m = select.value;
       try { localStorage.setItem(LLAVE, m); } catch { /* sin almacenamiento */ }
+      estado.classList.remove("oculto");
       estado.textContent = "Cargando el pronóstico…";
       reintentar.hidden = true;
       try {
@@ -159,18 +312,29 @@ const { municipio = "monterrey" } = Astro.props;
         const d = await r.json();
         if (!r.ok) throw new Error(d.error || "Sin pronóstico");
         if (select.value !== m) return; // cambió de municipio mientras cargaba
+        datos = d;
         diaElegido = "";
-        pintar(d);
+        cuerpo.hidden = false;
+        diasCaja.hidden = false;
+        t<HTMLAnchorElement>("fuente").href =
+          `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${d.latitude}&lon=${d.longitude}`;
+        t("actualizado").textContent = d.updatedAt
+          ? `Fuente actualizada: ${fechaFmt.format(new Date(d.updatedAt))} · hora de Nuevo León. En los días: máxima / mínima de los intervalos disponibles.` : "";
+        pintarDias();
+        graficar();
         estado.textContent = `Pronóstico de ${d.name} disponible.`;
         estado.classList.add("oculto");
       } catch (e) {
-        estado.classList.remove("oculto");
         estado.textContent = `No se pudo cargar el pronóstico. ${e instanceof Error ? e.message : ""}`;
         reintentar.hidden = false;
         cuerpo.hidden = true;
         diasCaja.hidden = true;
       }
     };
+
+    barra.addEventListener("input", () => leer(Number(barra.value)));
+    t("antes").addEventListener("click", () => leer(Math.max(0, Number(barra.value) - 1)));
+    t("despues").addEventListener("click", () => leer(Math.min(lista.length - 1, Number(barra.value) + 1)));
 
     let guardado = "";
     try { guardado = localStorage.getItem(LLAVE) ?? ""; } catch { /* sin almacenamiento */ }
@@ -188,6 +352,7 @@ const { municipio = "monterrey" } = Astro.props;
   .tiempo { border-top: 1px solid var(--linea); padding-top: 40px; }
   .cabeza { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 18px; margin-bottom: 22px; }
   .cabeza h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); }
+  .sub { margin: 6px 0 0; color: var(--tinta-suave); font-size: 0.9rem; }
   .selector { display: grid; gap: 6px; min-width: min(100%, 260px); }
   .selector span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
   .selector select { font: inherit; font-size: 0.95rem; color: var(--tinta); background: #fff; border: 1px solid var(--linea);
@@ -195,38 +360,46 @@ const { municipio = "monterrey" } = Astro.props;
   .estado { color: var(--tinta-suave); margin: 0 0 12px; }
   .estado.oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .reintentar { font: inherit; font-weight: 700; border: 1px solid var(--tinta); background: #fff; padding: 8px 14px; cursor: pointer; }
-  .cuerpo { display: grid; grid-template-columns: minmax(200px, 260px) 1fr; gap: 24px; background: var(--papel-hondo);
-            border: 1px solid var(--linea); padding: 22px; }
-  .ahora p { margin: 0; }
+  .panel { display: grid; grid-template-columns: minmax(210px, 250px) minmax(0, 1fr); gap: 26px; background: var(--papel-hondo);
+           border: 1px solid var(--linea); padding: 22px; }
+  .lectura p { margin: 0; }
   .lugar { font-weight: 700; }
-  .cuando { color: var(--rojo); font-weight: 700; font-size: 0.85rem; margin-bottom: 10px !important; }
-  .grados { display: flex; align-items: flex-start; gap: 10px; font-size: 1rem; }
-  .grados [data-t="icono"] { font-size: 2.2rem; line-height: 1.2; }
+  .cuando { color: var(--rojo); font-weight: 700; font-size: 0.85rem; margin-bottom: 8px !important; }
+  .grados { display: flex; align-items: center; gap: 8px; }
+  .icono-grande { display: inline-flex; }
   .grados strong { font-family: var(--serif); font-size: 3.6rem; line-height: 1; font-weight: 500; }
-  .cielo { font-weight: 700; margin-top: 8px !important; }
-  .detalle { font-size: 0.85rem; color: var(--tinta-suave); margin-top: 4px !important; }
-  .horas-caja { min-width: 0; }
-  .horas-caja h3 { font-size: 1rem; margin-bottom: 10px; }
-  .horas { list-style: none; margin: 0; padding: 0 0 8px; display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x proximity; }
-  .horas :global(li) { flex: 0 0 auto; width: 92px; display: grid; justify-items: center; gap: 4px; background: #fff;
-                       border: 1px solid var(--linea); padding: 10px 8px; scroll-snap-align: start; text-align: center; }
-  .horas :global(.h) { font-size: 0.72rem; color: var(--tinta-suave); }
-  .horas :global(.i) { font-size: 1.3rem; }
-  .horas :global(.ll) { font-size: 0.68rem; color: var(--tinta-suave); overflow-wrap: anywhere; }
+  .unidad { align-self: flex-start; margin-top: 6px; }
+  .cielo { font-weight: 700; margin-top: 8px !important; font-size: 1.05rem; }
+  .lluvia-texto { color: #2f5f9a; font-size: 0.9rem; margin-top: 2px !important; }
+  .detalle { font-size: 0.82rem; color: var(--tinta-suave); margin-top: 4px !important; }
+  .grafica-caja { min-width: 0; }
+  .grafica-cabeza { display: flex; justify-content: space-between; align-items: start; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+  .grafica-cabeza h3 { font-size: 1rem; }
+  .grafica-cabeza .detalle { margin: 2px 0 0; }
+  .flechas { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.85rem; color: var(--rojo); }
+  .flechas button { font: inherit; width: 34px; height: 34px; background: #fff; border: 1px solid var(--linea); cursor: pointer; color: var(--tinta); }
+  .flechas button:hover { border-color: var(--tinta); }
+  .grafica { overflow-x: auto; background: #fff; border: 1px solid var(--linea); }
+  .grafica svg { display: block; }
+  .grafica :global(.g-momento) { font-size: 10px; font-weight: 700; fill: #6d6a63; letter-spacing: 0.04em; text-transform: uppercase; }
+  .grafica :global(.g-temp) { font-size: 11px; fill: var(--tinta); text-anchor: middle; font-weight: 700; }
+  .grafica :global(.g-hora) { font-size: 10px; fill: var(--tinta-suave); text-anchor: middle; }
+  .barra { width: 100%; margin: 12px 0 0; accent-color: var(--rojo); }
   .nota { font-size: 0.75rem; color: var(--tinta-suave); margin: 6px 0 0; }
   .dias-titulo { font-size: 1rem; margin: 26px 0 10px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; }
   .dias-titulo span { font-family: var(--sans); font-weight: 400; font-size: 0.8rem; color: var(--tinta-suave); }
   .dias { list-style: none; margin: 0; padding: 0 0 8px; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(118px, 1fr);
           gap: 8px; overflow-x: auto; }
-  .dias :global(button) { width: 100%; height: 100%; display: grid; justify-items: center; gap: 4px; font: inherit; text-align: center;
-                          background: #fff; border: 1px solid var(--linea); padding: 12px 8px; cursor: pointer; color: var(--tinta); }
+  .dias :global(button) { width: 100%; height: 100%; display: grid; justify-items: center; align-content: start; gap: 4px; font: inherit;
+                          text-align: center; background: #fff; border: 1px solid var(--linea); padding: 12px 8px; cursor: pointer; color: var(--tinta); }
   .dias :global(button[aria-pressed="true"]) { border-color: var(--rojo); box-shadow: inset 0 3px 0 var(--rojo); }
   .dias :global(.d) { font-size: 0.78rem; font-weight: 700; }
-  .dias :global(.i) { font-size: 1.4rem; }
-  .dias :global(.c), .dias :global(.ll) { font-size: 0.72rem; color: var(--tinta-suave); }
-  .lluvia { margin: 14px 0 8px; font-size: 0.85rem; }
-  .lluvia summary { cursor: pointer; color: var(--rojo); }
+  .dias :global(.c) { font-size: 0.75rem; color: var(--tinta-suave); }
+  .dias :global(.ll) { font-size: 0.68rem; color: var(--tinta-suave); }
+  .explica { margin: 16px 0 8px; font-size: 0.85rem; max-width: 72ch; }
+  .explica summary { cursor: pointer; color: var(--rojo); }
+  .explica ul { margin: 8px 0; padding-left: 1.2em; }
   .creditos { font-size: 0.78rem; color: var(--tinta-suave); margin: 6px 0; max-width: 90ch; }
   .creditos a { color: var(--tinta); }
-  @media (max-width: 640px) { .cuerpo { grid-template-columns: 1fr; padding: 16px; } }
+  @media (max-width: 700px) { .panel { grid-template-columns: 1fr; padding: 16px; } }
 </style>

@@ -1,7 +1,7 @@
 // Pruebas del pronóstico (node --test). Usan una respuesta sintética con la forma de MET Norway.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { condicion, diaLocal, transformar } from "../src/lib/clima-met.js";
+import { condicion, diaLocal, nivelLluvia, sol, transformar } from "../src/lib/clima-met.js";
 import { onRequestGet } from "../functions/api/clima.js";
 
 // 48 entradas por hora y luego cada 6 horas, como MET: desde 2026-11-08 18:00 UTC (12:00 en Monterrey).
@@ -85,4 +85,32 @@ test("la función valida el municipio y se identifica ante MET", async () => {
   } finally {
     globalThis.fetch = original;
   }
+});
+
+test("salida y puesta del sol en Monterrey (8 de noviembre: ~6:55 a.m. y ~6:00 p.m.)", () => {
+  const { salida, puesta } = sol(25.68, -100.32, "2026-11-08");
+  const local = (ms) => new Intl.DateTimeFormat("en-GB", { timeZone: "America/Monterrey", hour: "2-digit", minute: "2-digit" }).format(ms);
+  assert.match(local(salida), /^06:(4\d|5\d)$|^07:0\d$/);
+  assert.match(local(puesta), /^17:(4\d|5\d)$|^18:[01]\d$/);
+});
+
+test("lluvia en palabras", () => {
+  assert.equal(nivelLluvia(0, 1, "cloudy"), 0);
+  assert.equal(nivelLluvia(0.1, 1, "lightrain"), 1);
+  assert.equal(nivelLluvia(0.6, 1, "rain"), 2);
+  assert.equal(nivelLluvia(2, 1, "rain"), 3);
+  assert.equal(nivelLluvia(30, 6, "heavyrain"), 4);
+  assert.equal(nivelLluvia(0.2, 1, "rainandthunder"), 5);
+  assert.equal(nivelLluvia(1.2, 6, "lightrain"), 1); // 0.2 mm por hora
+});
+
+test("cada periodo trae día o noche, momento y lluvia; cada día, sol y lluvia", () => {
+  const r = transformar(metSintetico(), "monterrey", AHORA);
+  const p = r.periods[0];
+  assert.equal(p.isDay, true);
+  assert.equal(p.phase, "tarde"); // 12:30 en Monterrey
+  assert.ok(r.periods.some((x) => x.phase === "noche") && r.periods.some((x) => x.phase === "madrugada"));
+  assert.deepEqual(r.periods[5].rain, { level: 3, label: "Lluvia" }); // 1.2 mm en una hora
+  assert.equal(r.days[0].rain.label, "Lluvia");
+  assert.ok(r.days[0].sunrise < r.days[0].sunset);
 });

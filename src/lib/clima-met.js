@@ -42,6 +42,33 @@ export function condicion(symbol) {
   return { label: "Sin dato del cielo", icon: "·", rank: -1 };
 }
 
+// Salida y puesta del sol (algoritmo simplificado de la NOAA) para saber si una hora es de día o de noche.
+const rad = Math.PI / 180;
+export function sol(lat, lon, fechaIso) {
+  const d = new Date(fechaIso + "T12:00:00Z");
+  const n = Math.floor((d - Date.UTC(d.getUTCFullYear(), 0, 0)) / 86400000);
+  const g = (2 * Math.PI / 365) * (n - 1);
+  const eq = 229.18 * (0.000075 + 0.001868 * Math.cos(g) - 0.032077 * Math.sin(g) - 0.014615 * Math.cos(2 * g) - 0.040849 * Math.sin(2 * g));
+  const decl = 0.006918 - 0.399912 * Math.cos(g) + 0.070257 * Math.sin(g) - 0.006758 * Math.cos(2 * g) + 0.000907 * Math.sin(2 * g)
+    - 0.002697 * Math.cos(3 * g) + 0.00148 * Math.sin(3 * g);
+  const ha = Math.acos(Math.cos(90.833 * rad) / (Math.cos(lat * rad) * Math.cos(decl)) - Math.tan(lat * rad) * Math.tan(decl)) / rad;
+  const base = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+  return { salida: base + (720 - 4 * (lon + ha) - eq) * 60000, puesta: base + (720 - 4 * (lon - ha) - eq) * 60000 };
+}
+
+// Lluvia en palabras (para quien no piensa en milímetros). Se mide por hora: un bloque de 6 h se divide entre 6.
+export const LLUVIAS = ["Sin lluvia", "Chispea", "Lluvia ligera", "Lluvia", "Lluvia fuerte", "Tormenta eléctrica"];
+export const LLUVIAS_DIA = ["Sin lluvia", "Chispeo ocasional", "Lluvia ligera", "Lluvia", "Lluvia fuerte", "Tormentas"];
+export function nivelLluvia(mm, horas, symbol = "") {
+  if (/thunder/.test(symbol)) return 5;
+  const porHora = mm / horas;
+  if (porHora >= 4) return 4;
+  if (porHora >= 1) return 3;
+  if (porHora >= 0.3) return 2;
+  if (porHora > 0 || /rain|sleet|snow/.test(symbol)) return 1;
+  return 0;
+}
+
 const fechaLocal = new Intl.DateTimeFormat("en-CA", { timeZone: ZONA, year: "numeric", month: "2-digit", day: "2-digit" });
 const horaLocal = new Intl.DateTimeFormat("en-GB", { timeZone: ZONA, hour: "2-digit", hourCycle: "h23" });
 
@@ -66,13 +93,26 @@ export function transformar(met, municipio, ahora = new Date(), dias = 7) {
     const horas = siguiente ? Math.round((siguiente - new Date(e.time)) / 3600000) : 6;
     const bloque = horas <= 1 ? e.data.next_1_hours : e.data.next_6_hours ?? e.data.next_1_hours;
     if (!bloque) continue; // la última entrada de MET no trae intervalo
+    const symbol = bloque.summary?.symbol_code ?? "";
+    const ph = horas <= 1 ? 1 : 6;
+    const mm = r1(bloque.details?.precipitation_amount ?? 0);
+    // El cielo se juzga a la mitad del intervalo: en un bloque de 6 h, a las 3 h.
+    const medio = new Date(e.time).getTime() + (ph * 3600000) / 2;
+    const s0 = sol(lugar.latitude, lugar.longitude, diaLocal(new Date(medio).toISOString()));
+    const esDia = medio >= s0.salida && medio < s0.puesta;
+    const h = hora(new Date(medio).toISOString());
+    const nivel = nivelLluvia(mm, ph, symbol);
     periodos.push({
       time: e.time,
       temperature: r1(det.air_temperature),
       wind: r1((det.wind_speed ?? 0) * 3.6), // m/s → km/h
-      condition: condicion(bloque.summary?.symbol_code),
-      periodHours: horas <= 1 ? 1 : 6,
-      precipitation: r1(bloque.details?.precipitation_amount ?? 0),
+      condition: condicion(symbol),
+      periodHours: ph,
+      precipitation: mm,
+      sky: symbol.replace(/_(day|night|polartwilight)$/, ""),
+      isDay: esDia,
+      phase: esDia ? (h < 12 ? "mañana" : "tarde") : (medio < s0.salida ? "madrugada" : "noche"),
+      rain: { level: nivel, label: LLUVIAS[nivel] },
     });
   }
   // Desde el intervalo en curso: lo que ya pasó no se muestra.
@@ -95,8 +135,14 @@ export function transformar(met, municipio, ahora = new Date(), dias = 7) {
     const ultimo = ps[ps.length - 1];
     const cubreHasta = new Date(ultimo.time).getTime() + ultimo.periodHours * 3600000;
     const finDelDia = diaLocal(new Date(cubreHasta - 1).toISOString()) === date && i === todos.length - 1;
+    const nivel = Math.max(...ps.map((p) => p.rain.level));
+    const s1 = sol(lugar.latitude, lugar.longitude, date);
     return {
       date,
+      sunrise: new Date(s1.salida).toISOString(),
+      sunset: new Date(s1.puesta).toISOString(),
+      rain: { level: nivel, label: LLUVIAS_DIA[nivel] },
+      sky: [...ps].sort((a, b) => b.condition.rank - a.condition.rank)[0].sky,
       minimum: Math.min(...ps.map((p) => p.temperature)),
       maximum: Math.max(...ps.map((p) => p.temperature)),
       precipitation: lluvia,
