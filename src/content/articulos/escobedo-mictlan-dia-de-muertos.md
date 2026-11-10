@@ -12,6 +12,8 @@ fuente:
 evento:
   fecha: "Del 1 al 2 de noviembre de 2026 · desde las 6:00 p.m."
   lugar: "Plaza Principal de Escobedo, calle Miguel Hidalgo #111, cabecera municipal"
+  inicio: 2026-11-01
+  fin: 2026-11-02
 ---
 
 El Gobierno de General Escobedo anunció el 30 de octubre de 2026 una nueva edición del Mictlán, su celebración de Día de Muertos.

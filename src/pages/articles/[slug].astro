@@ -1,4 +1,5 @@
 ---
+import { hoyEnMonterrey } from "../../lib/agenda.js";
 import { Image, getImage } from "astro:assets";
 import { render } from "astro:content";
 import Base from "../../layouts/Base.astro";
@@ -18,6 +19,8 @@ const { nota } = Astro.props;
 const { data } = nota;
 const { Content } = await render(nota);
 const expediente = await proyectoDeNota(nota.id);
+// Un evento que ya pasó no se ofrece para el calendario (el navegador lo vuelve a revisar con la fecha de hoy).
+const eventoPasado = data.evento ? (data.evento.fin ?? data.evento.inicio) < hoyEnMonterrey() : false;
 const compartir = data.foto ? (await getImage({ src: data.foto.archivo, width: 1200, format: "jpg" })).src : undefined;
 ---
 
@@ -61,6 +64,14 @@ const compartir = data.foto ? (await getImage({ src: data.foto.archivo, width: 1
         <p class="antetitulo">Evento</p>
         <p><strong>Cuándo:</strong> {data.evento.fecha}</p>
         {data.evento.lugar && <p><strong>Dónde:</strong> {data.evento.lugar}</p>}
+        <p class="acciones-evento">
+          {!eventoPasado && (
+            <a href={`/agenda/${nota.id}.ics`} download data-calendario-nota data-fin={data.evento.fin ?? data.evento.inicio}>
+              Añadir a mi calendario
+            </a>
+          )}
+          <a href="/agenda">Ver la agenda</a>
+        </p>
       </aside>
     )}
 
@@ -80,6 +91,12 @@ const compartir = data.foto ? (await getImage({ src: data.foto.archivo, width: 1
   </article>
 </Base>
 
+<script>
+  import { hoyEnMonterrey } from "../../lib/agenda.js";
+  const enlace = document.querySelector<HTMLElement>("[data-calendario-nota]");
+  if (enlace && enlace.dataset.fin! < hoyEnMonterrey()) enlace.remove();
+</script>
+
 <style>
   .nota { max-width: 820px; padding-top: 36px; }
   .volver { display: inline-block; margin-bottom: 22px; font-size: 0.85rem; color: var(--tinta-suave); text-decoration: none; }
@@ -98,6 +115,8 @@ const compartir = data.foto ? (await getImage({ src: data.foto.archivo, width: 1
   }
   .evento p { margin: 4px 0; }
   .evento .antetitulo { margin-bottom: 8px; }
+  .acciones-evento { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 10px !important; font-size: 0.88rem; }
+  .acciones-evento a { color: var(--rojo); font-weight: 600; }
   .seguimiento { border: 1px solid var(--linea); background: #fff; padding: 14px 18px; margin: 28px 0 0; max-width: 68ch; }
   .seguimiento p { margin: 4px 0; }
   .seguimiento a { color: var(--rojo); font-weight: 600; }

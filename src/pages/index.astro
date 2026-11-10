@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import ListaNotas from "../components/ListaNotas.astro";
 import ExploraMunicipios from "../components/ExploraMunicipios.astro";
 import ElTiempo from "../components/ElTiempo.astro";
+import ProximosEventos from "../components/ProximosEventos.astro";
 import { notasPublicadas } from "../lib/notas";
 import { CATEGORIAS, MUNICIPIOS } from "../lib/sitio";
 
@@ -18,6 +19,8 @@ const notas = await notasPublicadas();
       Cultura, comunidad, deportes y servicios, con fuentes oficiales.
     </p>
   </section>
+
+  <ProximosEventos />
 
   <section class="contenedor seccion" aria-labelledby="noticias">
     <div class="seccion-cabeza">

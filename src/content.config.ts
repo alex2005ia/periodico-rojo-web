@@ -3,6 +3,12 @@ import { glob } from "astro/loaders";
 import { IDS_CATEGORIAS, IDS_MUNICIPIOS } from "./lib/sitio";
 import { ESTADOS_EXPEDIENTE, BASES, TEMAS } from "./lib/seguimiento";
 
+// Fecha sin hora (AAAA-MM-DD). YAML convierte 2026-11-01 en fecha; aquí vuelve a texto.
+const fechaSinHora = z
+  .union([z.string(), z.date()])
+  .transform((v) => (v instanceof Date ? v.toISOString().slice(0, 10) : v))
+  .pipe(z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "usa AAAA-MM-DD"));
+
 // Cada nota es un archivo Markdown en src/content/articulos. El nombre del archivo es su dirección:
 // articulos/monterrey-drenaje.md se publica en /articles/monterrey-drenaje.
 // Si falta un campo obligatorio o un valor no es válido, la compilación se detiene con el error.
@@ -34,20 +40,20 @@ const articulos = defineCollection({
           original: z.string().url().optional(),
         })
         .optional(),
+      // Sólo si la nota anuncia un evento. "fecha" es el texto que lee el público (con horario, como lo da
+      // el comunicado); "inicio" y "fin" son los días que usa la agenda para ordenarlo y saber si ya pasó.
       evento: z
         .object({
-          fecha: z.string(),
+          fecha: z.string().min(5),
           lugar: z.string().optional(),
+          inicio: fechaSinHora,
+          fin: fechaSinHora.optional(), // si dura un solo día, se omite
         })
+        .refine((e) => !e.fin || e.fin >= e.inicio, { message: "el fin del evento no puede ser antes del inicio" })
         .optional(),
       borrador: z.boolean().default(false),
     }),
 });
-
-const fechaSinHora = z
-  .union([z.string(), z.date()])
-  .transform((v) => (v instanceof Date ? v.toISOString().slice(0, 10) : v))
-  .pipe(z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "usa AAAA-MM-DD"));
 
 // Expedientes de seguimiento: un archivo JSON por proyecto en src/content/proyectos.
 // El nombre del archivo es su dirección: proyectos/limpieza-canal-medular.json → /proyectos/limpieza-canal-medular.

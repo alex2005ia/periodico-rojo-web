@@ -42,8 +42,10 @@ foto:                         # opcional: sin foto se muestra el sello del peri�
   credito: "Gobierno de Monterrey"
   original: "https://..."     # opcional: enlace a la imagen original
 evento:                       # opcional: sólo si la nota anuncia un evento
-  fecha: "Sábado 15 de noviembre · 10:00 a.m."
+  fecha: "Sábado 15 de noviembre · 10:00 a.m."   # texto para el público, con horario
   lugar: "Explanada de la Macroplaza"
+  inicio: 2026-11-15          # día en que empieza (lo usa la agenda)
+  fin: 2026-11-16             # opcional: último día, si dura más de uno
 borrador: false               # true la oculta del sitio
 ---
 
@@ -72,6 +74,14 @@ Las fuentes son archivos JSON en `src/content/fuentes/`. Sus expedientes no se e
 Si un expediente cita una fuente o una nota que no existe, o un valor no es válido, `npm run build` se detiene.
 
 Los expedientes guardados por cada lector viven sólo en su navegador (no hay cuentas ni servidor).
+
+## Agenda
+
+`/agenda` reúne las notas que traen `evento`, ordenadas por `inicio`. La portada y cada municipio muestran los
+próximos tres; si no hay ninguno por venir, el bloque no aparece. Como el sitio se compila sólo al publicar, el
+navegador vuelve a revisar con la fecha del día (hora de Nuevo León) qué eventos ya pasaron, cuáles son hoy,
+mañana o están en curso. Cada evento tiene su archivo de calendario en `/agenda/<nota>.ics` (día completo; el
+horario va en la descripción, como lo da el comunicado). Si el comunicado no da la fecha, no se agrega `evento`.
 
 ## El tiempo por municipio
 

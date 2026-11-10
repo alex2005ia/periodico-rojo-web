@@ -1,0 +1,124 @@
+---
+import type { Evento } from "../lib/eventos";
+import { rangoCorto, ultimoDia } from "../lib/agenda.js";
+import { nombreCategoria, nombreMunicipio } from "../lib/sitio";
+
+interface Props {
+  evento: Evento;
+  conMunicipio?: boolean; // en la página de un municipio sobra repetirlo
+  pasado?: boolean;       // ya había pasado al compilar
+  oculto?: boolean;       // fuera del límite de la lista (el navegador lo recalcula)
+}
+const { evento, conMunicipio = true, pasado = false, oculto = false } = Astro.props;
+const { data } = evento.nota;
+const ev = data.evento!;
+const href = `/articles/${evento.id}`;
+---
+
+<li class="evento" data-evento data-inicio={evento.inicio} data-fin={ultimoDia(evento)} data-municipio={data.municipio}
+    data-estado={pasado ? "pasado" : undefined} hidden={oculto}>
+  <p class="dia">
+    <time datetime={evento.inicio}>{rangoCorto(evento.inicio, evento.fin)}</time>
+  </p>
+  <div class="cuerpo">
+    <p class="etiquetas">
+      {conMunicipio && <><a href={`/municipios/${data.municipio}`}>{nombreMunicipio(data.municipio)}</a><span aria-hidden="true">·</span></>}
+      <a href={`/categorias/${data.categoria}`}>{nombreCategoria(data.categoria)}</a>
+      <span class="cuando" data-cuando hidden></span>
+    </p>
+    <h3><a href={href}>{data.titulo}</a></h3>
+    <dl>
+      <dt>Cuándo</dt><dd>{ev.fecha}</dd>
+      {ev.lugar && <><dt>Dónde</dt><dd>{ev.lugar}</dd></>}
+    </dl>
+    <p class="acciones">
+      <a href={href}>Leer la nota</a>
+      {!pasado && <a href={`/agenda/${evento.id}.ics`} download data-calendario>Añadir a mi calendario</a>}
+    </p>
+  </div>
+</li>
+
+<script>
+  // La agenda se revisa con la fecha de hoy en Nuevo León: el sitio se compila al publicar y, desde
+  // entonces, un evento pudo haber empezado o terminado. Sin JavaScript se ve lo calculado al compilar.
+  import { ETIQUETA_ESTADO, estadoEvento, hoyEnMonterrey } from "../lib/agenda.js";
+
+  const hoy = hoyEnMonterrey();
+
+  for (const li of document.querySelectorAll<HTMLElement>("[data-evento]")) {
+    const estado = estadoEvento({ inicio: li.dataset.inicio!, fin: li.dataset.fin }, hoy);
+    li.dataset.estado = estado;
+    const marca = li.querySelector<HTMLElement>("[data-cuando]");
+    const texto = ETIQUETA_ESTADO[estado as keyof typeof ETIQUETA_ESTADO];
+    if (marca && texto && estado !== "pasado") {
+      marca.textContent = texto;
+      marca.hidden = false;
+    }
+    // Un evento que ya pasó no se ofrece para el calendario.
+    if (estado === "pasado") li.querySelector("[data-calendario]")?.remove();
+  }
+
+  // Los que pasaron desde la compilación salen de "próximos"; en la agenda pasan a "ya pasaron".
+  const pasados = document.querySelector<HTMLElement>('[data-lista-eventos="pasados"]');
+  for (const lista of document.querySelectorAll<HTMLElement>('[data-lista-eventos="proximos"]')) {
+    for (const li of [...lista.querySelectorAll<HTMLElement>("[data-evento]")]) {
+      if (li.dataset.estado !== "pasado") continue;
+      if (pasados) pasados.prepend(li); // en orden de inicio + prepend = del más reciente al más antiguo
+      else li.remove();
+    }
+  }
+
+  // Cada sección decide qué se ve: los filtros (data-filtrado), el límite de la lista (data-limite),
+  // el conteo y el aviso de vacío. Si la sección pide ocultarse vacía (portada, municipio), desaparece.
+  function ajustar() {
+    for (const seccion of document.querySelectorAll<HTMLElement>("[data-seccion-eventos]")) {
+      const lista = seccion.querySelector<HTMLElement>("[data-lista-eventos]");
+      const items = lista ? [...lista.querySelectorAll<HTMLElement>("[data-evento]")] : [];
+      const limite = Number(lista?.dataset.limite) || Infinity;
+      let visibles = 0;
+      for (const li of items) {
+        const ver = !("filtrado" in li.dataset) && visibles < limite;
+        li.hidden = !ver;
+        if (ver) visibles++;
+      }
+      const conteo = seccion.querySelector("[data-conteo-eventos]");
+      if (conteo) conteo.textContent = `${visibles} ${visibles === 1 ? "evento" : "eventos"}`;
+      const vacio = seccion.querySelector<HTMLElement>("[data-vacio]");
+      if (vacio) vacio.hidden = visibles > 0;
+      if (lista) lista.hidden = visibles === 0;
+      if ("ocultarVacia" in seccion.dataset) seccion.hidden = visibles === 0;
+    }
+  }
+  ajustar();
+  document.addEventListener("agenda:ajustar", ajustar);
+</script>
+
+<style>
+  .evento[hidden] { display: none; }
+  .evento {
+    display: grid; grid-template-columns: 7.5rem 1fr; gap: 6px 24px;
+    padding: 22px 0; border-bottom: 1px solid var(--linea);
+  }
+  .dia { margin: 0; font-family: var(--serif); font-weight: 650; font-size: 1.25rem; line-height: 1.2; color: var(--rojo); }
+  .cuerpo { display: grid; gap: 8px; min-width: 0; }
+  .etiquetas { margin: 0; }
+  .cuando {
+    margin-left: 4px; padding: 1px 8px; border-radius: 2px;
+    background: var(--rojo); color: #fff; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .cuando[hidden] { display: none; }
+  h3 { font-size: 1.25rem; }
+  h3 a { text-decoration: none; }
+  h3 a:hover { color: var(--rojo); }
+  dl { display: grid; grid-template-columns: max-content 1fr; gap: 2px 12px; margin: 0; font-size: 0.92rem; }
+  dt { color: var(--tinta-suave); }
+  dd { margin: 0; overflow-wrap: anywhere; }
+  .acciones { display: flex; flex-wrap: wrap; gap: 6px 20px; margin: 4px 0 0; font-size: 0.85rem; }
+  .acciones a { color: var(--rojo); font-weight: 600; text-underline-offset: 2px; }
+  .evento[data-estado="pasado"] .dia { color: var(--tinta-suave); }
+
+  @media (max-width: 560px) {
+    .evento { grid-template-columns: 1fr; }
+    .dia { font-size: 1.05rem; }
+  }
+</style>

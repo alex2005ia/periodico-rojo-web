@@ -1,0 +1,107 @@
+---
+import Base from "../../layouts/Base.astro";
+import EventoFila from "../../components/EventoFila.astro";
+import { eventosPublicados, separar } from "../../lib/eventos";
+import { MUNICIPIOS } from "../../lib/sitio";
+
+const { proximos, pasados } = separar(await eventosPublicados());
+const recientes = pasados.slice(0, 12); // la agenda no es un archivo: sólo los últimos que pasaron
+const intro =
+  "Eventos anunciados por los municipios de la zona metropolitana de Monterrey, tomados de sus comunicados oficiales. " +
+  "Fechas y horarios pueden cambiar: confirma en la fuente oficial antes de asistir.";
+---
+
+<Base titulo="Agenda" descripcion={intro} activo="agenda">
+  <section class="contenedor cabeza">
+    <p class="antetitulo">Lo que viene</p>
+    <h1>Agenda</h1>
+    <p class="entrada">{intro}</p>
+  </section>
+
+  <section class="contenedor seccion" aria-labelledby="proximos" data-seccion-eventos>
+    <div class="seccion-cabeza">
+      <h2 id="proximos">Próximos eventos</h2>
+      <span class="conteo" data-conteo-eventos>{proximos.length} {proximos.length === 1 ? "evento" : "eventos"}</span>
+    </div>
+
+    <form class="filtros" data-filtros hidden>
+      <label>
+        <span>Municipio</span>
+        <select name="municipio">
+          <option value="">Todos los municipios</option>
+          {MUNICIPIOS.map((m) => <option value={m.id}>{m.nombre}</option>)}
+        </select>
+      </label>
+    </form>
+
+    <ul class="eventos" data-lista-eventos="proximos" hidden={proximos.length === 0}>
+      {proximos.map((e) => <EventoFila evento={e} />)}
+    </ul>
+    <p class="vacio" data-vacio hidden={proximos.length > 0}>
+      Por ahora no hay eventos próximos anunciados<span data-vacio-municipio></span>. Cuando un municipio anuncie uno,
+      aparecerá aquí.
+    </p>
+  </section>
+
+  <section class="contenedor seccion" aria-labelledby="pasados" data-seccion-eventos data-ocultar-vacia
+           hidden={recientes.length === 0}>
+    <div class="seccion-cabeza">
+      <h2 id="pasados">Ya pasaron</h2>
+      <span class="conteo" data-conteo-eventos>{recientes.length} {recientes.length === 1 ? "evento" : "eventos"}</span>
+    </div>
+    <ul class="eventos pasados" data-lista-eventos="pasados" data-limite="12">
+      {recientes.map((e) => <EventoFila evento={e} pasado />)}
+    </ul>
+  </section>
+
+  <section class="contenedor seccion">
+    <div class="aviso">
+      <p>
+        «Añadir a mi calendario» descarga un archivo .ics que abren Google Calendar, el calendario del iPhone y
+        Outlook. Se guarda como evento de día completo; el horario va en la descripción, tal como lo da el comunicado.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Filtro por municipio, con la selección en la dirección (?municipio=...) como en la portada.
+  // Sólo marca los eventos (data-filtrado); el conteo, el límite y los avisos los calcula EventoFila.
+  import { MUNICIPIOS } from "../../lib/sitio";
+
+  const form = document.querySelector<HTMLFormElement>("[data-filtros]");
+  if (form) {
+    const municipio = form.elements.namedItem("municipio") as HTMLSelectElement;
+    const enMunicipio = document.querySelector<HTMLElement>("[data-vacio-municipio]");
+
+    const aplicar = (actualizarDireccion = true) => {
+      for (const li of document.querySelectorAll<HTMLElement>("[data-evento]")) {
+        if (municipio.value && li.dataset.municipio !== municipio.value) li.dataset.filtrado = "";
+        else delete li.dataset.filtrado;
+      }
+      const nombre = MUNICIPIOS.find((m) => m.id === municipio.value)?.nombre;
+      if (enMunicipio) enMunicipio.textContent = nombre ? ` en ${nombre}` : "";
+      document.dispatchEvent(new CustomEvent("agenda:ajustar"));
+      if (actualizarDireccion) {
+        history.replaceState(null, "", municipio.value ? `?municipio=${municipio.value}` : location.pathname);
+      }
+    };
+
+    const pedido = new URLSearchParams(location.search).get("municipio");
+    municipio.value = [...municipio.options].some((o) => o.value === pedido) ? pedido! : "";
+    form.hidden = false;
+    form.addEventListener("change", () => aplicar());
+    aplicar(false);
+  }
+</script>
+
+<style>
+  .cabeza { padding-top: 48px; }
+  h1 { font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -0.04em; }
+  .entrada { margin: 18px 0 0; color: var(--tinta-suave); font-size: 1.02rem; line-height: 1.7; max-width: 70ch; }
+  .eventos { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linea); }
+  .eventos[hidden] { display: none; }
+  .vacio { color: var(--tinta-suave); padding: 8px 0 16px; margin: 0; }
+  .vacio[hidden] { display: none; }
+  section[hidden] { display: none; }
+</style>
