@@ -1,0 +1,35 @@
+---
+// Bloque «Comunicados de los municipios» de la portada y de cada municipio.
+// Se actualiza solo (tres veces al día). Si no hay comunicados recientes, no aparece.
+import AvisoTarjeta from "./AvisoTarjeta.astro";
+import { avisosRecientes } from "../lib/avisos";
+import { nombreMunicipio } from "../lib/sitio";
+
+interface Props {
+  municipio?: string;
+  limite?: number;
+}
+const { municipio, limite = 6 } = Astro.props;
+const avisos = avisosRecientes(municipio);
+const ver = municipio ? `/comunicados?municipio=${municipio}` : "/comunicados";
+---
+
+{avisos.length > 0 && (
+  <section class="contenedor seccion" aria-labelledby="comunicados">
+    <div class="seccion-cabeza">
+      <h2 id="comunicados">Comunicados {municipio ? `de ${nombreMunicipio(municipio)}` : "de los municipios"}</h2>
+      <a class="todos" href={ver}>Ver todos <span aria-hidden="true">→</span></a>
+    </div>
+    <p class="explica">Publicados por cada gobierno municipal en su sitio oficial. Se reproducen sin cambios, con enlace al original.</p>
+    <ul class="rejilla comunicados">
+      {avisos.slice(0, limite).map((a) => <AvisoTarjeta aviso={a} conMunicipio={!municipio} />)}
+    </ul>
+  </section>
+)}
+
+<style>
+  .todos { color: var(--rojo); font-size: 0.85rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
+  .todos:hover { text-decoration: underline; }
+  .explica { margin: -12px 0 24px; color: var(--tinta-suave); font-size: 0.85rem; }
+  .comunicados { grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 32px 22px; }
+</style>

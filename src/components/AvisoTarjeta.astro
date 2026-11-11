@@ -1,0 +1,52 @@
+---
+// Un comunicado oficial tal como lo publicó el municipio: no es una nota del periódico.
+import type { Aviso } from "../lib/avisos";
+import { EMISORES } from "../lib/avisos";
+import { fechaSinHora } from "../lib/fechas";
+import { nombreMunicipio } from "../lib/sitio";
+import Sello from "./Sello.astro";
+
+interface Props {
+  aviso: Aviso;
+  conMunicipio?: boolean;
+}
+const { aviso, conMunicipio = true } = Astro.props;
+const emisor = EMISORES[aviso.municipio] ?? nombreMunicipio(aviso.municipio);
+---
+
+<li class="aviso-tarjeta" data-municipio={aviso.municipio}>
+  <a class="imagen" href={aviso.url} rel="external noopener" tabindex="-1" aria-hidden="true">
+    {aviso.foto ? (
+      <img src={aviso.foto} alt="" width={aviso.foto_ancho} height={aviso.foto_alto} loading="lazy" decoding="async" />
+    ) : (
+      <Sello municipio={nombreMunicipio(aviso.municipio)} />
+    )}
+  </a>
+  {aviso.foto && <p class="credito">Foto: {emisor}</p>}
+  <p class="etiquetas">
+    <span class="sello-oficial">Comunicado oficial</span>
+    {conMunicipio && <a href={`/municipios/${aviso.municipio}`}>{nombreMunicipio(aviso.municipio)}</a>}
+  </p>
+  <h3><a href={aviso.url} rel="external noopener">{aviso.titulo}</a></h3>
+  <p class="pie">
+    <time datetime={aviso.fecha}>{fechaSinHora(aviso.fecha)}</time>
+    <a class="original" href={aviso.url} rel="external noopener">Leer en el sitio del municipio <span aria-hidden="true">↗</span></a>
+  </p>
+</li>
+
+<style>
+  .aviso-tarjeta { display: flex; flex-direction: column; gap: 8px; padding-bottom: 20px; border-bottom: 1px solid var(--linea); }
+  .imagen { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--papel-hondo); }
+  /* Completa, sin recortar (LFDA art. 148). */
+  .imagen img { width: 100%; height: 100%; object-fit: contain; }
+  .credito { margin: -2px 0 2px; font-size: 0.7rem; color: var(--tinta-suave); }
+  .sello-oficial {
+    color: var(--tinta-suave); border: 1px solid var(--linea); padding: 1px 6px; border-radius: 2px;
+    font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  h3 { font-size: 1.08rem; line-height: 1.25; overflow-wrap: anywhere; }
+  h3 a { text-decoration: none; }
+  h3 a:hover { color: var(--rojo); }
+  .pie { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin: 0; font-size: 0.75rem; color: var(--tinta-suave); }
+  .original { color: var(--rojo); font-weight: 600; text-underline-offset: 2px; }
+</style>

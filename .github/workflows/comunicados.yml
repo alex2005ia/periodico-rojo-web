@@ -1,0 +1,58 @@
+# Comunicados de los municipios: revisa los seis portales oficiales tres veces al día y publica lo nuevo.
+# Cada commit a main hace que Cloudflare Pages vuelva a compilar el sitio (plan gratuito: 500 compilaciones al mes).
+# Si un portal falla o cambia de diseño, la ejecución termina en rojo y GitHub manda un correo; lo demás sí se publica.
+name: Comunicados de los municipios
+
+on:
+  schedule:
+    # Hora de Nuevo León (UTC-6): 7:40, 13:10 y 19:40. GitHub puede retrasarlas unos minutos.
+    - cron: "40 13 * * *"
+    - cron: "10 19 * * *"
+    - cron: "40 1 * * *"
+  workflow_dispatch: {}   # botón «Run workflow» en la pestaña Actions
+
+permissions:
+  contents: write
+
+concurrency:
+  group: comunicados
+  cancel-in-progress: false
+
+jobs:
+  capturar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci --no-audit --no-fund
+
+      - name: Revisar los portales
+        id: captura
+        run: node scripts/avisos/capturar.js
+        continue-on-error: true
+
+      - name: Publicar lo nuevo
+        run: |
+          git add src/data/avisos src/data/avisos-estado.json public/avisos
+          if git diff --cached --quiet; then
+            echo "Sin cambios."
+            exit 0
+          fi
+          nuevos=$(git diff --cached --name-only --diff-filter=A -- public/avisos | wc -l)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "Comunicados de los municipios: ${nuevos} fotos nuevas"
+          git pull -q --rebase origin "${GITHUB_REF_NAME}"
+          git push -q origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Avisar si algún portal falló
+        if: steps.captura.outcome == 'failure'
+        run: |
+          echo "::error::Uno o más portales fallaron. Revisa el paso «Revisar los portales» para ver cuál y por qué."
+          exit 1

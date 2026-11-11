@@ -4,6 +4,7 @@ import ListaNotas from "../components/ListaNotas.astro";
 import ExploraMunicipios from "../components/ExploraMunicipios.astro";
 import ElTiempo from "../components/ElTiempo.astro";
 import ProximosEventos from "../components/ProximosEventos.astro";
+import ComunicadosMunicipales from "../components/ComunicadosMunicipales.astro";
 import { notasPublicadas } from "../lib/notas";
 import { CATEGORIAS, MUNICIPIOS } from "../lib/sitio";
 
@@ -49,6 +50,8 @@ const notas = await notasPublicadas();
     <ListaNotas notas={notas} />
     <p class="sin-resultados" data-sin-resultados hidden>Todavía no hay noticias con estos filtros.</p>
   </section>
+
+  <ComunicadosMunicipales />
 
   <ElTiempo />
 

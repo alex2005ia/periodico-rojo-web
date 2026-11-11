@@ -1,0 +1,108 @@
+---
+import Base from "../layouts/Base.astro";
+import AvisoTarjeta from "../components/AvisoTarjeta.astro";
+import { avisosRecientes, DIAS_EN_SITIO } from "../lib/avisos";
+import { MUNICIPIOS } from "../lib/sitio";
+import estado from "../data/avisos-estado.json";
+import { fechaSinHora } from "../lib/fechas";
+
+const avisos = avisosRecientes();
+const intro =
+  "Comunicados que publican los gobiernos municipales en sus sitios oficiales, reunidos automáticamente tres veces al día. " +
+  "Se reproducen sin cambios: título, fecha y foto con crédito, y el enlace al comunicado completo.";
+const revisiones = MUNICIPIOS.map((m) => ({ ...m, ...(estado as Record<string, any>)[m.id] }));
+---
+
+<Base titulo="Comunicados de los municipios" descripcion={intro} activo="comunicados">
+  <section class="contenedor cabeza">
+    <p class="antetitulo">Fuentes oficiales</p>
+    <h1>Comunicados de los municipios</h1>
+    <p class="entrada">{intro}</p>
+  </section>
+
+  <section class="contenedor seccion" aria-labelledby="lista">
+    <div class="seccion-cabeza">
+      <h2 id="lista">Últimos {DIAS_EN_SITIO} días</h2>
+      <span class="conteo" data-conteo>{avisos.length} comunicados</span>
+    </div>
+
+    <form class="filtros" data-filtros hidden>
+      <label>
+        <span>Municipio</span>
+        <select name="municipio">
+          <option value="">Todos los municipios</option>
+          {MUNICIPIOS.map((m) => <option value={m.id}>{m.nombre}</option>)}
+        </select>
+      </label>
+    </form>
+
+    <ul class="rejilla comunicados" data-lista>
+      {avisos.map((a) => <AvisoTarjeta aviso={a} />)}
+    </ul>
+    <p class="sin-resultados" data-vacio hidden={avisos.length > 0}>
+      No hay comunicados recientes<span data-vacio-municipio></span> en el sitio oficial del municipio.
+    </p>
+  </section>
+
+  <section class="contenedor seccion" aria-labelledby="como">
+    <div class="seccion-cabeza"><h2 id="como">Cómo se reúnen</h2></div>
+    <div class="aviso">
+      <p>
+        No son notas del periódico: no se redactan ni se resumen. Las fotos se reproducen completas, con crédito y enlace
+        al original, al amparo del artículo 148, fracción II, de la Ley Federal del Derecho de Autor, y se retiran si el
+        titular lo pide. Los comunicados que podrían mostrar a niñas, niños o adolescentes se publican sin foto.
+      </p>
+    </div>
+    <dl class="ficha-datos revisiones">
+      {revisiones.map((r) => (
+        <>
+          <dt>{r.nombre}</dt>
+          <dd>
+            {r.ultimo_exito ? `Revisado el ${fechaSinHora(r.ultimo_exito)}` : "Todavía sin revisar"}
+            {r.ultimo_error && !r.ultimo_error.resuelto && " · Su sitio no respondió en la última revisión"}
+          </dd>
+        </>
+      ))}
+    </dl>
+  </section>
+</Base>
+
+<script>
+  // Filtro por municipio, con la selección en la dirección (?municipio=...).
+  import { MUNICIPIOS } from "../lib/sitio";
+  const form = document.querySelector<HTMLFormElement>("[data-filtros]");
+  const tarjetas = [...document.querySelectorAll<HTMLElement>("[data-lista] > li")];
+  const conteo = document.querySelector("[data-conteo]");
+  const vacio = document.querySelector<HTMLElement>("[data-vacio]");
+  const enMunicipio = document.querySelector<HTMLElement>("[data-vacio-municipio]");
+  if (form && conteo && vacio) {
+    const sel = form.elements.namedItem("municipio") as HTMLSelectElement;
+    const aplicar = (actualizar = true) => {
+      let n = 0;
+      for (const t of tarjetas) {
+        t.hidden = !!sel.value && t.dataset.municipio !== sel.value;
+        if (!t.hidden) n++;
+      }
+      conteo.textContent = `${n} ${n === 1 ? "comunicado" : "comunicados"}`;
+      vacio.hidden = n > 0;
+      const nombre = MUNICIPIOS.find((m) => m.id === sel.value)?.nombre;
+      if (enMunicipio) enMunicipio.textContent = nombre ? ` de ${nombre}` : "";
+      if (actualizar) history.replaceState(null, "", sel.value ? `?municipio=${sel.value}` : location.pathname);
+    };
+    const pedido = new URLSearchParams(location.search).get("municipio");
+    sel.value = [...sel.options].some((o) => o.value === pedido) ? pedido! : "";
+    form.hidden = false;
+    form.addEventListener("change", () => aplicar());
+    aplicar(false);
+  }
+</script>
+
+<style>
+  .cabeza { padding-top: 48px; }
+  h1 { font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -0.04em; }
+  .entrada { margin: 18px 0 0; color: var(--tinta-suave); font-size: 1.02rem; line-height: 1.7; max-width: 70ch; }
+  .comunicados { grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 32px 22px; }
+  .comunicados > li[hidden] { display: none; }
+  .sin-resultados[hidden] { display: none; }
+  .revisiones { font-size: 0.85rem; }
+</style>

@@ -3,6 +3,7 @@ import Base from "../../layouts/Base.astro";
 import ListaNotas from "../../components/ListaNotas.astro";
 import ElTiempo from "../../components/ElTiempo.astro";
 import ProximosEventos from "../../components/ProximosEventos.astro";
+import ComunicadosMunicipales from "../../components/ComunicadosMunicipales.astro";
 import { notasPublicadas } from "../../lib/notas";
 import { MUNICIPIOS } from "../../lib/sitio";
 
@@ -29,6 +30,7 @@ const notas = (await notasPublicadas()).filter((n) => n.data.municipio === munic
     </div>
     <ListaNotas notas={notas} vacio={`Todavía no hay noticias publicadas de ${nombre}.`} />
   </section>
+  <ComunicadosMunicipales municipio={municipio} />
   <ElTiempo municipio={municipio} />
 </Base>
 
