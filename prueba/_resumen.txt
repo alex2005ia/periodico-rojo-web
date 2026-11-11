@@ -1,2 +1,2 @@
-snn-js | https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Scripts/sistema/Modulo_Noticias.js | 200 2511 application/javascript https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Scripts/sistema/Modulo_Noticias.js
-snn-layoutjs | https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Scripts/sistema/InicioLayoutScript.js | 200 1538 application/javascript https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Scripts/sistema/InicioLayoutScript.js
+snn-get | https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Noticias/GetNoticias | 200 31397402 text/xml; charset=utf-8 https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Noticias/GetNoticias
+snn-noticias | https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Noticias/Noticias | 200 26972 text/html; charset=utf-8 https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Noticias/Noticias
