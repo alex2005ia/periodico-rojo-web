@@ -1,1 +1,32 @@
-{}
+{
+  "monterrey": {
+    "ultimo_exito": "2026-11-11",
+    "leidos": 12,
+    "ultimo_error": null
+  },
+  "guadalupe": {
+    "ultimo_exito": "2026-11-11",
+    "leidos": 9,
+    "ultimo_error": null
+  },
+  "escobedo": {
+    "ultimo_exito": "2026-11-11",
+    "leidos": 25,
+    "ultimo_error": null
+  },
+  "garcia": {
+    "ultimo_exito": "2026-11-11",
+    "leidos": 10,
+    "ultimo_error": null
+  },
+  "san-pedro": {
+    "ultimo_exito": "2026-11-11",
+    "leidos": 10,
+    "ultimo_error": null
+  },
+  "san-nicolas": {
+    "ultimo_exito": "2026-11-11",
+    "leidos": 112,
+    "ultimo_error": null
+  }
+}
