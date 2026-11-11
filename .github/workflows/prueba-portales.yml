@@ -25,8 +25,8 @@ jobs:
             echo "$nombre | $url | $res" | tee -a r/_resumen.txt
             sleep 2
           done <<'LISTA'
-          snn-js https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Scripts/sistema/Modulo_Noticias.js
-          snn-layoutjs https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Scripts/sistema/InicioLayoutScript.js
+          snn-get https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Noticias/GetNoticias
+          snn-noticias https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Noticias/Noticias
           LISTA
       - name: Guardar respuestas en la rama de prueba
         run: |
