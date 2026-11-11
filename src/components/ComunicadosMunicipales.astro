@@ -9,7 +9,7 @@ interface Props {
   municipio?: string;
   limite?: number;
 }
-const { municipio, limite = 6 } = Astro.props;
+const { municipio, limite = 8 } = Astro.props;
 const avisos = avisosRecientes(municipio);
 const ver = municipio ? `/comunicados?municipio=${municipio}` : "/comunicados";
 ---

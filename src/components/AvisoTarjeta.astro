@@ -27,7 +27,7 @@ const emisor = EMISORES[aviso.municipio] ?? nombreMunicipio(aviso.municipio);
     <span class="sello-oficial">Comunicado oficial</span>
     {conMunicipio && <a href={`/municipios/${aviso.municipio}`}>{nombreMunicipio(aviso.municipio)}</a>}
   </p>
-  <h3><a href={aviso.url} rel="external noopener">{aviso.titulo}</a></h3>
+  <h3><a href={aviso.url} rel="external noopener" title={aviso.titulo}>{aviso.titulo}</a></h3>
   <p class="pie">
     <time datetime={aviso.fecha}>{fechaSinHora(aviso.fecha)}</time>
     <a class="original" href={aviso.url} rel="external noopener">Leer en el sitio del municipio <span aria-hidden="true">↗</span></a>
@@ -36,7 +36,7 @@ const emisor = EMISORES[aviso.municipio] ?? nombreMunicipio(aviso.municipio);
 
 <style>
   .aviso-tarjeta { display: flex; flex-direction: column; gap: 8px; padding-bottom: 20px; border-bottom: 1px solid var(--linea); }
-  .imagen { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--papel-hondo); }
+  .imagen { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--papel-hondo); text-decoration: none; }
   /* Completa, sin recortar (LFDA art. 148). */
   .imagen img { width: 100%; height: 100%; object-fit: contain; }
   .credito { margin: -2px 0 2px; font-size: 0.7rem; color: var(--tinta-suave); }
@@ -44,7 +44,11 @@ const emisor = EMISORES[aviso.municipio] ?? nombreMunicipio(aviso.municipio);
     color: var(--tinta-suave); border: 1px solid var(--linea); padding: 1px 6px; border-radius: 2px;
     font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase;
   }
-  h3 { font-size: 1.08rem; line-height: 1.25; overflow-wrap: anywhere; }
+  /* Muchos municipios titulan en mayúsculas: se limita a cuatro líneas (el título completo sigue en el enlace). */
+  h3 {
+    font-size: 1.04rem; line-height: 1.28; overflow-wrap: anywhere;
+    display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+  }
   h3 a { text-decoration: none; }
   h3 a:hover { color: var(--rojo); }
   .pie { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin: 0; font-size: 0.75rem; color: var(--tinta-suave); }

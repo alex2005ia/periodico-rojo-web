@@ -2,12 +2,13 @@
 // El orden de cada lista es el orden en que aparecen en menús y filtros.
 
 export const MUNICIPIOS = [
-  { id: "garcia", nombre: "García" },
-  { id: "san-nicolas", nombre: "San Nicolás de los Garza" },
-  { id: "monterrey", nombre: "Monterrey" },
-  { id: "escobedo", nombre: "General Escobedo" },
-  { id: "san-pedro", nombre: "San Pedro Garza García" },
-  { id: "guadalupe", nombre: "Guadalupe" },
+  // "corto" es el nombre de uso común, para el menú.
+  { id: "garcia", nombre: "García", corto: "García" },
+  { id: "san-nicolas", nombre: "San Nicolás de los Garza", corto: "San Nicolás" },
+  { id: "monterrey", nombre: "Monterrey", corto: "Monterrey" },
+  { id: "escobedo", nombre: "General Escobedo", corto: "Escobedo" },
+  { id: "san-pedro", nombre: "San Pedro Garza García", corto: "San Pedro" },
+  { id: "guadalupe", nombre: "Guadalupe", corto: "Guadalupe" },
 ] as const;
 
 export const CATEGORIAS = [

@@ -75,6 +75,23 @@ Si un expediente cita una fuente o una nota que no existe, o un valor no es vál
 
 Los expedientes guardados por cada lector viven sólo en su navegador (no hay cuentas ni servidor).
 
+## Comunicados de los municipios
+
+GitHub Actions (`.github/workflows/comunicados.yml`) revisa los seis portales a las 7:40, 13:10 y 19:40 (hora de
+Nuevo León) con `scripts/avisos/capturar.js` y hace commit de lo nuevo; Cloudflare vuelve a publicar el sitio.
+No se redacta nada: título, fecha, foto y enlace al original. También se puede correr a mano desde la pestaña
+**Actions → Comunicados de los municipios → Run workflow**.
+
+- Datos: `src/data/avisos/AAAA-MM.json`. Fotos: `public/avisos/` (640 px, completas; se borran a los 60 días).
+- **Retirar algo** — editar `src/data/avisos-retiros.json` y guardar en GitHub; se aplica en la siguiente revisión:
+  - `"ocultar"`: identificadores de avisos que no deben aparecer.
+  - `"sin_foto"`: identificadores de avisos que se quedan sin foto.
+  - `"portales_sin_foto"`: municipios que prohíben usar sus fotos (por ejemplo `"escobedo"`).
+  El identificador está en el nombre de la foto y en `src/data/avisos/`.
+- Sin foto automáticamente si el título sugiere niñas, niños o adolescentes (escuela, DIF, juguetes, etc.).
+- Si un portal falla o cambia de diseño, la ejecución termina en rojo y GitHub manda un correo. El lector de cada
+  portal está en `scripts/avisos/lectores.js` y sus pruebas en `tests/avisos.test.js`.
+
 ## Agenda
 
 `/agenda` reúne las notas que traen `evento`, ordenadas por `inicio`. La portada y cada municipio muestran los

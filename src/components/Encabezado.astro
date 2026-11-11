@@ -7,7 +7,7 @@ interface Props {
 const { activo } = Astro.props;
 const enlaces = [
   { id: "portada", nombre: "Portada", href: "/" },
-  ...MUNICIPIOS.map((m) => ({ id: m.id, nombre: m.nombre, href: `/municipios/${m.id}` })),
+  ...MUNICIPIOS.map((m) => ({ id: m.id, nombre: m.corto, completo: m.nombre, href: `/municipios/${m.id}` })),
   { id: "agenda", nombre: "Agenda", href: "/agenda" },
   { id: "comunicados", nombre: "Comunicados", href: "/comunicados" },
   { id: "proyectos", nombre: "Proyectos", href: "/proyectos" },
@@ -31,7 +31,8 @@ const enlaces = [
     <ul class="contenedor">
       {enlaces.map((e) => (
         <li>
-          <a href={e.href} aria-current={activo === e.id ? "page" : undefined}>{e.nombre}</a>
+          <a href={e.href} title={"completo" in e && e.completo !== e.nombre ? e.completo : undefined}
+             aria-current={activo === e.id ? "page" : undefined}>{e.nombre}</a>
         </li>
       ))}
     </ul>
@@ -61,7 +62,7 @@ const enlaces = [
 
   .menu { border-top: 1px solid var(--tinta); border-bottom: 1px solid var(--tinta); }
   .menu ul {
-    list-style: none; margin: 0 auto; display: flex; gap: 26px;
+    list-style: none; margin: 0 auto; display: flex; gap: 24px;
     overflow-x: auto; scrollbar-width: thin; white-space: nowrap;
   }
   .menu a {

@@ -94,11 +94,10 @@
     "fecha": "2026-11-09",
     "url": "https://escobedo.gob.mx/?p=notas&a=20261109",
     "clave": "https://escobedo.gob.mx/?p=notas&a=20261109#1794262958",
-    "foto": "/avisos/escobedo-2026-11-09-rehabilita-escobedo-parque-en-santa-luz-impulsa-deporte-y.webp",
+    "foto": null,
     "foto_original": "https://escobedo.gob.mx/notas/20261109/im00-1794262958.jpg",
     "capturado": "2026-11-11T16:06:51.573Z",
-    "foto_ancho": 640,
-    "foto_alto": 426
+    "sin_foto": "retiro"
   },
   {
     "id": "guadalupe-2026-11-09-refuerza-guadalupe-acciones-para-contrarrestar-la-violencia",
