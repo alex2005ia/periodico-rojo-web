@@ -5,12 +5,13 @@ on:
   push:
     branches: [a-prueba-portales]
 permissions:
-  contents: read
+  contents: write
 jobs:
   probar:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - uses: actions/checkout@v4
       - name: Descargar candidatos
         run: |
           mkdir -p r
@@ -41,12 +42,12 @@ jobs:
           spgg-feed https://blog.sanpedro.gob.mx/feed/
           spgg-news https://blog.sanpedro.gob.mx/news/
           snn-inicio https://www.sanicolas.gob.mx/
-          snn-noticias https://www.sanicolas.gob.mx/noticias
-          snn-wpjson https://www.sanicolas.gob.mx/wp-json/wp/v2/posts?per_page=5&_embed=wp:featuredmedia
-          snn-feed https://www.sanicolas.gob.mx/feed/
+          gar-generales https://garcia.gob.mx/generales/
+          spgg-feed2 https://blog.sanpedro.gob.mx/feed/
           LISTA
-      - uses: actions/upload-artifact@v4
-        with:
-          name: respuestas
-          path: r/
-          retention-days: 3
+      - name: Guardar respuestas en la rama de prueba
+        run: |
+          rm -rf prueba && mv r prueba
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add prueba && git commit -q -m "Respuestas de la prueba [skip ci]" && git push
