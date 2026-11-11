@@ -10,6 +10,9 @@ on:
     - cron: "10 19 * * *"
     - cron: "40 1 * * *"
   workflow_dispatch: {}   # botón «Run workflow» en la pestaña Actions
+  push:                   # TEMPORAL: prueba en la rama; se quita antes de unir a main
+    branches: [a-comunicados]
+    paths: [".github/workflows/comunicados.yml", "scripts/avisos/**"]
 
 permissions:
   contents: write
