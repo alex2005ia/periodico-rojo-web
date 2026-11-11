@@ -9,8 +9,9 @@ import Sello from "./Sello.astro";
 interface Props {
   aviso: Aviso;
   conMunicipio?: boolean;
+  nota?: string; // nota del periódico redactada a partir de este comunicado
 }
-const { aviso, conMunicipio = true } = Astro.props;
+const { aviso, conMunicipio = true, nota } = Astro.props;
 const emisor = EMISORES[aviso.municipio] ?? nombreMunicipio(aviso.municipio);
 ---
 
@@ -28,6 +29,7 @@ const emisor = EMISORES[aviso.municipio] ?? nombreMunicipio(aviso.municipio);
     {conMunicipio && <a href={`/municipios/${aviso.municipio}`}>{nombreMunicipio(aviso.municipio)}</a>}
   </p>
   <h3><a href={aviso.url} rel="external noopener" title={aviso.titulo}>{aviso.titulo}</a></h3>
+  {nota && <p class="nota"><a href={`/articles/${nota}`}>Leer la nota de Periódico Rojo →</a></p>}
   <p class="pie">
     <time datetime={aviso.fecha}>{fechaSinHora(aviso.fecha)}</time>
     <a class="original" href={aviso.url} rel="external noopener">Leer en el sitio del municipio <span aria-hidden="true">↗</span></a>
@@ -52,5 +54,7 @@ const emisor = EMISORES[aviso.municipio] ?? nombreMunicipio(aviso.municipio);
   h3 a { text-decoration: none; }
   h3 a:hover { color: var(--rojo); }
   .pie { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin: 0; font-size: 0.75rem; color: var(--tinta-suave); }
+  .nota { margin: 0; font-size: 0.82rem; font-weight: 700; }
+  .nota a { color: var(--tinta); }
   .original { color: var(--rojo); font-weight: 600; text-underline-offset: 2px; }
 </style>

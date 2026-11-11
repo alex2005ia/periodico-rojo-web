@@ -1,6 +1,10 @@
-# Comunicados de los municipios: revisa los seis portales oficiales tres veces al día y publica lo nuevo.
+# Comunicados de los municipios y notas automáticas.
+#   A) Revisa los seis portales oficiales tres veces al día y publica los comunicados nuevos (gratis).
+#   B) Si existe el secreto ANTHROPIC_API_KEY, redacta una nota por comunicado nuevo con la API de Claude:
+#      la publica si pasa las revisiones automáticas; si no, la deja en espera y la anota en un aviso de GitHub
+#      («Notas en espera de revisión»), que te llega por correo. Sin el secreto, B no hace nada ni cuesta nada.
 # Cada commit a main hace que Cloudflare Pages vuelva a compilar el sitio (plan gratuito: 500 compilaciones al mes).
-# Si un portal falla o cambia de diseño, la ejecución termina en rojo y GitHub manda un correo; lo demás sí se publica.
+# Si un portal o la API fallan, la ejecución termina en rojo y GitHub manda un correo; lo demás sí se publica.
 name: Comunicados de los municipios
 
 on:
@@ -13,6 +17,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: comunicados
@@ -21,13 +26,13 @@ concurrency:
 jobs:
   capturar:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 22   # 22.18 o posterior: los scripts leen src/lib/sitio.ts directamente
           cache: npm
 
       - run: npm ci --no-audit --no-fund
@@ -37,22 +42,52 @@ jobs:
         run: node scripts/avisos/capturar.js
         continue-on-error: true
 
+      - name: Redactar notas (opción B)
+        id: notas
+        run: node scripts/notas/publicar.js
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RESUMEN_REVISION: ${{ runner.temp }}/revision.md
+
       - name: Publicar lo nuevo
         run: |
-          git add src/data/avisos src/data/avisos-estado.json public/avisos
+          git add src/data/avisos src/data/avisos-estado.json public/avisos src/content/articulos src/assets/fotos
           if git diff --cached --quiet; then
             echo "Sin cambios."
             exit 0
           fi
-          nuevos=$(git diff --cached --name-only --diff-filter=A -- public/avisos | wc -l)
+          avisos=$(git diff --cached --name-only --diff-filter=A -- public/avisos | wc -l)
+          notas=$(git diff --cached --name-only --diff-filter=A -- src/content/articulos | wc -l)
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -q -m "Comunicados de los municipios: ${nuevos} fotos nuevas"
+          git commit -q -m "Comunicados: ${avisos} fotos nuevas; notas automáticas: ${notas}"
           git pull -q --rebase origin "${GITHUB_REF_NAME}"
           git push -q origin "HEAD:${GITHUB_REF_NAME}"
 
-      - name: Avisar si algún portal falló
-        if: steps.captura.outcome == 'failure'
+      - name: Aviso de notas en espera
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RESUMEN: ${{ runner.temp }}/revision.md
+          NUEVAS: ${{ steps.notas.outputs.en_espera }}
         run: |
-          echo "::error::Uno o más portales fallaron. Revisa el paso «Revisar los portales» para ver cuál y por qué."
+          titulo="Notas en espera de revisión"
+          numero=$(gh issue list --state open --search "\"$titulo\" in:title" --json number --jq '.[0].number // empty')
+          if [ -s "$RESUMEN" ]; then
+            if [ -z "$numero" ]; then
+              gh issue create --title "$titulo" --body-file "$RESUMEN"
+            else
+              gh issue edit "$numero" --body-file "$RESUMEN"
+              # Un comentario hace que GitHub mande correo; sólo cuando hay notas nuevas en espera.
+              if [ "${NUEVAS:-0}" -gt 0 ]; then gh issue comment "$numero" --body "Hay ${NUEVAS} nota(s) nueva(s) en espera."; fi
+            fi
+          elif [ -n "$numero" ]; then
+            gh issue close "$numero" --comment "Ya no hay notas en espera."
+          fi
+
+      - name: Avisar si algo falló
+        if: steps.captura.outcome == 'failure' || steps.notas.outcome == 'failure'
+        run: |
+          [ "${{ steps.captura.outcome }}" = "failure" ] && echo "::error::Uno o más portales fallaron. Revisa el paso «Revisar los portales»."
+          [ "${{ steps.notas.outcome }}" = "failure" ] && echo "::error::La redacción automática tuvo problemas (¿sin saldo en la API?). Revisa el paso «Redactar notas»."
           exit 1

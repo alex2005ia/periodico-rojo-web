@@ -92,6 +92,23 @@ No se redacta nada: título, fecha, foto y enlace al original. También se puede
 - Si un portal falla o cambia de diseño, la ejecución termina en rojo y GitHub manda un correo. El lector de cada
   portal está en `scripts/avisos/lectores.js` y sus pruebas en `tests/avisos.test.js`.
 
+## Notas automáticas (opción B)
+
+Si el repositorio tiene el secreto `ANTHROPIC_API_KEY` (Settings → Secrets and variables → Actions), el mismo flujo
+redacta una nota por cada comunicado nuevo de los últimos dos días con `scripts/notas/publicar.js`:
+
+1. Lee el texto completo del comunicado en el portal (`scripts/notas/textos.js`; San Nicolás no lo ofrece).
+2. Pide la nota a Claude Sonnet 5.5 con las reglas de estilo (`scripts/notas/redactar.js`) y, si hay foto, le pregunta
+   si muestra menores reconocibles (entonces no se usa la foto ni en la nota ni en el comunicado).
+3. Revisa contra el comunicado (`scripts/notas/verificar.js`): cifras, citas literales, nombres propios y fechas del evento.
+4. Si todo cuadra y no es un tema delicado (seguridad, violencia, tragedias, salud, elecciones, acusaciones), se publica
+   con la leyenda «Nota redactada automáticamente». Si no, queda como borrador y aparece en el aviso de GitHub
+   **«Notas en espera de revisión»** (pestaña Issues), con enlaces para editarla y publicarla (`borrador: false`).
+
+Los comunicados que la IA considera sólo propaganda no se convierten en nota. Costo: unos 0.01 USD por nota; si se
+acaba el saldo o se alcanza el límite de gasto, la redacción se detiene (la ejecución sale en rojo) y lo pendiente se
+reintenta después. Sin el secreto, no hace nada.
+
 ## Agenda
 
 `/agenda` reúne las notas que traen `evento`, ordenadas por `inicio`. La portada y cada municipio muestran los

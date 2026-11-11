@@ -4,13 +4,16 @@
 import AvisoTarjeta from "./AvisoTarjeta.astro";
 import { avisosRecientes } from "../lib/avisos";
 import { nombreMunicipio } from "../lib/sitio";
+import { notasPublicadas } from "../lib/notas";
 
 interface Props {
   municipio?: string;
   limite?: number;
 }
 const { municipio, limite = 8 } = Astro.props;
-const avisos = avisosRecientes(municipio);
+// Los comunicados que ya tienen nota del periódico no se repiten aquí: la nota aparece arriba.
+const publicadas = new Set((await notasPublicadas()).map((n) => n.id));
+const avisos = avisosRecientes(municipio, { sinNota: publicadas });
 const ver = municipio ? `/comunicados?municipio=${municipio}` : "/comunicados";
 ---
 

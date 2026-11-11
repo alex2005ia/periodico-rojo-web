@@ -41,6 +41,13 @@ const compartir = data.foto ? (await getImage({ src: data.foto.archivo, width: 1
     <p class="firma">
       Fecha del comunicado original: <time datetime={data.fecha_original}>{fechaSinHora(data.fecha_original)}</time>
     </p>
+    {data.automatica && (
+      <p class="automatica">
+        Nota redactada automáticamente a partir del
+        <a href={data.fuente.url} target="_blank" rel="noopener noreferrer">comunicado oficial del {data.fuente.nombre} ↗</a>
+        y revisada contra él por un sistema. Si ves un error, <a href="/about">avísanos</a>.
+      </p>
+    )}
 
     <figure>
       {data.foto ? (
@@ -120,6 +127,11 @@ const compartir = data.foto ? (await getImage({ src: data.foto.archivo, width: 1
   .seguimiento { border: 1px solid var(--linea); background: #fff; padding: 14px 18px; margin: 28px 0 0; max-width: 68ch; }
   .seguimiento p { margin: 4px 0; }
   .seguimiento a { color: var(--rojo); font-weight: 600; }
+  .automatica {
+    margin: 14px 0 0; padding: 10px 14px; border-left: 3px solid var(--tinta-suave); background: var(--papel-hondo);
+    font-size: 0.82rem; color: var(--tinta-suave); line-height: 1.5;
+  }
+  .automatica a { color: var(--tinta); }
   .fuente { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--linea); font-size: 0.92rem; }
   .fuente a { color: var(--rojo); font-weight: 600; }
 </style>

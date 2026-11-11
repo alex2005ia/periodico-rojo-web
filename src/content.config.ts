@@ -52,6 +52,10 @@ const articulos = defineCollection({
         .refine((e) => !e.fin || e.fin >= e.inicio, { message: "el fin del evento no puede ser antes del inicio" })
         .optional(),
       borrador: z.boolean().default(false),
+      // Notas redactadas automáticamente a partir de un comunicado (scripts/notas/publicar.js).
+      automatica: z.boolean().default(false),
+      aviso: z.string().optional(),               // identificador del comunicado en src/data/avisos
+      revision: z.array(z.string()).optional(),   // por qué esperó revisión humana
     }),
 });
 
