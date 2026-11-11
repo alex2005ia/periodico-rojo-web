@@ -25,14 +25,8 @@ jobs:
             echo "$nombre | $url | $res" | tee -a r/_resumen.txt
             sleep 2
           done <<'LISTA'
-          snn-noticias https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Noticias/Noticias
-          snn-licencia https://pagina.sanicolas.gob.mx/SITIO_OFICIAL_PC/Licencia/Licencia
-          spgg-newsfeed https://blog.sanpedro.gob.mx/news/feed/
-          spgg-newsjson https://blog.sanpedro.gob.mx/wp-json/wp/v2/news?per_page=5&_embed=wp:featuredmedia
-          spgg-art https://blog.sanpedro.gob.mx/news/anuncia-san-pedro-la-28a-edicion-del-kilometro-del-juguete/
-          mty-art https://www.monterrey.gob.mx/noticias/retira-monterrey-9-mil-200-toneladas-de-basura-y-escombro-del-canal-medular/
-          gpe-art https://guadalupe.gob.mx/noticia/inicia-guadalupe-jugueton-navideno-2026
-          gar-art https://garcia.gob.mx/generales/anuncia-manuel-guerra-cavazos-conexion-entre-garcibus-y-ecovia-para-garcia-nuevo-leon/
+          snn-js https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Scripts/sistema/Modulo_Noticias.js
+          snn-layoutjs https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Scripts/sistema/InicioLayoutScript.js
           LISTA
       - name: Guardar respuestas en la rama de prueba
         run: |
