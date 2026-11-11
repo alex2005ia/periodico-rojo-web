@@ -1,8 +1,2 @@
-snn-noticias | https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Noticias/Noticias | 200 26972 text/html; charset=utf-8 https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Noticias/Noticias
-snn-licencia | https://pagina.sanicolas.gob.mx/SITIO_OFICIAL_PC/Licencia/Licencia | 200 35045 text/html; charset=utf-8 https://pagina.sanicolas.gob.mx/SITIO_OFICIAL_PC/Licencia/Licencia
-spgg-newsfeed | https://blog.sanpedro.gob.mx/news/feed/ | 200 61618 application/rss+xml; charset=UTF-8 https://blog.sanpedro.gob.mx/news/feed/
-spgg-newsjson | https://blog.sanpedro.gob.mx/wp-json/wp/v2/news?per_page=5&_embed=wp:featuredmedia | 200 54573 application/json; charset=UTF-8 https://blog.sanpedro.gob.mx/wp-json/wp/v2/news?per_page=5&_embed=wp:featuredmedia
-spgg-art | https://blog.sanpedro.gob.mx/news/anuncia-san-pedro-la-28a-edicion-del-kilometro-del-juguete/ | 200 20993 text/html; charset=UTF-8 https://blog.sanpedro.gob.mx/news/anuncia-san-pedro-la-28a-edicion-del-kilometro-del-juguete/
-mty-art | https://www.monterrey.gob.mx/noticias/retira-monterrey-9-mil-200-toneladas-de-basura-y-escombro-del-canal-medular/ | 200 46685 text/html; charset=utf-8 https://www.monterrey.gob.mx/noticias/retira-monterrey-9-mil-200-toneladas-de-basura-y-escombro-del-canal-medular/
-gpe-art | https://guadalupe.gob.mx/noticia/inicia-guadalupe-jugueton-navideno-2026 | 200 41037 text/html; charset=UTF-8 https://guadalupe.gob.mx/noticia/inicia-guadalupe-jugueton-navideno-2026
-gar-art | https://garcia.gob.mx/generales/anuncia-manuel-guerra-cavazos-conexion-entre-garcibus-y-ecovia-para-garcia-nuevo-leon/ | 200 191109 text/html; charset=UTF-8 https://garcia.gob.mx/generales/anuncia-manuel-guerra-cavazos-conexion-entre-garcibus-y-ecovia-para-garcia-nuevo-leon/
+snn-js | https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Scripts/sistema/Modulo_Noticias.js | 200 2511 application/javascript https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Scripts/sistema/Modulo_Noticias.js
+snn-layoutjs | https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Scripts/sistema/InicioLayoutScript.js | 200 1538 application/javascript https://sanicolas.gob.mx/SITIO_OFICIAL_PC/Scripts/sistema/InicioLayoutScript.js
