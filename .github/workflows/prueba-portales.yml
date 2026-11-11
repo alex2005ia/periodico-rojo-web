@@ -1,0 +1,52 @@
+# Prueba temporal: ¿los portales municipales responden a GitHub Actions?
+# Descarga cada candidato, informa código y tamaño, y guarda las respuestas para escribir los lectores.
+name: Prueba de portales
+on:
+  push:
+    branches: [a-prueba-portales]
+permissions:
+  contents: read
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Descargar candidatos
+        run: |
+          mkdir -p r
+          HOY=$(TZ=America/Monterrey date +%Y%m%d)
+          AYER=$(TZ=America/Monterrey date -d yesterday +%Y%m%d)
+          UA="PeriodicoRojo/1.0 (+https://periodico-rojo-web.pages.dev/about)"
+          while read -r nombre url; do
+            [ -z "$nombre" ] && continue
+            url=${url//HOY/$HOY}; url=${url//AYER/$AYER}
+            res=$(curl -sS -L -m 30 -A "$UA" -o "r/$nombre" -w '%{http_code} %{size_download} %{content_type} %{url_effective}' "$url" 2>&1) || true
+            echo "$nombre | $url | $res" | tee -a r/_resumen.txt
+            sleep 2
+          done <<'LISTA'
+          mty-noticias https://www.monterrey.gob.mx/noticias/
+          mty-wpjson https://www.monterrey.gob.mx/wp-json/wp/v2/posts?per_page=5&_embed=wp:featuredmedia
+          mty-feed https://www.monterrey.gob.mx/feed/
+          gpe-noticias https://guadalupe.gob.mx/noticias
+          gpe-inicio https://guadalupe.gob.mx/
+          gpe-feed https://guadalupe.gob.mx/feed
+          esc-notas https://escobedo.gob.mx/?p=notas
+          esc-hoy https://escobedo.gob.mx/?p=notas&a=HOY
+          esc-ayer https://escobedo.gob.mx/?p=notas&a=AYER
+          gar-inicio https://garcia.gob.mx/
+          gar-wpjson https://garcia.gob.mx/wp-json/wp/v2/posts?per_page=5&_embed=wp:featuredmedia
+          gar-feed https://garcia.gob.mx/feed/
+          spgg-blog https://blog.sanpedro.gob.mx/
+          spgg-wpjson https://blog.sanpedro.gob.mx/wp-json/wp/v2/posts?per_page=5&_embed=wp:featuredmedia
+          spgg-feed https://blog.sanpedro.gob.mx/feed/
+          spgg-news https://blog.sanpedro.gob.mx/news/
+          snn-inicio https://www.sanicolas.gob.mx/
+          snn-noticias https://www.sanicolas.gob.mx/noticias
+          snn-wpjson https://www.sanicolas.gob.mx/wp-json/wp/v2/posts?per_page=5&_embed=wp:featuredmedia
+          snn-feed https://www.sanicolas.gob.mx/feed/
+          LISTA
+      - uses: actions/upload-artifact@v4
+        with:
+          name: respuestas
+          path: r/
+          retention-days: 3
