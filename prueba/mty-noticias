@@ -1,0 +1,1764 @@
+
+
+
+<!DOCTYPE html>
+<html lang="es-mx">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H7YEF4GL98"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-H7YEF4GL98');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0A1D7A" />
+
+  
+  <link rel="icon" href="https://storage.googleapis.com/mty-cms-static-production/static/home/img/favicon.ico?v=1" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://storage.googleapis.com/mty-cms-static-production/static/home/img/favicon-32x32.png?v=1">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://storage.googleapis.com/mty-cms-static-production/static/home/img/favicon-192x192.png?v=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://storage.googleapis.com/mty-cms-static-production/static/home/img/apple-touch-icon.png?v=1">
+
+  <title>Noticias - Gobierno de Monterrey</title>
+
+  
+  
+    <meta name="description" content="Sitio oficial del Gobierno de Monterrey. Realiza trámites y pagos en línea, consulta noticias, avisos y servicios municipales.">
+  
+
+  
+  
+    
+    
+      <link rel="alternate" hreflang="es-mx" href="https://www.monterrey.gob.mx/noticias/" />
+    
+  
+
+  
+  <link rel="canonical" href="https://www.monterrey.gob.mx/noticias/">
+  <meta property="og:site_name" content="Gobierno de Monterrey">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Noticias - Gobierno de Monterrey">
+  <meta property="og:description" content="Sitio oficial del Gobierno de Monterrey. Realiza trámites y pagos en línea, consulta noticias, avisos y servicios municipales.">
+  <meta property="og:url" content="https://www.monterrey.gob.mx/noticias/">
+  <meta property="og:locale" content="es_MX">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Noticias - Gobierno de Monterrey">
+  <meta name="twitter:description" content="Sitio oficial del Gobierno de Monterrey. Realiza trámites y pagos en línea, consulta noticias, avisos y servicios municipales.">
+  <meta property="og:image" content="https://storage.googleapis.com/mty-cms-static-production/static/home/img/logo-gobierno-monterrey.png">
+  <meta name="twitter:image" content="https://storage.googleapis.com/mty-cms-static-production/static/home/img/logo-gobierno-monterrey.png">
+
+  
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "GovernmentOrganization", "name": "Gobierno de Monterrey", "url": "https://www.monterrey.gob.mx/", "logo": "https://storage.googleapis.com/mty-cms-static-production/static/home/img/logo-gobierno-monterrey.png"}</script>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    referrerpolicy="no-referrer"
+  >
+
+  
+  <link rel="stylesheet" href="https://storage.googleapis.com/mty-cms-static-production/static/home/css/tailwind.css?v=1">
+
+  
+  <link rel="stylesheet" href="https://storage.googleapis.com/mty-cms-static-production/static/home/css/site.css?v=122">
+
+  
+</head>
+
+<body class="text-mty-space-cadet">
+  <!-- Skip link (accesibilidad) -->
+  <a
+    href="#contenido"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[9999] focus:bg-white focus:text-mty-space-cadet focus:px-4 focus:py-2 focus:rounded-lg shadow"
+  >
+    Saltar al contenido
+  </a>
+
+  
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-screen-xl mx-auto px-4">
+
+    <!-- ====== HEADER MAIN ROW ====== -->
+    <div class="flex items-center justify-between py-4 gap-4">
+
+      <!-- Logo -->
+      <div class="flex items-center gap-3 shrink-0">
+        
+        <a href="/" aria-label="Ir al inicio">
+          
+            
+            <img
+              src="https://storage.googleapis.com/mty-cms-static-production/media/images/mty_gdm_logo_comp.width-260.svg"
+              alt="Gobierno de Monterrey"
+              class="logo-left"
+              decoding="async"
+            >
+          
+        </a>
+      </div>
+
+      <!-- Desktop Nav (CENTRO) -->
+      <nav class="hidden md:block flex-1 min-w-0" aria-label="Navegación principal">
+        <ul class="flex justify-center gap-6 xl:gap-8 items-center">
+          
+            
+              
+                
+                  <li>
+                    <a
+                      href="https://transparencia.monterrey.gob.mx/"
+                      class="text-mty-space-cadet hover:text-mty-cardinal font-medium transition whitespace-nowrap"
+                      target="_blank" rel="noopener noreferrer"
+                    >
+                      Transparencia
+                    </a>
+                  </li>
+                
+              
+            
+              
+                
+                  <li class="relative group">
+                    <button
+                      type="button"
+                      class="text-mty-space-cadet hover:text-mty-cardinal font-medium transition inline-flex items-center gap-2 whitespace-nowrap"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Dependencias
+                      <i class="fas fa-chevron-down text-xs opacity-70"></i>
+                    </button>
+
+                    <div class="absolute left-0 top-full pt-3 hidden group-hover:block group-focus-within:block z-50">
+                      <div class="bg-white rounded-2xl border border-gray-100 shadow-xl min-w-[260px] max-h-[min(70vh,560px)] overflow-y-auto overscroll-contain p-2 mty-menu-scroll">
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-desarrollo-urbano-sostenible/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Secretaría de Desarrollo Urbano Sostenible
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-desarrollo-humano-e-igualdad-sustantiva/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Secretaría de Desarrollo Humano e Igualdad Sustantiva
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-ayuntamiento/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Secretaría de Ayuntamiento
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-ejecutiva/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Secretaría Ejecutiva
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-servicios-p%C3%BAblicos/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Secretaría de Servicios Públicos
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/contralor%C3%ADa-municipal/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Contraloría Municipal
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/tesorer%C3%ADa-municipal/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Tesorería Municipal
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-obras-p%C3%BAblicas/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Secretaría de Obras Públicas
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-innovaci%C3%B3n-y-gobierno-abierto/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Secretaría de Innovación y Gobierno Abierto
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-seguridad-y-protecci%C3%B3n-ciudadana/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Secretaría de Seguridad y Protección Ciudadana
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-desarrollo-econ%C3%B3mico/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Secretaría de Desarrollo Económico
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/dif-monterrey/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            DIF Monterrey
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/jefatura-de-gabinete/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Jefatura de Gabinete
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/cabildo/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Cabildo
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-administraci%C3%B3n/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Secretaría de Administración
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-participaci%C3%B3n-ciudadana/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Secretaría de Participación Ciudadana
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/instituto-municipal-de-mujeres-regias/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Instituto Municipal de Mujeres Regias
+                          </a>
+                        
+                          <a href="https://www.monterrey.gob.mx/dependencias/protecci%C3%B3n-civil/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                            Protección Civil
+                          </a>
+                        
+                      </div>
+                    </div>
+                  </li>
+                
+              
+            
+              
+                
+                  <li>
+                    <a
+                      href="https://ventanilladigital.monterrey.gob.mx/"
+                      class="text-mty-space-cadet hover:text-mty-cardinal font-medium transition whitespace-nowrap"
+                      
+                    >
+                      Ventanilla Digital
+                    </a>
+                  </li>
+                
+              
+            
+          
+        </ul>
+      </nav>
+
+      <!-- Desktop Actions -->
+      <div class="hidden md:flex items-center gap-3 shrink-0">
+
+        <!-- External Services Launcher -->
+        
+
+        <!-- Desktop Search -->
+        <div class="hidden lg:block w-[320px] xl:w-[360px] shrink-0">
+          <form action="/buscar/" method="get" role="search" class="w-full">
+            <label for="qDesktop" class="sr-only">Buscar contenido</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" aria-hidden="true">
+                <i class="fas fa-search"></i>
+              </span>
+
+              <input
+                id="qDesktop"
+                name="search"
+                type="search"
+                placeholder="Buscar…"
+                class="w-full h-11 pl-11 pr-12 rounded-2xl border border-gray-200 bg-white
+                       focus:outline-none focus:ring-2 focus:ring-mty-cardinal/30 focus:border-mty-cardinal/40
+                       transition"
+                autocomplete="off"
+              >
+
+              <button
+                type="submit"
+                class="absolute right-2 top-1/2 -translate-y-1/2 inline-flex items-center justify-center
+                       h-9 px-3 rounded-xl text-white font-semibold hover:shadow-md transition
+                       focus:outline-none focus-visible:ring-2 focus-visible:ring-mty-catalina-blue/40"
+                style="background-color:var(--catalina-blue);"
+                aria-label="Buscar"
+              >
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Mobile menu button (NO TOCAR IDs) -->
+      <button
+        id="btnMenu"
+        type="button"
+        class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border border-gray-200 text-mty-space-cadet hover:text-mty-cardinal hover:border-mty-cardinal/30 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-mty-cardinal/40"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+      >
+        <i class="fas fa-bars text-lg"></i>
+      </button>
+
+    </div>
+
+    <!-- ====== MOBILE SEARCH ====== -->
+    <div class="lg:hidden pb-4">
+      <form action="/buscar/" method="get" role="search" class="w-full">
+        <label for="qMobile" class="sr-only">Buscar contenido</label>
+        <div class="relative">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" aria-hidden="true">
+            <i class="fas fa-search"></i>
+          </span>
+
+          <input
+            id="qMobile"
+            name="search"
+            type="search"
+            placeholder="Buscar trámites, noticias, servicios…"
+            class="w-full h-11 pl-11 pr-24 rounded-2xl border border-gray-200 bg-white
+                   focus:outline-none focus:ring-2 focus:ring-mty-cardinal/30 focus:border-mty-cardinal/40
+                   transition"
+            autocomplete="off"
+          >
+
+          <button
+            type="submit"
+            class="absolute right-2 top-1/2 -translate-y-1/2 inline-flex items-center justify-center
+                   h-9 px-4 rounded-xl text-white font-semibold hover:shadow-md transition
+                   focus:outline-none focus-visible:ring-2 focus-visible:ring-mty-catalina-blue/40"
+            style="background-color:var(--catalina-blue);"
+          >
+            Buscar
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- ====== MOBILE NAV (NO TOCAR ID mobileMenu) ====== -->
+    <div id="mobileMenu" class="md:hidden hidden pb-4">
+      <nav aria-label="Navegación móvil" class="bg-white rounded-2xl border border-gray-100 p-3">
+        <ul class="grid gap-1">
+
+          
+
+          
+            
+              
+                
+                  <li>
+                    <a
+                      href="https://transparencia.monterrey.gob.mx/"
+                      class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition"
+                      target="_blank" rel="noopener noreferrer"
+                    >
+                      Transparencia
+                    </a>
+                  </li>
+                
+              
+            
+              
+                
+                  <li class="rounded-xl border border-gray-100 overflow-hidden">
+                    <button
+                      type="button"
+                      class="w-full flex items-center justify-between px-3 py-2 hover:bg-mty-ghost-white transition"
+                      data-submenu-toggle="submenu-6"
+                      aria-expanded="false"
+                      aria-controls="submenu-6"
+                    >
+                      <span class="font-medium">Dependencias</span>
+                      <i class="fas fa-chevron-down text-xs opacity-70"></i>
+                    </button>
+
+                    <div id="submenu-6" class="hidden px-2 pb-2">
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-desarrollo-urbano-sostenible/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Secretaría de Desarrollo Urbano Sostenible
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-desarrollo-humano-e-igualdad-sustantiva/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Secretaría de Desarrollo Humano e Igualdad Sustantiva
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-ayuntamiento/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Secretaría de Ayuntamiento
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-ejecutiva/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Secretaría Ejecutiva
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-servicios-p%C3%BAblicos/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Secretaría de Servicios Públicos
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/contralor%C3%ADa-municipal/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Contraloría Municipal
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/tesorer%C3%ADa-municipal/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Tesorería Municipal
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-obras-p%C3%BAblicas/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Secretaría de Obras Públicas
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-innovaci%C3%B3n-y-gobierno-abierto/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Secretaría de Innovación y Gobierno Abierto
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-seguridad-y-protecci%C3%B3n-ciudadana/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Secretaría de Seguridad y Protección Ciudadana
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-desarrollo-econ%C3%B3mico/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Secretaría de Desarrollo Económico
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/dif-monterrey/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          DIF Monterrey
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/jefatura-de-gabinete/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Jefatura de Gabinete
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/cabildo/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Cabildo
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-administraci%C3%B3n/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Secretaría de Administración
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/secretar%C3%ADa-de-participaci%C3%B3n-ciudadana/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Secretaría de Participación Ciudadana
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/instituto-municipal-de-mujeres-regias/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Instituto Municipal de Mujeres Regias
+                        </a>
+                      
+                        <a href="https://www.monterrey.gob.mx/dependencias/protecci%C3%B3n-civil/" class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition">
+                          Protección Civil
+                        </a>
+                      
+                    </div>
+                  </li>
+                
+              
+            
+              
+                
+                  <li>
+                    <a
+                      href="https://ventanilladigital.monterrey.gob.mx/"
+                      class="block px-3 py-2 rounded-xl hover:bg-mty-ghost-white transition"
+                      
+                    >
+                      Ventanilla Digital
+                    </a>
+                  </li>
+                
+              
+            
+          
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+
+  <!-- ====== SUB-HEADER · ACCESOS RÁPIDOS (trámites / servicios) ====== -->
+  
+  
+  <nav class="mty-subbar" aria-label="Accesos rápidos a trámites y servicios">
+    <div class="mty-subbar__inner">
+      
+        
+          <a
+            href="https://asp.monterrey.gob.mx/predial/"
+            class="mty-subbar__item"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fas fa-house mty-subbar__icon" aria-hidden="true"></i>
+            <span class="mty-subbar__label">Predial</span>
+          </a>
+        
+      
+        
+          <a
+            href="https://asp.monterrey.gob.mx/multasdetransito/"
+            class="mty-subbar__item"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fas fa-traffic-light mty-subbar__icon" aria-hidden="true"></i>
+            <span class="mty-subbar__label">Multas de Tránsito</span>
+          </a>
+        
+      
+        
+          <a
+            href="https://parquimetros.monterrey.gob.mx/"
+            class="mty-subbar__item"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fas fa-square-parking mty-subbar__icon" aria-hidden="true"></i>
+            <span class="mty-subbar__label">Permiso de Parquímetro</span>
+          </a>
+        
+      
+        
+          <a
+            href="https://alcoholes.monterrey.gob.mx/"
+            class="mty-subbar__item"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fas fa-file-signature mty-subbar__icon" aria-hidden="true"></i>
+            <span class="mty-subbar__label">Anuencias de Alcohol</span>
+          </a>
+        
+      
+        
+          <a
+            href="https://servicios.adon.mx/site/portal/sfe/Facturacion.html"
+            class="mty-subbar__item"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fas fa-file-invoice-dollar mty-subbar__icon" aria-hidden="true"></i>
+            <span class="mty-subbar__label">Facturación</span>
+          </a>
+        
+      
+        
+          <a
+            href="https://denuncia.monterrey.gob.mx/"
+            class="mty-subbar__item"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fas fa-person-circle-exclamation mty-subbar__icon" aria-hidden="true"></i>
+            <span class="mty-subbar__label">Denuncia corrupción</span>
+          </a>
+        
+      
+        
+          <a
+            href="https://www.monterrey.gob.mx/transparencia/Oficial_/Gaceta_Municipal.html"
+            class="mty-subbar__item"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fas fa-book-open mty-subbar__icon" aria-hidden="true"></i>
+            <span class="mty-subbar__label">Gacetas Municipales</span>
+          </a>
+        
+      
+        
+          <!-- Más servicios (dropdown) -->
+          <div class="mty-subbar__more" data-extsrv-root>
+            <button
+              type="button"
+              class="mty-subbar__item mty-subbar__item--btn"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="mtySubbarMorePanel"
+              data-extsrv-toggle
+            >
+              <i class="fas fa-layer-group mty-subbar__icon" aria-hidden="true"></i>
+              <span class="mty-subbar__label">Más servicios</span>
+            </button>
+
+            <div
+              id="mtySubbarMorePanel"
+              class="mty-subbar__panel hidden"
+              data-extsrv-panel
+              role="menu"
+              aria-label="Más servicios del municipio"
+            >
+              
+              <a class="mty-subbar__link" role="menuitem" href="https://www.monterrey.gob.mx/transparencia/Oficial_/Informacion_Fiscal" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-file-invoice-dollar" aria-hidden="true"></i>
+                <span>Consulta información Fiscal</span>
+              </a>
+              
+              <a class="mty-subbar__link" role="menuitem" href="https://www.monterrey.gob.mx/archivohistorico" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-box-archive" aria-hidden="true"></i>
+                <span>Archivo Histórico</span>
+              </a>
+              
+              <a class="mty-subbar__link" role="menuitem" href="https://resolvemos.monterrey.gob.mx/" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-check-to-slot" aria-hidden="true"></i>
+                <span>Resolvemos Mty</span>
+              </a>
+              
+              <a class="mty-subbar__link" role="menuitem" href="https://turismo.monterrey.gob.mx/" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-mountain-sun" aria-hidden="true"></i>
+                <span>Turismo Mty</span>
+              </a>
+              
+              <a class="mty-subbar__link" role="menuitem" href="https://emprendemos.monterrey.gob.mx/" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                <span>Emprendemos</span>
+              </a>
+              
+              <a class="mty-subbar__link" role="menuitem" href="https://sostenible.monterrey.gob.mx/" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-leaf" aria-hidden="true"></i>
+                <span>Sostenible Mty</span>
+              </a>
+              
+              <a class="mty-subbar__link" role="menuitem" href="https://juecesauxiliares.monterrey.gob.mx/" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-gavel" aria-hidden="true"></i>
+                <span>Jueces Auxiliares</span>
+              </a>
+              
+              <a class="mty-subbar__link" role="menuitem" href="https://mide.monterrey.gob.mx/" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-chart-line" aria-hidden="true"></i>
+                <span>Mide</span>
+              </a>
+              
+              <a class="mty-subbar__link" role="menuitem" href="https://empleo.monterrey.gob.mx/" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-briefcase" aria-hidden="true"></i>
+                <span>Empleo Mty</span>
+              </a>
+              
+              <a class="mty-subbar__link" role="menuitem" href="https://mejoraregulatoria.monterrey.gob.mx/" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-scale-balanced" aria-hidden="true"></i>
+                <span>Sistema de Mejora Regulatoria</span>
+              </a>
+              
+              <a class="mty-subbar__link" role="menuitem" href="https://ventanilladigital.monterrey.gob.mx/retys" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-clipboard-list" aria-hidden="true"></i>
+                <span>Registro Municipal de Trámites y Servicios</span>
+              </a>
+              
+            </div>
+          </div>
+        
+      
+    </div>
+  </nav>
+  
+
+  <!-- ====== BANNER PROMOCIONAL (franja roja, ON/OFF desde código) ====== -->
+  
+
+</header>
+
+
+
+  <main id="contenido">
+    
+
+<section class="py-10 sm:py-14 bg-white">
+  <div class="max-w-screen-xl mx-auto px-4">
+
+    <nav class="text-sm text-gray-500 mb-4">
+      <a href="/" class="hover:underline">Inicio</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-700 font-semibold">Noticias</span>
+    </nav>
+
+    <div class="flex flex-col gap-4">
+      <div class="max-w-2xl">
+        <h1 class="text-3xl sm:text-5xl font-extrabold" style="color:var(--space-cadet);">
+          Noticias
+        </h1>
+
+        
+          <p class="mt-3 text-base sm:text-lg text-gray-600 leading-relaxed">
+            Comunicados, avisos y notas relevantes del Municipio.
+          </p>
+        
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="py-10 sm:py-14" style="background:var(--ghost-white);">
+  <div class="max-w-screen-xl mx-auto px-4">
+
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-6">
+      <div class="text-sm text-gray-600">
+        
+          Mostrando
+          <span class="font-bold text-gray-900">1</span>–<span class="font-bold text-gray-900">12</span>
+          de <span class="font-bold text-gray-900">72</span> noticias.
+        
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3 text-sm">
+        <span class="text-gray-500">
+          
+            Orden cronológico (más recientes primero).
+          
+        </span>
+
+        
+          <span class="inline-flex items-center px-4 py-2 rounded-xl bg-white border border-gray-200 text-gray-600">
+            Página <span class="font-bold text-gray-900 mx-1">1</span> de
+            <span class="font-bold text-gray-900 ml-1">6</span>
+          </span>
+        
+      </div>
+    </div>
+
+    
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+
+        
+          <article
+            class="card-modern h-full overflow-hidden border bg-white border-gray-100"
+            
+          >
+            <a href="https://www.monterrey.gob.mx/noticias/atiende-monterrey-m%C3%A1s-de-100-mil-metros-cuadrados-de-%C3%A1reas-verdes-en-cumbres-con-resolviendo-en-tu-colonia/" class="flex flex-col h-full">
+
+              <div class="relative aspect-[16/9] overflow-hidden bg-[var(--catalina-blue)]">
+                
+
+                
+                  
+                  <img
+                    src="https://storage.googleapis.com/mty-cms-static-production/media/images/SERVICIOS_PUBLICOS_CUMBRES_1.2e16d0ba.fill-800x450.jpg"
+                    alt="Atiende Monterrey más de 100 mil metros cuadrados de áreas verdes en Cumbres con ‘Resolviendo en tu Colonia’"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                
+              </div>
+
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 flex-wrap">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full font-extrabold text-white"
+                        style="background:var(--cardinal);">
+                    
+                      Servicio público
+                    
+                  </span>
+
+                  
+
+                  <span>
+                    
+                      10 Nov 2026
+                    
+                  </span>
+                </div>
+
+                <h2 class="text-lg font-extrabold leading-snug clamp-2" style="color:var(--space-cadet);">
+                  Atiende Monterrey más de 100 mil metros cuadrados de áreas verdes en Cumbres con ‘Resolviendo en tu Colonia’
+                </h2>
+
+                
+                  <p class="mt-2 text-gray-600 clamp-3 leading-relaxed flex-1">
+                    Consulta el detalle de esta noticia para ver la información completa.
+                  </p>
+                
+
+                <div class="mt-4 inline-flex items-center gap-2 font-extrabold"
+                     style="color:var(--catalina-blue);">
+                  Ver noticia <span aria-hidden="true">→</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        
+          <article
+            class="card-modern h-full overflow-hidden border bg-white border-gray-100"
+            
+          >
+            <a href="https://www.monterrey.gob.mx/noticias/recibe-gobierno-de-monterrey-donaci%C3%B3n-de-1200-viajes-gratuitos-de-una-plataforma-de-aplicaci%C3%B3n-m%C3%B3vil-para-facilitar-la-movilidad-de-familias-y-mujeres/" class="flex flex-col h-full">
+
+              <div class="relative aspect-[16/9] overflow-hidden bg-[var(--catalina-blue)]">
+                
+
+                
+                  
+                  <img
+                    src="https://storage.googleapis.com/mty-cms-static-production/media/images/COLABORACION_DIF_Y_DIDI.2e16d0ba.fill-800x450.jpg"
+                    alt="RECIBE GOBIERNO DE MONTERREY DONACIÓN DE 1,200 VIAJES GRATUITOS DE UNA PLATAFORMA DE APLICACIÓN MÓVIL PARA FACILITAR LA MOVILIDAD DE FAMILIAS Y MUJERES"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                
+              </div>
+
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 flex-wrap">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full font-extrabold text-white"
+                        style="background:var(--cardinal);">
+                    
+                      Movilidad
+                    
+                  </span>
+
+                  
+
+                  <span>
+                    
+                      10 Nov 2026
+                    
+                  </span>
+                </div>
+
+                <h2 class="text-lg font-extrabold leading-snug clamp-2" style="color:var(--space-cadet);">
+                  RECIBE GOBIERNO DE MONTERREY DONACIÓN DE 1,200 VIAJES GRATUITOS DE UNA PLATAFORMA DE APLICACIÓN MÓVIL PARA FACILITAR LA MOVILIDAD DE FAMILIAS Y MUJERES
+                </h2>
+
+                
+                  <p class="mt-2 text-gray-600 clamp-3 leading-relaxed flex-1">
+                    Consulta el detalle de esta noticia para ver la información completa.
+                  </p>
+                
+
+                <div class="mt-4 inline-flex items-center gap-2 font-extrabold"
+                     style="color:var(--catalina-blue);">
+                  Ver noticia <span aria-hidden="true">→</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        
+          <article
+            class="card-modern h-full overflow-hidden border bg-white border-gray-100"
+            
+          >
+            <a href="https://www.monterrey.gob.mx/noticias/retira-monterrey-9-mil-200-toneladas-de-basura-y-escombro-del-canal-medular/" class="flex flex-col h-full">
+
+              <div class="relative aspect-[16/9] overflow-hidden bg-[var(--catalina-blue)]">
+                
+
+                
+                  
+                  <img
+                    src="https://storage.googleapis.com/mty-cms-static-production/media/images/1_CANAL_MEDULAR.2e16d0ba.fill-800x450.jpg"
+                    alt="Retira Monterrey 9 mil 200 toneladas de basura y escombro del Canal Medular"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                
+              </div>
+
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 flex-wrap">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full font-extrabold text-white"
+                        style="background:var(--cardinal);">
+                    
+                      Infraestructura
+                    
+                  </span>
+
+                  
+
+                  <span>
+                    
+                      9 Nov 2026
+                    
+                  </span>
+                </div>
+
+                <h2 class="text-lg font-extrabold leading-snug clamp-2" style="color:var(--space-cadet);">
+                  Retira Monterrey 9 mil 200 toneladas de basura y escombro del Canal Medular
+                </h2>
+
+                
+                  <p class="mt-2 text-gray-600 clamp-3 leading-relaxed flex-1">
+                    Consulta el detalle de esta noticia para ver la información completa.
+                  </p>
+                
+
+                <div class="mt-4 inline-flex items-center gap-2 font-extrabold"
+                     style="color:var(--catalina-blue);">
+                  Ver noticia <span aria-hidden="true">→</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        
+          <article
+            class="card-modern h-full overflow-hidden border bg-white border-gray-100"
+            
+          >
+            <a href="https://www.monterrey.gob.mx/noticias/destina-adri%C3%A1n-de-la-garza-42-millones-de-pesos-a-rehabilitar-vitapista-del-parque-lincoln/" class="flex flex-col h-full">
+
+              <div class="relative aspect-[16/9] overflow-hidden bg-[var(--catalina-blue)]">
+                
+
+                
+                  
+                  <img
+                    src="https://storage.googleapis.com/mty-cms-static-production/media/images/1_PARQUE_L.2e16d0ba.fill-800x450.jpg"
+                    alt="DESTINA ADRIÁN DE LA GARZA 4.2 MILLONES DE PESOS A REHABILITAR VITAPISTA DEL PARQUE LINCOLN"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                
+              </div>
+
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 flex-wrap">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full font-extrabold text-white"
+                        style="background:var(--cardinal);">
+                    
+                      Desarrollo urbano
+                    
+                  </span>
+
+                  
+
+                  <span>
+                    
+                      9 Nov 2026
+                    
+                  </span>
+                </div>
+
+                <h2 class="text-lg font-extrabold leading-snug clamp-2" style="color:var(--space-cadet);">
+                  DESTINA ADRIÁN DE LA GARZA 4.2 MILLONES DE PESOS A REHABILITAR VITAPISTA DEL PARQUE LINCOLN
+                </h2>
+
+                
+                  <p class="mt-2 text-gray-600 clamp-3 leading-relaxed flex-1">
+                    Consulta el detalle de esta noticia para ver la información completa.
+                  </p>
+                
+
+                <div class="mt-4 inline-flex items-center gap-2 font-extrabold"
+                     style="color:var(--catalina-blue);">
+                  Ver noticia <span aria-hidden="true">→</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        
+          <article
+            class="card-modern h-full overflow-hidden border bg-white border-gray-100"
+            
+          >
+            <a href="https://www.monterrey.gob.mx/noticias/enriquece-monterrey-su-agenda-cultural-con-propuestas-de-artistas-locales/" class="flex flex-col h-full">
+
+              <div class="relative aspect-[16/9] overflow-hidden bg-[var(--catalina-blue)]">
+                
+
+                
+                  
+                  <img
+                    src="https://storage.googleapis.com/mty-cms-static-production/media/images/EXPOSICIONES_MUSEO_2.2e16d0ba.fill-800x450.jpg"
+                    alt="ENRIQUECE MONTERREY SU AGENDA CULTURAL CON PROPUESTAS DE ARTISTAS LOCALES"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                
+              </div>
+
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 flex-wrap">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full font-extrabold text-white"
+                        style="background:var(--cardinal);">
+                    
+                      Ciudadanía
+                    
+                  </span>
+
+                  
+
+                  <span>
+                    
+                      8 Nov 2026
+                    
+                  </span>
+                </div>
+
+                <h2 class="text-lg font-extrabold leading-snug clamp-2" style="color:var(--space-cadet);">
+                  ENRIQUECE MONTERREY SU AGENDA CULTURAL CON PROPUESTAS DE ARTISTAS LOCALES
+                </h2>
+
+                
+                  <p class="mt-2 text-gray-600 clamp-3 leading-relaxed flex-1">
+                    Consulta el detalle de esta noticia para ver la información completa.
+                  </p>
+                
+
+                <div class="mt-4 inline-flex items-center gap-2 font-extrabold"
+                     style="color:var(--catalina-blue);">
+                  Ver noticia <span aria-hidden="true">→</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        
+          <article
+            class="card-modern h-full overflow-hidden border bg-white border-gray-100"
+            
+          >
+            <a href="https://www.monterrey.gob.mx/noticias/supera-monterrey-las-30-mil-personas-beneficiadas-con-jornadas-de-vacunaci%C3%B3n/" class="flex flex-col h-full">
+
+              <div class="relative aspect-[16/9] overflow-hidden bg-[var(--catalina-blue)]">
+                
+
+                
+                  
+                  <img
+                    src="https://storage.googleapis.com/mty-cms-static-production/media/images/2_VACUNA.2e16d0ba.fill-800x450.jpg"
+                    alt="SUPERA MONTERREY LAS 30 MIL PERSONAS BENEFICIADAS CON JORNADAS DE VACUNACIÓN"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                
+              </div>
+
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 flex-wrap">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full font-extrabold text-white"
+                        style="background:var(--cardinal);">
+                    
+                      Salud
+                    
+                  </span>
+
+                  
+
+                  <span>
+                    
+                      7 Nov 2026
+                    
+                  </span>
+                </div>
+
+                <h2 class="text-lg font-extrabold leading-snug clamp-2" style="color:var(--space-cadet);">
+                  SUPERA MONTERREY LAS 30 MIL PERSONAS BENEFICIADAS CON JORNADAS DE VACUNACIÓN
+                </h2>
+
+                
+                  <p class="mt-2 text-gray-600 clamp-3 leading-relaxed flex-1">
+                    Consulta el detalle de esta noticia para ver la información completa.
+                  </p>
+                
+
+                <div class="mt-4 inline-flex items-center gap-2 font-extrabold"
+                     style="color:var(--catalina-blue);">
+                  Ver noticia <span aria-hidden="true">→</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        
+          <article
+            class="card-modern h-full overflow-hidden border bg-white border-gray-100"
+            
+          >
+            <a href="https://www.monterrey.gob.mx/noticias/m%C3%A1s-de-600-personas-vuelven-a-ver-gracias-al-programa-monterrey-se-ve-mejor-sin-cataratas-del-gobierno-de-monterrey/" class="flex flex-col h-full">
+
+              <div class="relative aspect-[16/9] overflow-hidden bg-[var(--catalina-blue)]">
+                
+
+                
+                  
+                  <img
+                    src="https://storage.googleapis.com/mty-cms-static-production/media/images/1_CATARATAS.2e16d0ba.fill-800x450.jpg"
+                    alt="MÁS DE 600 PERSONAS VUELVEN A VER GRACIAS AL PROGRAMA &quot;MONTERREY SE VE MEJOR SIN CATARATAS&quot;  DEL GOBIERNO DE MONTERREY"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                
+              </div>
+
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 flex-wrap">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full font-extrabold text-white"
+                        style="background:var(--cardinal);">
+                    
+                      Salud
+                    
+                  </span>
+
+                  
+
+                  <span>
+                    
+                      6 Nov 2026
+                    
+                  </span>
+                </div>
+
+                <h2 class="text-lg font-extrabold leading-snug clamp-2" style="color:var(--space-cadet);">
+                  MÁS DE 600 PERSONAS VUELVEN A VER GRACIAS AL PROGRAMA &quot;MONTERREY SE VE MEJOR SIN CATARATAS&quot;  DEL GOBIERNO DE MONTERREY
+                </h2>
+
+                
+                  <p class="mt-2 text-gray-600 clamp-3 leading-relaxed flex-1">
+                    Consulta el detalle de esta noticia para ver la información completa.
+                  </p>
+                
+
+                <div class="mt-4 inline-flex items-center gap-2 font-extrabold"
+                     style="color:var(--catalina-blue);">
+                  Ver noticia <span aria-hidden="true">→</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        
+          <article
+            class="card-modern h-full overflow-hidden border bg-white border-gray-100"
+            
+          >
+            <a href="https://www.monterrey.gob.mx/noticias/reconoce-monterrey-el-talento-y-compromiso-de-j%C3%B3venes-con-la-medalla-al-m%C3%A9rito-de-la-juventud-regia/" class="flex flex-col h-full">
+
+              <div class="relative aspect-[16/9] overflow-hidden bg-[var(--catalina-blue)]">
+                
+
+                
+                  
+                  <img
+                    src="https://storage.googleapis.com/mty-cms-static-production/media/images/4_MEDALLA.2e16d0ba.fill-800x450.jpg"
+                    alt="RECONOCE MONTERREY EL TALENTO Y COMPROMISO DE JÓVENES CON LA MEDALLA AL MÉRITO DE LA JUVENTUD REGIA"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                
+              </div>
+
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 flex-wrap">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full font-extrabold text-white"
+                        style="background:var(--cardinal);">
+                    
+                      Ayuntamiento
+                    
+                  </span>
+
+                  
+
+                  <span>
+                    
+                      6 Nov 2026
+                    
+                  </span>
+                </div>
+
+                <h2 class="text-lg font-extrabold leading-snug clamp-2" style="color:var(--space-cadet);">
+                  RECONOCE MONTERREY EL TALENTO Y COMPROMISO DE JÓVENES CON LA MEDALLA AL MÉRITO DE LA JUVENTUD REGIA
+                </h2>
+
+                
+                  <p class="mt-2 text-gray-600 clamp-3 leading-relaxed flex-1">
+                    Consulta el detalle de esta noticia para ver la información completa.
+                  </p>
+                
+
+                <div class="mt-4 inline-flex items-center gap-2 font-extrabold"
+                     style="color:var(--catalina-blue);">
+                  Ver noticia <span aria-hidden="true">→</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        
+          <article
+            class="card-modern h-full overflow-hidden border bg-white border-gray-100"
+            
+          >
+            <a href="https://www.monterrey.gob.mx/noticias/lleva-monterrey-programa-de-servicios-p%C3%BAblicos-resolviendo-en-tu-colonia-al-sector-contry-san-juanito/" class="flex flex-col h-full">
+
+              <div class="relative aspect-[16/9] overflow-hidden bg-[var(--catalina-blue)]">
+                
+
+                
+                  
+                  <img
+                    src="https://storage.googleapis.com/mty-cms-static-production/media/images/Resolviendo_en_tu_colonia_-_Countr.2e16d0ba.fill-800x450.jpg"
+                    alt="Lleva Monterrey programa de Servicios Públicos “Resolviendo en tu Colonia” al sector Contry San Juanito"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                
+              </div>
+
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 flex-wrap">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full font-extrabold text-white"
+                        style="background:var(--cardinal);">
+                    
+                      Servicio público
+                    
+                  </span>
+
+                  
+
+                  <span>
+                    
+                      5 Nov 2026
+                    
+                  </span>
+                </div>
+
+                <h2 class="text-lg font-extrabold leading-snug clamp-2" style="color:var(--space-cadet);">
+                  Lleva Monterrey programa de Servicios Públicos “Resolviendo en tu Colonia” al sector Contry San Juanito
+                </h2>
+
+                
+                  <p class="mt-2 text-gray-600 clamp-3 leading-relaxed flex-1">
+                    Consulta el detalle de esta noticia para ver la información completa.
+                  </p>
+                
+
+                <div class="mt-4 inline-flex items-center gap-2 font-extrabold"
+                     style="color:var(--catalina-blue);">
+                  Ver noticia <span aria-hidden="true">→</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        
+          <article
+            class="card-modern h-full overflow-hidden border bg-white border-gray-100"
+            
+          >
+            <a href="https://www.monterrey.gob.mx/noticias/supera-gobierno-de-monterrey-m%C3%A1s-de-15-mil-personas-con-el-programa-monterrey-se-ve-mejor/" class="flex flex-col h-full">
+
+              <div class="relative aspect-[16/9] overflow-hidden bg-[var(--catalina-blue)]">
+                
+
+                
+                  
+                  <img
+                    src="https://storage.googleapis.com/mty-cms-static-production/media/images/MONTERREY_SE_VE_MEJOR_2.2e16d0ba.fill-800x450.jpg"
+                    alt="Supera Gobierno de Monterrey más de 15 mil personas con el programa &quot;Monterrey se ve mejor&quot;"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                
+              </div>
+
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 flex-wrap">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full font-extrabold text-white"
+                        style="background:var(--cardinal);">
+                    
+                      Ciudadanía
+                    
+                  </span>
+
+                  
+
+                  <span>
+                    
+                      5 Nov 2026
+                    
+                  </span>
+                </div>
+
+                <h2 class="text-lg font-extrabold leading-snug clamp-2" style="color:var(--space-cadet);">
+                  Supera Gobierno de Monterrey más de 15 mil personas con el programa &quot;Monterrey se ve mejor&quot;
+                </h2>
+
+                
+                  <p class="mt-2 text-gray-600 clamp-3 leading-relaxed flex-1">
+                    Consulta el detalle de esta noticia para ver la información completa.
+                  </p>
+                
+
+                <div class="mt-4 inline-flex items-center gap-2 font-extrabold"
+                     style="color:var(--catalina-blue);">
+                  Ver noticia <span aria-hidden="true">→</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        
+          <article
+            class="card-modern h-full overflow-hidden border bg-white border-gray-100"
+            
+          >
+            <a href="https://www.monterrey.gob.mx/noticias/destina-monterrey-m%C3%A1s-de-199-millones-de-pesos-a-obras-para-el-distrito-norte/" class="flex flex-col h-full">
+
+              <div class="relative aspect-[16/9] overflow-hidden bg-[var(--catalina-blue)]">
+                
+
+                
+                  
+                  <img
+                    src="https://storage.googleapis.com/mty-cms-static-production/media/images/1_CANCHA.2e16d0ba.fill-800x450.jpg"
+                    alt="Destina Monterrey más de 19.9 millones de pesos a obras para el Distrito Norte"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                
+              </div>
+
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 flex-wrap">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full font-extrabold text-white"
+                        style="background:var(--cardinal);">
+                    
+                      Ciudadanía
+                    
+                  </span>
+
+                  
+
+                  <span>
+                    
+                      4 Nov 2026
+                    
+                  </span>
+                </div>
+
+                <h2 class="text-lg font-extrabold leading-snug clamp-2" style="color:var(--space-cadet);">
+                  Destina Monterrey más de 19.9 millones de pesos a obras para el Distrito Norte
+                </h2>
+
+                
+                  <p class="mt-2 text-gray-600 clamp-3 leading-relaxed flex-1">
+                    Consulta el detalle de esta noticia para ver la información completa.
+                  </p>
+                
+
+                <div class="mt-4 inline-flex items-center gap-2 font-extrabold"
+                     style="color:var(--catalina-blue);">
+                  Ver noticia <span aria-hidden="true">→</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        
+          <article
+            class="card-modern h-full overflow-hidden border bg-white border-gray-100"
+            
+          >
+            <a href="https://www.monterrey.gob.mx/noticias/impulsa-monterrey-el-crecimiento-de-emprendedoras-con-la-academia-20/" class="flex flex-col h-full">
+
+              <div class="relative aspect-[16/9] overflow-hidden bg-[var(--catalina-blue)]">
+                
+
+                
+                  
+                  <img
+                    src="https://storage.googleapis.com/mty-cms-static-production/media/images/2_EMPRENDEDORAS.2e16d0ba.fill-800x450.jpg"
+                    alt="IMPULSA MONTERREY EL CRECIMIENTO DE EMPRENDEDORAS CON LA ACADEMIA 2.0"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                
+              </div>
+
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 flex-wrap">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full font-extrabold text-white"
+                        style="background:var(--cardinal);">
+                    
+                      Economía
+                    
+                  </span>
+
+                  
+
+                  <span>
+                    
+                      3 Nov 2026
+                    
+                  </span>
+                </div>
+
+                <h2 class="text-lg font-extrabold leading-snug clamp-2" style="color:var(--space-cadet);">
+                  IMPULSA MONTERREY EL CRECIMIENTO DE EMPRENDEDORAS CON LA ACADEMIA 2.0
+                </h2>
+
+                
+                  <p class="mt-2 text-gray-600 clamp-3 leading-relaxed flex-1">
+                    Consulta el detalle de esta noticia para ver la información completa.
+                  </p>
+                
+
+                <div class="mt-4 inline-flex items-center gap-2 font-extrabold"
+                     style="color:var(--catalina-blue);">
+                  Ver noticia <span aria-hidden="true">→</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        
+
+      </div>
+
+      
+        <nav class="mt-10" aria-label="Paginación de noticias">
+          <div class="flex flex-col items-center gap-4">
+
+            <div class="text-sm text-gray-600">
+              Página <span class="font-bold text-gray-900">1</span>
+              de <span class="font-bold text-gray-900">6</span>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-2">
+
+              
+
+              
+                
+                  
+                    <span
+                      class="min-w-[44px] h-[44px] inline-flex items-center justify-center rounded-xl font-extrabold text-white"
+                      style="background:var(--catalina-blue);">
+                      1
+                    </span>
+                  
+                
+              
+                
+                  
+                    <a
+                      class="min-w-[44px] h-[44px] inline-flex items-center justify-center rounded-xl bg-white border border-gray-200 font-bold text-gray-700 hover:shadow-sm"
+                      href="?page=2">
+                      2
+                    </a>
+                  
+                
+              
+                
+                  
+                    <a
+                      class="min-w-[44px] h-[44px] inline-flex items-center justify-center rounded-xl bg-white border border-gray-200 font-bold text-gray-700 hover:shadow-sm"
+                      href="?page=3">
+                      3
+                    </a>
+                  
+                
+              
+                
+                  
+                    <a
+                      class="min-w-[44px] h-[44px] inline-flex items-center justify-center rounded-xl bg-white border border-gray-200 font-bold text-gray-700 hover:shadow-sm"
+                      href="?page=4">
+                      4
+                    </a>
+                  
+                
+              
+                
+                  
+                    <a
+                      class="min-w-[44px] h-[44px] inline-flex items-center justify-center rounded-xl bg-white border border-gray-200 font-bold text-gray-700 hover:shadow-sm"
+                      href="?page=5">
+                      5
+                    </a>
+                  
+                
+              
+                
+                  
+                    <a
+                      class="min-w-[44px] h-[44px] inline-flex items-center justify-center rounded-xl bg-white border border-gray-200 font-bold text-gray-700 hover:shadow-sm"
+                      href="?page=6">
+                      6
+                    </a>
+                  
+                
+              
+
+              
+                <a
+                  class="px-4 py-2 rounded-xl bg-white border border-gray-200 font-bold text-gray-700 hover:shadow-sm"
+                  href="?page=2">
+                  Siguiente →
+                </a>
+
+                <a
+                  class="hidden sm:inline-flex px-4 py-2 rounded-xl bg-white border border-gray-200 font-bold text-gray-700 hover:shadow-sm"
+                  href="?page=6">
+                  Última »
+                </a>
+              
+
+            </div>
+          </div>
+        </nav>
+      
+
+    
+
+  </div>
+</section>
+
+
+  </main>
+
+  
+
+
+
+<footer class="mty-footer">
+  <div class="mty-footer__container">
+
+    <div class="mty-footer__grid">
+      <!-- Marca / identidad -->
+      <section class="mty-footer__brand" aria-label="Identidad institucional">
+        <div class="mty-footer__brandhead">
+          <div class="mty-footer__brandmark" aria-hidden="true">
+            
+              
+              <img
+                src="https://storage.googleapis.com/mty-cms-static-production/media/images/mty_gdm_logo_comp.width-640.svg"
+                alt="Logo institucional"
+                class="mty-footer__brandlogo"
+                decoding="async"
+              >
+            
+          </div>
+        </div>
+
+        
+          <p class="mty-footer__branddesc">Portal oficial del Gobierno Municipal de Monterrey. Información pública, servicios y canales de atención ciudadana.</p>
+        
+
+        <div class="mty-footer__socials" aria-label="Redes sociales">
+          
+
+          
+
+          
+
+          
+
+          
+        </div>
+      </section>
+
+      <!-- Contacto -->
+      <section class="mty-footer__col" aria-label="Contacto">
+        <h3 class="mty-footer__title">Contacto</h3>
+        <div class="mty-footer__divider"></div>
+
+        <div class="mty-footer__contact">
+          
+            <p class="mty-footer__contacttext">Palacio Municipal del Gobierno de Monterrey <br>Zaragoza y Ocampo S/N, Zona Centro Monterrey, N.L. C.P. 64000</p>
+          
+
+          
+            <p class="mty-footer__contactline">
+              <span class="mty-footer__contactlabel">Tel:</span>
+              <a href="tel:52818130.6565"
+                 class="mty-footer__contactlink">
+                (52) (81) 8130.6565
+              </a>
+            </p>
+          
+
+          
+
+          
+        </div>
+      </section>
+
+      <!-- Grupos de enlaces -->
+      
+        <section class="mty-footer__col" aria-label="Enlaces">
+          <h3 class="mty-footer__title">Enlaces</h3>
+          <div class="mty-footer__divider"></div>
+
+          <ul class="mty-footer__links">
+            
+              
+                <li>
+                  <a href="https://asp.monterrey.gob.mx/IsaiEnLinea/"
+                     class="mty-footer__link"
+                     >
+                    ISAI en línea
+                    
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.monterrey.gob.mx/transparencia/Oficial/AvisosDePrivacidad.asp"
+                     class="mty-footer__link"
+                     >
+                    Aviso de Privacidad
+                    
+                  </a>
+                </li>
+              
+            
+          </ul>
+        </section>
+      
+    </div>
+
+    <!-- Bottom -->
+    <div class="mty-footer__bottom">
+      <div class="mty-footer__bottomlinks">
+        
+      </div>
+
+      <p class="mty-footer__legal">© 2026 Municipio de Monterrey.</p>
+    </div>
+
+  </div>
+</footer>
+
+  
+<div id="mtyA11y" class="mty-a11y" data-mty-a11y>
+  <button
+    id="mtyA11yFab"
+    type="button"
+    class="mty-a11y__fab"
+    aria-label="Abrir herramientas de accesibilidad"
+    aria-expanded="false"
+    aria-controls="mtyA11yPanel"
+  >
+    <span class="mty-a11y__fabIcon" aria-hidden="true">
+      <!-- SVG: universal access (sin FontAwesome) -->
+      <svg viewBox="0 0 24 24" width="22" height="22" role="img" focusable="false" aria-hidden="true">
+        <path fill="currentColor" d="M12 2a2 2 0 1 1 0 4a2 2 0 0 1 0-4Zm-1 5h2c2.3 0 4.6-.5 6.7-1.4a1 1 0 1 1 .7 1.9A20.6 20.6 0 0 1 13 9.1V11l4.3 10.2a1 1 0 0 1-1.8.8L12 14.4L8.5 22a1 1 0 1 1-1.8-.8L11 11V9.1c-2.5-.1-5-.6-7.4-1.6a1 1 0 1 1 .7-1.9C6.4 6.5 8.7 7 11 7Z"/>
+      </svg>
+    </span>
+  </button>
+
+  <section
+    id="mtyA11yPanel"
+    class="mty-a11y__panel"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Herramientas de accesibilidad"
+    hidden
+  >
+    <header class="mty-a11y__head">
+      <div class="mty-a11y__headText">
+        <div class="mty-a11y__title">Accesibilidad Gobierno de Monterrey</div>
+        <div class="mty-a11y__subtitle">Ajustes de lectura y contraste</div>
+      </div>
+      <button type="button" class="mty-a11y__close" data-mty-a11y-close aria-label="Cerrar">✕</button>
+    </header>
+
+    <div class="mty-a11y__body">
+
+      <div class="mty-a11y__group">
+        <div class="mty-a11y__label">Tamaño de texto</div>
+        <div class="mty-a11y__row">
+          <button type="button" class="mty-a11y__btn" data-mty-a11y-action="font-dec">A−</button>
+          <button type="button" class="mty-a11y__btn" data-mty-a11y-action="font-reset">Restablecer</button>
+          <button type="button" class="mty-a11y__btn" data-mty-a11y-action="font-inc">A+</button>
+        </div>
+        <div class="mty-a11y__hint" id="mtyA11yFontHint" aria-live="polite"></div>
+      </div>
+
+      <div class="mty-a11y__group">
+        <div class="mty-a11y__label">Contraste</div>
+        <div class="mty-a11y__row">
+          <button type="button" class="mty-a11y__chip" data-mty-a11y-action="contrast-dark">Alto oscuro</button>
+          <button type="button" class="mty-a11y__chip" data-mty-a11y-action="contrast-light">Alto claro</button>
+          <button type="button" class="mty-a11y__chip" data-mty-a11y-action="contrast-off">Normal</button>
+        </div>
+      </div>
+
+      <div class="mty-a11y__group">
+        <div class="mty-a11y__label">Opciones</div>
+        <div class="mty-a11y__col">
+          <label class="mty-a11y__toggle">
+            <input type="checkbox" data-mty-a11y-toggle="grayscale">
+            <span>Escala de grises</span>
+          </label>
+
+          <label class="mty-a11y__toggle">
+            <input type="checkbox" data-mty-a11y-toggle="highlightLinks">
+            <span>Resaltar enlaces</span>
+          </label>
+
+          <label class="mty-a11y__toggle">
+            <input type="checkbox" data-mty-a11y-toggle="cursorBig">
+            <span>Cursor grande</span>
+          </label>
+
+          <label class="mty-a11y__toggle">
+            <input type="checkbox" data-mty-a11y-toggle="legibleFont">
+            <span>Tipografía alta legibilidad</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="mty-a11y__group">
+        <div class="mty-a11y__label">Ayudas de lectura</div>
+        <div class="mty-a11y__col">
+          <label class="mty-a11y__toggle">
+            <input type="checkbox" data-mty-a11y-toggle="readingGuide">
+            <span>Guía de lectura</span>
+          </label>
+
+          <label class="mty-a11y__toggle">
+            <input type="checkbox" data-mty-a11y-toggle="readingMask">
+            <span>Máscara de lectura</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="mty-a11y__group mty-a11y__group--full">
+        <button type="button" class="mty-a11y__btn mty-a11y__btn--danger" data-mty-a11y-action="reset-all">
+          Restablecer todo
+        </button>
+        <div class="mty-a11y__micro">
+          Consejo: si tu sistema tiene “Alto contraste” activado (Windows), este sitio lo respeta.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- overlays (no bloquean clicks) -->
+  <div id="mtyA11yGuide" class="mty-a11y__guide" hidden aria-hidden="true"></div>
+
+  <div id="mtyA11yMask" class="mty-a11y__mask" hidden aria-hidden="true">
+    <div class="mty-a11y__maskTop"></div>
+    <div class="mty-a11y__maskBand"></div>
+    <div class="mty-a11y__maskBottom"></div>
+  </div>
+
+  <noscript>
+    <div class="mty-a11y__noscript">
+      Para usar herramientas de accesibilidad, activa JavaScript.
+    </div>
+  </noscript>
+</div>
+
+
+  <script src="https://storage.googleapis.com/mty-cms-static-production/static/home/js/site.js?v=102"></script>
+
+  
+  
+  
+    <script src="https://aida.monterrey.gob.mx/widget.js" data-site="monterrey" defer></script>
+  
+
+  
+</body>
+</html>

@@ -1,0 +1,925 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+
+	<!-- Document Detail
+	============================================= -->
+
+<title>General Escobedo - Nota Informativa</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="expires" content="-1" />
+  <meta name="keywords" content="general escobedo, nuevo leon, estado, mexico, gobierno, monterrey, turismo, negocios, andres mijes, gobernador, alcalde, business, cerro de la silla, municipio digital, foro, forum, progreso, transparencia, seguridad" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="charset" content="utf-8" />
+  <meta name="language" content="es" />
+  <meta name="distribution" content="global" />
+  <meta name="copyright" content="Gobierno Municipal de General Escobedo, N.L." />
+  <meta name="robots" content="index,follow" />
+  <meta name="revisit-after" content="1 days" />
+
+<meta name="description" content="Gobierno Municipal de General Escobedo, Nuevo León, fundado en abril de 1604, es un municipio y ciudad Industrial que forma parte del Área Metropolitana de Monterrey. Administraci&oacute;n 2021-2024">
+<meta name="author" content="Gobierno Municipal de General Escobedo, N.L.">
+<meta name="rating" content="general">
+<meta name="copyright" content="General Escobedo">
+<meta name="publisher" content="General Escobedo">
+<meta name="categories" content="General Escobedo"/>
+<link rel="amphtml" href="amp.html" />
+
+<meta name="google-site-verification" content="zMsjJnvHIZGYrYq9xpXx0vYa5Rft5xC-hl4IhcP2KU4" />
+
+<meta property="og:title" content="Gobierno Municipal de General Escobedo, N.L." />
+<meta property="og:site_name" content="General Escobedo">
+<meta property="og:url" content="https://escobedo.gob.mx/" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Gobierno Municipal de General Escobedo, Nuevo León, fundado en abril de 1604, es un municipio y ciudad Industrial que forma parte del Área Metropolitana de Monterrey. Administraci&oacute;n 2021-2024" />
+<meta property="og:image" content="https://escobedo.gob.mx/favicon.png" />
+
+    <meta name="geo.placename" content="Nuevo León">
+    <meta name="geo.country" content="MX">
+    <meta name="geo.region" content="MX" />
+    <meta name="tgn.nation" content="México">
+	
+    
+
+          <!-- JQUERYMOBILE-->
+        <link rel="apple-touch-icon" sizes="57x57" href="img/icons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="img/icons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="img/icons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="img/icons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="img/icons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="img/icons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="img/icons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="img/icons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="img/icons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="img/icons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="img/icons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
+        <link rel="manifest" href="manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="img/icons/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+        <link href="img/icons/apple-icon-180x180.png" rel="apple-touch-startup-image" />
+        <link rel="shortcut icon" href="https://escobedo.gob.mx/icon.png">
+		<link rel="apple-touch-icon" href="https://escobedo.gob.mx/favicon.png" />
+		<link rel="icon" href="data:image/png;base64,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">
+		
+	<!-- Stylesheets
+	============================================= -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+
+	<link rel="stylesheet" href="css/swiper.css" type="text/css" />
+	<link rel="stylesheet" href="css/dark02.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+	<link rel="stylesheet" href="css/triangulos.css" type="text/css" />
+	
+		<!-- Radio Checkbox Plugin -->
+		<link rel="stylesheet" href="css/components/radio-checkbox.css" type="text/css" />
+	
+	<link rel="stylesheet" href="css/custom.css" type="text/css" />
+
+	<link rel="stylesheet" href="style08_03.css?14" type="text/css" />
+	
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  
+
+	<!-- JavaScripts
+	============================================= -->
+	<!-- script src="js/jquery.js"></script -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+
+
+
+</head>
+<style>
+	
+.btn-oro {
+background-color: #c5a16a; 
+color:#fff;
+}
+
+.text-oro {
+color:#c5a16a!important;
+}
+	
+.event__search__floater {
+  /* position: fixed; */
+  top: 140px!important;
+/*   left:0; */
+  right: 50px;
+  transition: all ease-in-out 0.2s;
+  transform: translate(-50%, -50%);
+  z-index: 998;
+}
+
+.search__anchor{
+  position: relative;
+  width:auto;
+  height: auto;
+/*   TODO: Center anchor */
+}
+.search__submit {
+ opacity:0;
+  width: 0px;
+}
+.search__bar {
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  outline:none;
+  border:none;
+  background: #fff;
+  width: 50px;
+  height:50px;
+  border-radius: 25px;
+  opacity: 0;
+  z-index:5;
+  transition: all 0.2;
+  font-size: 1em;
+  border: 1px solid #DDD;
+}
+.search__bar:hover{
+  cursor: pointer;
+}
+.search__bar:focus {
+  width: 200px;
+  left:auto;
+  opacity: 1;
+  cursor: text;
+  transition: all 0.2;
+  padding-left: 25px;
+  padding-right: 70px;
+}
+.search__toggler {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: #9d3752;
+  opacity: 1;
+  top: -4px;
+  left: -4px;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+.search__toggler:hover{
+  cursor: pointer;
+}
+.search__toggler::before {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top: 15px;
+  right:0;
+  bottom:0;
+  left: 20px;
+  width: 12px;
+  height: 3px;
+  background: #fff;
+  transform: rotate(40deg);
+  transition: all 0.2s;
+}
+.search__toggler::after {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top:-2px;
+  right:0;
+  bottom:0;
+  left: -2px;
+  width:20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  transition: all 0.2s;
+}
+.search__bar:focus ~ .search__toggler {
+  right: 400px;
+  background: #151515;
+  z-index: 6;
+  transition: all 0.2;
+}
+.search__bar:focus ~ .search__toggler::before{
+  top: 0;
+  left: 0;
+  width: 25px;
+}
+.search__bar:focus ~ .search__toggler::after {
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  border: none;
+  background: white;
+  border-radius: 0%;
+  transform: rotate(-45deg);
+}
+
+/* ------------ MENU------------- */
+
+.btnmnuz {
+  position:fixed;
+
+  top:120px;
+  left:18px;
+
+  box-shadow: 0px 6px 24px -2px rgba(0, 0, 0, 0.3);
+  text-align:center;
+  z-index: 699!important;
+}
+
+.btnmnuz i:hover {
+  color:#fff;
+}
+
+/* ------------ RESALTA ------------- */
+
+
+
+.parent {
+  position: relative;
+}
+
+.child {
+  position: absolute;
+  top: 115px!important;
+  z-index: 697!important;
+}
+
+.child2 {
+  position: absolute;
+  top: 140px!important;
+  right: 20px;
+  z-index: 697!important;
+}
+
+@media (max-width: 992px) {
+		.child {
+		 position: absolute!important;
+		 top: 100px!important
+		}
+
+		.child2 {
+		 position: absolute!important;
+		  top: 140px !important;
+		  right: 20px;
+		}
+}
+
+
+@media (max-width: 768px) {
+		.child {
+		 position: absolute!important;
+		 top: 80px!important
+		}
+
+		.child2 {
+		 position: absolute!important;
+		  top: 120px !important;
+		  right: 20px;
+		}
+}
+
+@media (max-width: 576px) {
+		.child {
+		 position: absolute!important;
+		 top: 60px!important
+		}
+
+		.child2 {
+		 position: absolute!important;
+		  top: 100px !important;
+		  right: 20px;
+		}
+}
+
+
+
+
+/* ------------ LOGOS ------------- */
+
+.imgescudo {
+	width:  70%!important;
+	height: auto!important;
+  float: left;
+  padding: 20px;
+}
+
+@media (max-width: 992px) {
+
+.imgescudo {
+	width:  110%!important;
+	height: auto!important;
+	padding: 10px;
+}
+}
+
+@media (max-width: 576px) {
+
+.imgescudo {
+	width:  70%!important;
+	height: auto!important;
+	padding: 5px;
+	float:left;
+}
+}
+
+.imglogo {
+	width:  50%!important;
+	height: auto!important;
+  float: right;
+  margin-right: 20px;
+  padding: 20px;
+}
+
+@media (max-width: 992px) {
+
+.imglogo {
+	display: none!important;
+	width:  70%!important;
+	height: auto!important;
+	margin-right: 20px;
+	padding: 10px;
+}
+
+}
+
+.imgslogan {
+	width:  70%!important;
+	height: auto!important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+	padding: 20px;
+}
+
+@media (max-width: 992px) {
+
+.imgslogan {
+	display: block!important;
+	width:  80%!important;
+	height: auto!important;
+	padding: 10px;
+}
+}
+
+@media (max-width: 576px) {
+
+.imgslogan {
+	display: none!important;
+	width:  90%!important;
+	height: auto!important;
+	padding: 10px;
+}
+}
+
+.imgsloganx {
+	width:  90%!important;
+	height: auto!important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+	padding: 20px;
+}
+
+@media (max-width: 992px) {
+
+.imgsloganx {
+	display: block!important;
+	width:  80%!important;
+	height: auto!important;
+	padding: 10px;
+}
+}
+
+@media (max-width: 576px) {
+
+.imgsloganx {
+	display: none!important;
+	width:  90%!important;
+	height: auto!important;
+	padding: 10px;
+}
+}
+
+.imgslogan2 {
+	width:  70%!important;
+	height: auto!important;
+	display: none!important;
+  
+  margin-left: auto;
+  margin-right: auto;
+	padding: 20px;
+}
+
+@media (max-width: 992px) {
+
+.imgslogan2 {
+	display: none!important;
+	width:  80%!important;
+	height: auto!important;
+	padding: 10px;
+}
+}
+
+@media (max-width: 576px) {
+
+.imgslogan2 {
+	display: block!important;
+	width:  100%!important;
+	height: auto!important;
+	padding: 10px;
+	top:10px;
+	right:40px;
+}
+}
+
+/* ------------ CINTILLA ------------- */
+
+
+div.sticky {
+  position: sticky;
+  top: 0;
+  padding: 5px;
+  background-color: #cae8ca;
+  border: 2px solid #4CAF50;
+}
+
+
+.dark #header-wrap {
+    background-color: #fff;
+}
+
+
+</style>
+
+
+
+
+<body class="stretched side-panel-left">
+
+	<div class="body-overlay"></div>
+
+
+
+
+
+
+
+	<div id="side-panel" class="dark">
+
+		<div id="side-panel-trigger-close" class="side-panel-trigger"><a href="#"><i class="icon-line-cross"></i></a></div>
+
+		<div class="side-panel-wrap">
+
+		<a href="?" border=0 ><img src="img/img2024/logocir01mnu.png" alt="General Escobedo" class="footer-logo"></a>
+
+			<div class="widget clearfix">
+
+				<h3>Menu Principal</h3>
+
+				<nav class="nav-tree mb-0">
+					<ul>
+						<li><a href="?"><i class="icon-home"></i>Inicio</a></li>
+						<li><a href="#"><i class="icon-building"></i>Gobierno</a>
+							<ul>
+								<li><a href="?p=mision">Misi&oacute;n / Visi&oacute;n</a></li>
+								<li><a href="?p=cabildo">Cabildo 2024-2027</a></li>
+								<li><a href="?p=planmun">Plan de Desarrollo</a></li>
+								<li><a href="?p=1er">1er Informe de Gobierno</a></li>
+								<li><a href="?p=2do">2do Informe de Gobierno</a></li>
+								<li><a href="?p=3ro">3er Informe de Gobierno</a></li>
+								<li><a href="?p=inf2025">4to Informe de Gobierno</a></li>
+								<li><a href="?p=georef">Mapas de Georeferencia</a></li>
+								
+								<li><a href="?p=reghom">Reglamento Homologado Transito</a></li>
+								<li><a href="?p=estmov">Estadisticas de Movilidad</a></li>
+								<li><a href="?p=consulta">Consulta Pública</a></li>
+								<li><a href="?p=interes&o=dir">De Interés</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="icon-briefcase"></i>Trámites y Servicios</a>
+							<ul>
+								<!-- li><a href="?p=tramites">Consulta de Tramites</a -->
+								<li><a href="https://mr.escobedo.gob.mx/services.aspx" target="_blank">Consulta Trámites y Servicios</a>
+								<li><a href="?p=predial">Consulta de Predial</a></li>
+								<li><a href="?p=multas">Consulta de Tránsito</a></li>
+								<li><a href="?p=jcivica">Consulta Justicia Civica</a></li>
+								<li><a href="https://mr.escobedo.gob.mx/employment.aspx" target="_blank">Bolsa de Trabajo</a></li>
+								<li><a href="https://escobedoapp.com" target="_blank">Reportes en Linea</a></li>
+								<li><a href="https://wa.me/+528120753684?text=Tengo%20una%20Pregunta.%20" target="_blank">Reportes Whatsapp</a></li>
+								<!-- li><a href="https://mr.escobedo.gob.mx" target="_blank">Sistema Municipal de Mejora Regulatoria</a -->
+								<!-- li><a href="?p=citaAudi">Cita de Audiencia</a></li -->
+							</ul>
+						</li>
+						<li><a href="https://mr.escobedo.gob.mx" target="_blank"><i class="icon-bookmark"></i>Sistema Municipal de Mejora Regulatoria</a></li>
+						
+						<li><a href="?p=inmplan"><i class="icon-line-grid-2"></i>Instituto Municipal de Planeación</a></li>
+						<li><a href="?p=sedum"><i class="icon-line-grid-2"></i>Secretaría de Desarrollo Urbano</a></li>
+						
+						<li><a href="#"><i class="icon-file-text"></i>Transparencia</a>
+							<ul>
+								<li><a href="?p=datospersonales">Protecci&oacute;n de Datos Personales</a></li>
+								<!-- li><a href="?p=transparencia&a=1014">Anterior Ley Art.10,14</a></li -->
+								<li><a href="?p=datosabiertos">Datos Abiertos</a></li>
+								<li><a href="https://www.plataformadetransparencia.org.mx/"  target="_new">Plataforma Nacional de Transparencia</a></li>
+								<li><a href="https://www.plataformadetransparencia.org.mx/auth/login?returUrl=%2Fsisai%2Fsolicitudes%2Finformacion-publica"  target="_new">Solicitud de Transparencia</a></li>
+								<li><a href="?p=doctos">Transparencia Proactiva</a></li>
+								<li><a href="?p=transparencia&a=9x">Art.95,96,97</a></li>
+								
+							</ul>
+						</li>
+						<li><a href="?p=directorio"><i class="icon-sitemap"></i>Directorio</a></li>
+						<li><a href="?p=acreditacion"><i class="icon-group"></i>Acreditaciones</a></li>
+						<li><a href="?p=notas"><i class="icon-picture"></i>Noticias</a></li>
+						
+						<li><a href="?p=privacidad"><i class="icon-files"></i>Avisos de Privacidad</a></li>
+					</ul>
+				</nav>
+
+			</div>
+
+			<div class="widget quick-contact-widget form-widget clearfix">
+
+				<h4>Presidencia Municipal</h4>
+				<div class="form-result"></div>
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3591.8681255147494!2d-100.32482248500503!3d25.80792438361582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x866293c94498e8d1%3A0x9230cb2a399fc5cb!2sPresidencia%20Municipal%20de%20Escobedo%20Nuevo%20Le%C3%B3n!5e0!3m2!1ses-419!2smx!4v1639157425553!5m2!1ses-419!2smx" width="250" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+			</div>
+
+		</div>
+
+	</div>
+	
+		
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+		<div id="top-bar" class="dark">
+			<div class="container">
+
+				<div class="row justify-content-between">
+					<div class="col-12 col-md-auto align-items-left d-none d-lg-block">
+						<p class="mb-0 py-2 text-center text-md-start text-white"><strong>Noviembre 11, 2026  -  09:55 hrs</strong></p>
+						<!-- p class="mb-0 py-2 text-center text-md-start text-white"><strong>Noviembre 11, 2026 </strong></p -->
+					</div>
+
+					<div class="col-12 col-md-auto align-items-right">
+
+						<!-- Top Links
+						============================================= -->
+						
+							<a href="https://www.facebook.com/GobiernoEscobedo" target="_new" class="social-icon si-light  si-rounded si-facebook">
+								<i class="icon-facebook"></i>
+								<i class="icon-facebook"></i>
+							</a>
+							<a href="https://twitter.com/gob_escobedo" target="_new" class="social-icon si-light  si-rounded si-twitter">
+								<!-- i class="icon-z fa-brands fa-x-twitter"></i>
+								<i class="icon-z fa-brands fa-x-twitter"></i -->
+								<i class="icon-twitterx fa-brands fa-zam fa-x-twitter"></i>
+								<i class="icon-twitterx fa-brands fa-zam fa-x-twitter"></i>
+							</a>
+							<a href="mailto:atencion.ciudadana@escobedo.gob.mx" class="social-icon si-light si-rounded si-email">
+								<i class="icon-email"></i>
+								<i class="icon-email"></i>
+							</a>
+							<a href="https://www.youtube.com/channel/UC8MRt8Y9STE8lRRCSy4WS9g/videos" target="_new" class="social-icon si-light  si-rounded si-youtube">
+								<i class="icon-youtube"></i>
+								<i class="icon-youtube"></i>
+							</a>
+							<a href="https://www.instagram.com/gobiernoescobedo/" target="_new" class="social-icon si-light si-rounded si-instagram">
+								<i class="icon-instagram"></i>
+								<i class="icon-instagram"></i>
+							</a>
+					</div>
+				</div>
+
+			</div>
+		</div><!-- #top-bar end -->
+		
+		<!-- Header
+		============================================= -->
+		<header id="header" class="full-header dark" data-sticky-shrink="false">
+			<div id="header-wrap">
+				<div class="container">
+				
+					<div class="header-row patent">
+					
+<div class="d-none d-sm-block child"><a href="#" data-bs-toggle="modal" data-bs-target="#modalubica" class="button button-circle button-large button-oro side-panel-trigger" target="_blank">MENU <i class="icon-line-menu"></i></a></div>
+<div class="d-block d-sm-none child"><a href="#" data-bs-toggle="modal" data-bs-target="#modalubica" class="button button-circle button-large button-oro side-panel-trigger" target="_blank"><i class="icon-line-menu"></i></a></div>
+
+
+<div class="col-lg-12 d-flex justify-content-between" style="">
+<div class="col-sm-4 col-lg-3" style="">
+							<img src="img/img2024/escudo02x01.png" class="img-fluid imgescudo"  alt="Escobedo Logo">
+</div>
+<div class="col-sm-8 col-lg-6 d-flex justify-content-center">
+				
+							<!-- a href="?" class="d-none d-sm-block align-self-center"><img src="img/img2024/slogan02h.png" class="imgslogan align-self-center img-fluid px-3" alt="Escobedo Logo"></a>
+							<a href="?" class="align-self-start"><img src="img/img2024/slogan01ch.png" class="img-fluid imgslogan2 align-self-center img-fluid px-3" style="" alt="Escobedo Logo"></a -->
+							<a href="?" class="d-none d-sm-block align-self-center"><img src="img/img2024/slogan02hx.png" class="imgsloganx align-self-center img-fluid px-3" alt="Escobedo Logo"></a>
+							<a href="?" class="align-self-start"><img src="img/img2024/slogan01chx.png" class="img-fluid imgslogan2 align-self-center img-fluid px-3" style="" alt="Escobedo Logo"></a>
+</div>
+<div class="d-none d-sm-block col-lg-3  d-flex justify-content-center " style="">
+							<img src="img/img2024/logocua02.png" class="img-fluid imglogo" style="" alt="Escobedo Logo">
+</div>
+
+</div>
+
+<div class="event__search__floater child2">
+	<div class="search__anchor ">
+  <form name="event-search-form" id="event-search-form" class="" action="?p=notas" method="get">
+        <input name="p" id="p" type="hidden" value="notas">
+        <input type="text" id="bs" name="bs" class="search__bar" placeholder="Busqueda">
+    <input class="search__submit" type="submit">
+    <div class="search__toggler"></div>
+  </form>
+  
+  </div>
+
+</div>
+					</div>
+				</div>
+			</div>
+
+		</header><!-- #header end -->
+
+		
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+		
+			<div class="content-wrap">
+
+
+	<div class="container clearfix">
+							<div class="toggle">
+								<div class="toggle-header">
+									<div class="toggle-icon">
+										<i class="toggle-closed icon-line-plus"></i>
+										<i class="toggle-open icon-line-minus"></i>
+									</div>
+									<div class="toggle-title">
+										Filtrado de Notas
+									</div>
+								</div>
+								<div class="toggle-content">
+									
+								<form class="mb-0" id="frmbs1" name="frmbs1" action="?" method="get">
+									<input type="hidden" name="p" value="notas">
+									<div class="form-process">
+										<div class="css3-spinner">
+											<div class="css3-spinner-scaler"></div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-md-2 form-group">
+											<label for="fi">Fecha Inicial</label>
+											
+											<input type="date" id="fi" name="fi" value="" class="sm-form-control" />
+										</div>
+
+										<div class="col-md-2 form-group">
+											<label for="ff">Fecha Final</label>
+											<input type="date" id="ff" name="ff" value="" class="sm-form-control" />
+										</div>
+										
+										<div class="col-md-4 form-group">
+											<label for="bs">Contenido</label>
+											<input type="text" id="bs" name="bs" value="" class="sm-form-control" />
+										</div>
+
+										<div class="col-md-2 form-group">
+											<label for="num">Notas</label>
+											<select id="num" name="num" class="sm-form-control">
+												<option value="1">25</option>
+												<option value="2">50</option>
+												<option value="3">100</option>
+											</select>
+										</div>
+										<div class="col-md-1 form-group">
+											<label for="frmbs1-submit">&nbsp;</label>
+											<button class="button button-3d m-0" type="submit" value="submit">Buscar</button>
+										</div>
+
+									
+									</div>
+								</form>
+									
+								</div>
+							</div>
+		<div class="fancy-title title-center title-border topmargin">
+
+			<h3>Consulta de Noticias</h3>
+		</div>
+
+
+      </div>
+
+
+<!-- script type="text/javascript">
+(function(d){
+    var s = d.getElementsByTagName('script'),f = s[s.length-1], p = d.createElement('script'); 
+    window.WidgetId = "USC_WIDGET";   
+    p.type = 'text/javascript';
+    p.setAttribute('charset','utf-8');
+    p.async = 1;
+    p.id = "ultimate_support_chat";
+    p.src = "https://mainserver02.com/livechatpro/widget/ultimate_chat_widget.js";    
+    f.parentNode.insertBefore(p, f);
+}(document));
+</script -->
+
+			</div>
+			
+		
+
+		</section><!-- #content end -->
+
+
+		<!-- =====================================   Footer ============================================= -->
+		<footer id="footer" class="dark">
+			<div class="container">
+				<!-- Footer Widgets ============================================= -->
+				
+				<div class="footer-widgets-wrap">
+
+					<div class="row col-mb-50">
+					
+						<div class="col-md-6 col-lg-4 rubberBand animated">
+
+							<div class="col-12 d-flex justify-content-center"><img src="img/img2024/escudo01chb.png" alt="General Escobedo" class="footer-logo"></div>
+							<div class="col-12 d-flex justify-content-center"><img src="img/img2024/logoslogan01x.png" alt="General Escobedo" class="footer-logo"></div>
+
+						</div>
+					
+						<div class="col-md-6 col-lg-4">
+
+							<div class="widget clearfix">
+								<h3>CONTACTO</h3>
+
+								<div>
+									<address>
+										Teléfono: +52 (81) 8220-6100<br>
+									</address>
+								</div>
+								<div>
+									<address>
+										Juárez No. 100 - Col. Centro<br>
+										General Escobedo, Nuevo León.<br>
+									</address>
+								</div>
+								<div class="widget clearfix">
+
+									<a href="https://www.facebook.com/GobiernoEscobedo" target="_new" class="social-icon si-small si-rounded si-facebook">
+										<i class="icon-facebook"></i>
+										<i class="icon-facebook"></i>
+									</a>
+
+									<a href=""https://twitter.com/gob_escobedo" target="_new" class="social-icon si-small si-rounded si-twitter">
+										<i class="icon-twitter fa-brands fa-zam fa-x-twitter"></i>
+										<i class="icon-twitter fa-brands fa-zam fa-x-twitter"></i>
+									</a>
+
+									<a href="mailto:atencion.ciudadana@escobedo.gob.mx" class="social-icon si-small si-rounded si-email">
+										<i class="icon-email"></i>
+										<i class="icon-email"></i>
+									</a>
+
+									<a href="https://www.youtube.com/channel/UC8MRt8Y9STE8lRRCSy4WS9g/videos" target="_new" class="social-icon si-small si-rounded si-youtube">
+										<i class="icon-youtube"></i>
+										<i class="icon-youtube"></i>
+									</a>
+
+									<a href="https://www.instagram.com/gobiernoescobedo/" target="_new" class="social-icon si-small si-rounded si-instagram">
+										<i class="icon-instagram"></i>
+										<i class="icon-instagram"></i>
+									</a>
+								</div>
+							</div>
+
+						</div>
+
+
+
+						<div class="col-md-6 col-lg-4">
+
+							<div class="widget quick-contact-widget form-widget clearfix">
+
+								<h3>PREGUNTAS</h3>
+
+								<div class="form-result"></div>
+
+								<form id="quick-contact-form" name="quick-contact-form" action="include/form.php" method="post" class="quick-contact-form mb-0">
+
+									<div class="form-process">
+										<div class="css3-spinner">
+											<div class="css3-spinner-scaler"></div>
+										</div>
+									</div>
+
+									<div class="input-group mx-auto">
+										<div class="input-group-text"><i class="icon-user"></i></div>
+										<input type="text" class="required form-control" id="quick-contact-form-name" name="quick-contact-form-name" value="" placeholder="Nombre" />
+									</div>
+									<div class="input-group mx-auto">
+										<div class="input-group-text"><i class="icon-email2"></i></div>
+										<input type="text" class="required form-control email" id="quick-contact-form-email" name="quick-contact-form-email" value="" placeholder="Correo" />
+									</div>
+									<textarea class="required form-control input-block-level short-textarea" id="quick-contact-form-message" name="quick-contact-form-message" rows="3" cols="30" placeholder="Mensaje o pregunta"></textarea>
+									<input type="text" class="d-none" id="quick-contact-form-botcheck" name="quick-contact-form-botcheck" value="" />
+									<input type="hidden" name="prefix" value="quick-contact-form-">
+									<button type="submit" id="quick-contact-form-submit" name="quick-contact-form-submit" class="btn button-oro text-white pull-right" value="submit">Enviar</button>
+
+								</form>
+
+							</div>
+
+						</div>
+					</div>
+
+				</div><!-- .footer-widgets-wrap end -->
+			</div>
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+				<div class="container">
+
+					<div class="row justify-content-between">
+						<div class="col-12 col-lg-auto text-center text-lg-start">
+							<p class="mb-3">Derechos Reservados &copy; 2024 - 2027 General Escobedo.</p>
+						</div>
+
+						<div class="col-12 col-lg-auto text-center text-lg-end">
+							<div class="copyrights-menu copyright-links mb-0">
+								<a href="#">INICIO</a>/<a href="?p=cabildo">GOBIERNO</a>/<a href="?p=predial">TRAMITES Y SERVICIOS</a>/<a href="?p=transparencia&a=9x">TRANSPARENCIA</a>/<a href="?p=notas">NOTICIAS</a>/<a href="?p=privacidad">AVISOS DE PRIVACIDAD</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up" data-offset="700"></div>
+
+	
+	
+
+<script>
+
+//Get the button
+var mybutton = document.getElementById("gotoTop");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+</script>
+
+</body>
+</html>
+
+	<!-- JavaScripts
+	============================================= -->
+	<!-- script src="js/jquery.js"></script -->
+
+	<script src="js/plugins.min.js"></script>
+	<script src="flipb/js/flipbook.min.js"></script>
+
+		<!-- Footer Scripts
+	============================================= -->
+	<script src="js/functions.js"></script>
+	
+
+
