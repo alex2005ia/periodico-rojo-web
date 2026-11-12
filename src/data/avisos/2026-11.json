@@ -1,5 +1,57 @@
 [
   {
+    "id": "san-pedro-2026-11-11-despliega-san-pedro-mas-de-800-elementos-para-reforzar",
+    "municipio": "san-pedro",
+    "titulo": "Despliega San Pedro más de 800 elementos para reforzar seguridad durante el Buen Fin",
+    "fecha": "2026-11-11",
+    "url": "https://blog.sanpedro.gob.mx/news/despliega-san-pedro-mas-de-800-elementos-para-reforzar-seguridad-durante-el-buen-fin/",
+    "clave": "https://blog.sanpedro.gob.mx/news/despliega-san-pedro-mas-de-800-elementos-para-reforzar-seguridad-durante-el-buen-fin/",
+    "foto": "/avisos/san-pedro-2026-11-11-despliega-san-pedro-mas-de-800-elementos-para-reforzar.webp",
+    "foto_original": "https://blog.sanpedro.gob.mx/wp-content/uploads/2026/11/blog-5455-edda.jpeg",
+    "capturado": "2026-11-12T02:30:12.812Z",
+    "foto_ancho": 640,
+    "foto_alto": 426
+  },
+  {
+    "id": "monterrey-2026-11-11-realiza-gobierno-de-monterrey-limpieza-integral-en-la",
+    "municipio": "monterrey",
+    "titulo": "Realiza Gobierno de Monterrey limpieza integral en la colonia Moderna",
+    "fecha": "2026-11-11",
+    "url": "https://www.monterrey.gob.mx/noticias/realiza-gobierno-de-monterrey-limpieza-integral-en-la-colonia-moderna/",
+    "clave": "https://www.monterrey.gob.mx/noticias/realiza-gobierno-de-monterrey-limpieza-integral-en-la-colonia-moderna/",
+    "foto": "/avisos/monterrey-2026-11-11-realiza-gobierno-de-monterrey-limpieza-integral-en-la.webp",
+    "foto_original": "https://storage.googleapis.com/mty-cms-static-production/media/images/4_SP_COLONIA_MODERNA.width-1600.jpg",
+    "capturado": "2026-11-12T02:30:06.202Z",
+    "foto_ancho": 640,
+    "foto_alto": 427
+  },
+  {
+    "id": "monterrey-2026-11-11-entregara-monterrey-medalla-diego-de-montemayor-al-arzobispo",
+    "municipio": "monterrey",
+    "titulo": "Entregará Monterrey medalla Diego de Montemayor al arzobispo Rogelio Cabrera",
+    "fecha": "2026-11-11",
+    "url": "https://www.monterrey.gob.mx/noticias/entregar%C3%A1-monterrey-medalla-diego-de-montemayor-al-arzobispo-rogelio-cabrera/",
+    "clave": "https://www.monterrey.gob.mx/noticias/entregar%C3%A1-monterrey-medalla-diego-de-montemayor-al-arzobispo-rogelio-cabrera/",
+    "foto": "/avisos/monterrey-2026-11-11-entregara-monterrey-medalla-diego-de-montemayor-al-arzobispo.webp",
+    "foto_original": "https://storage.googleapis.com/mty-cms-static-production/media/images/2_SESION_ORDINARIA.width-1600.jpg",
+    "capturado": "2026-11-12T02:30:02.361Z",
+    "foto_ancho": 640,
+    "foto_alto": 427
+  },
+  {
+    "id": "monterrey-2026-11-11-fortalece-monterrey-vinculos-internacionales-con-francia-y",
+    "municipio": "monterrey",
+    "titulo": "FORTALECE MONTERREY VÍNCULOS INTERNACIONALES CON FRANCIA Y PORTUGAL",
+    "fecha": "2026-11-11",
+    "url": "https://www.monterrey.gob.mx/noticias/fortalece-monterrey-v%C3%ADnculos-internacionales-con-francia-y-portugal/",
+    "clave": "https://www.monterrey.gob.mx/noticias/fortalece-monterrey-v%C3%ADnculos-internacionales-con-francia-y-portugal/",
+    "foto": "/avisos/monterrey-2026-11-11-fortalece-monterrey-vinculos-internacionales-con-francia-y.webp",
+    "foto_original": "https://storage.googleapis.com/mty-cms-static-production/media/images/4_EMBAJADORES.width-1600.jpg",
+    "capturado": "2026-11-12T02:29:58.550Z",
+    "foto_ancho": 640,
+    "foto_alto": 427
+  },
+  {
     "id": "guadalupe-2026-11-11-inicia-guadalupe-jugueton-navideno-2026",
     "municipio": "guadalupe",
     "titulo": "Inicia Guadalupe “Juguetón Navideño” 2026",
@@ -10,6 +62,19 @@
     "foto_original": "https://guadalupe.gob.mx/assets/noticias/inicia-guadalupe-jugueton-navideno-2026/whatsapp-image-2026-11-10-at-13.19.24.jpeg",
     "capturado": "2026-11-11T16:06:39.260Z",
     "sin_foto": "menores"
+  },
+  {
+    "id": "san-pedro-2026-11-10-inaugura-san-pedro-expo-emprendedor-2026-para-impulsar",
+    "municipio": "san-pedro",
+    "titulo": "Inaugura San Pedro Expo Emprendedor 2026 para impulsar nuevos negocios",
+    "fecha": "2026-11-10",
+    "url": "https://blog.sanpedro.gob.mx/news/inaugura-san-pedro-expo-emprendedor-2026-para-impulsar-nuevos-negocios/",
+    "clave": "https://blog.sanpedro.gob.mx/news/inaugura-san-pedro-expo-emprendedor-2026-para-impulsar-nuevos-negocios/",
+    "foto": "/avisos/san-pedro-2026-11-10-inaugura-san-pedro-expo-emprendedor-2026-para-impulsar.webp",
+    "foto_original": "https://blog.sanpedro.gob.mx/wp-content/uploads/2026/11/blog-5455-fcdd.jpeg",
+    "capturado": "2026-11-12T02:30:14.775Z",
+    "foto_ancho": 640,
+    "foto_alto": 426
   },
   {
     "id": "escobedo-2026-11-10-ampliara-escobedo-canal-pluvial-en-nexxus-reducira-tiempos",
