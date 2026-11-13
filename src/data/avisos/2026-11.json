@@ -1,5 +1,44 @@
 [
   {
+    "id": "guadalupe-2026-11-12-comunicado",
+    "municipio": "guadalupe",
+    "titulo": "Comunicado",
+    "fecha": "2026-11-12",
+    "url": "https://guadalupe.gob.mx/noticia/comunicado",
+    "clave": "https://guadalupe.gob.mx/noticia/comunicado",
+    "foto": "/avisos/guadalupe-2026-11-12-comunicado.webp",
+    "foto_original": "https://guadalupe.gob.mx/assets/noticias/comunicado/whatsapp-image-2026-11-12-at-15.15.24.jpeg",
+    "capturado": "2026-11-13T02:25:25.377Z",
+    "foto_ancho": 640,
+    "foto_alto": 510
+  },
+  {
+    "id": "guadalupe-2026-11-12-acerca-guadalupe-oportunidades-de-empleo",
+    "municipio": "guadalupe",
+    "titulo": "Acerca Guadalupe oportunidades de empleo",
+    "fecha": "2026-11-12",
+    "url": "https://guadalupe.gob.mx/noticia/acerca-guadalupe-oportunidades-de-empleo",
+    "clave": "https://guadalupe.gob.mx/noticia/acerca-guadalupe-oportunidades-de-empleo",
+    "foto": "/avisos/guadalupe-2026-11-12-acerca-guadalupe-oportunidades-de-empleo.webp",
+    "foto_original": "https://guadalupe.gob.mx/assets/noticias/acerca-guadalupe-oportunidades-de-empleo/whatsapp-image-2026-11-12-at-13.01.38-(2).jpeg",
+    "capturado": "2026-11-13T02:25:23.779Z",
+    "foto_ancho": 640,
+    "foto_alto": 426
+  },
+  {
+    "id": "monterrey-2026-11-12-destaca-adrian-de-la-garza-coordinacion-y-resultados-en",
+    "municipio": "monterrey",
+    "titulo": "Destaca Adrián de la Garza coordinación y resultados en Asamblea Nacional de Seguridad",
+    "fecha": "2026-11-12",
+    "url": "https://www.monterrey.gob.mx/noticias/destaca-adri%C3%A1n-de-la-garza-coordinaci%C3%B3n-y-resultados-en-asamblea-nacional-de-seguridad/",
+    "clave": "https://www.monterrey.gob.mx/noticias/destaca-adri%C3%A1n-de-la-garza-coordinaci%C3%B3n-y-resultados-en-asamblea-nacional-de-seguridad/",
+    "foto": "/avisos/monterrey-2026-11-12-destaca-adrian-de-la-garza-coordinacion-y-resultados-en.webp",
+    "foto_original": "https://storage.googleapis.com/mty-cms-static-production/media/images/1_ANS.width-1600.jpg",
+    "capturado": "2026-11-13T02:25:18.948Z",
+    "foto_ancho": 640,
+    "foto_alto": 480
+  },
+  {
     "id": "monterrey-2026-11-12-suma-monterrey-esfuerzos-con-la-federacion-para-construir",
     "municipio": "monterrey",
     "titulo": "Suma Monterrey esfuerzos con la Federación para construir Centro Comunitario en Mirasol",
