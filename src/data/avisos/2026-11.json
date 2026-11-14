@@ -1,5 +1,31 @@
 [
   {
+    "id": "monterrey-2026-11-13-entrega-gobierno-de-monterrey-sendero-seguro-en-la-zona-sur",
+    "municipio": "monterrey",
+    "titulo": "ENTREGA GOBIERNO DE MONTERREY SENDERO SEGURO EN LA ZONA SUR",
+    "fecha": "2026-11-13",
+    "url": "https://www.monterrey.gob.mx/noticias/entrega-gobierno-de-monterrey-sendero-seguro-en-la-zona-sur/",
+    "clave": "https://www.monterrey.gob.mx/noticias/entrega-gobierno-de-monterrey-sendero-seguro-en-la-zona-sur/",
+    "foto": "/avisos/monterrey-2026-11-13-entrega-gobierno-de-monterrey-sendero-seguro-en-la-zona-sur.webp",
+    "foto_original": "https://storage.googleapis.com/mty-cms-static-production/media/images/SENDERO_SEGURO_SERVICIOS_PUBLICOS_3.width-1600.jpg",
+    "capturado": "2026-11-14T02:26:16.146Z",
+    "foto_ancho": 640,
+    "foto_alto": 427
+  },
+  {
+    "id": "monterrey-2026-11-13-se-suma-ejercito-mexicano-a-operativo-de-seguridad-del-buen",
+    "municipio": "monterrey",
+    "titulo": "Se suma Ejército Mexicano a operativo de seguridad del Buen Fin en Monterrey",
+    "fecha": "2026-11-13",
+    "url": "https://www.monterrey.gob.mx/noticias/se-suma-ej%C3%A9rcito-mexicano-a-operativo-de-seguridad-del-buen-fin-en-monterrey/",
+    "clave": "https://www.monterrey.gob.mx/noticias/se-suma-ej%C3%A9rcito-mexicano-a-operativo-de-seguridad-del-buen-fin-en-monterrey/",
+    "foto": "/avisos/monterrey-2026-11-13-se-suma-ejercito-mexicano-a-operativo-de-seguridad-del-buen.webp",
+    "foto_original": "https://storage.googleapis.com/mty-cms-static-production/media/images/OPERATIVO_BUEN_FIN_EJERCITO_Y_POLICIA_MTY_4.width-1600.jpg",
+    "capturado": "2026-11-14T02:26:12.190Z",
+    "foto_ancho": 640,
+    "foto_alto": 426
+  },
+  {
     "id": "escobedo-2026-11-13-escobedo-recibira-a-mas-de-400-ciclistas-en-la-cuarta",
     "municipio": "escobedo",
     "titulo": "ESCOBEDO RECIBIRÁ A MÁS DE 400 CICLISTAS EN LA CUARTA EDICIÓN DEL MARATÓN MTB",
