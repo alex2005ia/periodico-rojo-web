@@ -7,7 +7,11 @@
   "guadalupe": {
     "ultimo_exito": "2026-11-15",
     "leidos": 9,
-    "ultimo_error": null
+    "ultimo_error": {
+      "fecha": "2026-11-15",
+      "mensaje": "https://guadalupe.gob.mx/noticias: The operation was aborted due to timeout",
+      "resuelto": false
+    }
   },
   "escobedo": {
     "ultimo_exito": "2026-11-15",
