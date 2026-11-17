@@ -1,5 +1,17 @@
 [
   {
+    "id": "guadalupe-2026-11-16-despliega-guadalupe-operativo-de-seguridad-para-eliminatoria",
+    "municipio": "guadalupe",
+    "titulo": "Despliega Guadalupe operativo de seguridad para eliminatoria de futbol entre México y Jamaica",
+    "fecha": "2026-11-16",
+    "url": "https://guadalupe.gob.mx/noticia/despliega-guadalupe-operativo-de-seguridad-para-eliminatoria-de-futbol-entre-mexico-y-jamaica",
+    "clave": "https://guadalupe.gob.mx/noticia/despliega-guadalupe-operativo-de-seguridad-para-eliminatoria-de-futbol-entre-mexico-y-jamaica",
+    "foto": null,
+    "foto_original": null,
+    "capturado": "2026-11-17T14:36:55.891Z",
+    "sin_foto": "no-disponible"
+  },
+  {
     "id": "monterrey-2026-11-16-reune-monterrey-a-lideres-tecnologicos-en-foro-mty-tech",
     "municipio": "monterrey",
     "titulo": "Reúne Monterrey a líderes tecnológicos en foro “MTY Tech Forum 2026” para analizar el futuro de la IA",
@@ -48,6 +60,19 @@
     "foto": "/avisos/monterrey-2026-11-16-participa-policia-de-monterrey-en-desfile-civico-deportivo.webp",
     "foto_original": "https://storage.googleapis.com/mty-cms-static-production/media/images/3_POLICIA_DESFILE.width-1600.jpg",
     "capturado": "2026-11-17T02:33:37.512Z",
+    "foto_ancho": 640,
+    "foto_alto": 426
+  },
+  {
+    "id": "guadalupe-2026-11-15-realizan-en-guadalupe-sorteo-anual-de-conscriptos-2026",
+    "municipio": "guadalupe",
+    "titulo": "Realizan en Guadalupe Sorteo Anual de Conscriptos 2026",
+    "fecha": "2026-11-15",
+    "url": "https://guadalupe.gob.mx/noticia/realizan-en-guadalupe-sorteo-anual-de-conscriptos-2026",
+    "clave": "https://guadalupe.gob.mx/noticia/realizan-en-guadalupe-sorteo-anual-de-conscriptos-2026",
+    "foto": "/avisos/guadalupe-2026-11-15-realizan-en-guadalupe-sorteo-anual-de-conscriptos-2026.webp",
+    "foto_original": "https://guadalupe.gob.mx/assets/noticias/realizan-en-guadalupe-sorteo-anual-de-conscriptos-2026/whatsapp-image-2026-11-15-at-10.51.05-(1).jpeg",
+    "capturado": "2026-11-17T14:36:55.891Z",
     "foto_ancho": 640,
     "foto_alto": 426
   },
