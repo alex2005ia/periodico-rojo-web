@@ -1,5 +1,18 @@
 [
   {
+    "id": "monterrey-2026-11-19-realiza-monterrey-limpieza-de-tiradero-clandestino-en",
+    "municipio": "monterrey",
+    "titulo": "REALIZA MONTERREY LIMPIEZA DE TIRADERO CLANDESTINO EN ANTIGUO CAMINO A VILLA DE SANTIAGO",
+    "fecha": "2026-11-19",
+    "url": "https://www.monterrey.gob.mx/noticias/realiza-monterrey-limpieza-de-tiradero-clandestino-en-antiguo-camino-a-villa-de-santiago/",
+    "clave": "https://www.monterrey.gob.mx/noticias/realiza-monterrey-limpieza-de-tiradero-clandestino-en-antiguo-camino-a-villa-de-santiago/",
+    "foto": "/avisos/monterrey-2026-11-19-realiza-monterrey-limpieza-de-tiradero-clandestino-en.webp",
+    "foto_original": "https://storage.googleapis.com/mty-cms-static-production/media/images/1_OPERATIVO.width-1600.jpg",
+    "capturado": "2026-11-20T02:32:25.397Z",
+    "foto_ancho": 640,
+    "foto_alto": 427
+  },
+  {
     "id": "guadalupe-2026-11-19-guadalupe-no-aumentara-el-predial-en-el-2027",
     "municipio": "guadalupe",
     "titulo": "Guadalupe no aumentará el predial en el 2027",
@@ -22,6 +35,32 @@
     "foto": "/avisos/monterrey-2026-11-19-presenta-adrian-de-la-garza-avances-de-monterrey-ante.webp",
     "foto_original": "https://storage.googleapis.com/mty-cms-static-production/media/images/4_CAINTRA.width-1600.jpg",
     "capturado": "2026-11-19T20:06:20.279Z",
+    "foto_ancho": 640,
+    "foto_alto": 427
+  },
+  {
+    "id": "monterrey-2026-11-18-supervisa-adrian-de-la-garza-avances-del-circuito-vial",
+    "municipio": "monterrey",
+    "titulo": "SUPERVISA ADRIÁN DE LA GARZA AVANCES DEL CIRCUITO VIAL CUMBRES",
+    "fecha": "2026-11-18",
+    "url": "https://www.monterrey.gob.mx/noticias/supervisa-adri%C3%A1n-de-la-garza-avances-del-circuito-vial-cumbres/",
+    "clave": "https://www.monterrey.gob.mx/noticias/supervisa-adri%C3%A1n-de-la-garza-avances-del-circuito-vial-cumbres/",
+    "foto": "/avisos/monterrey-2026-11-18-supervisa-adrian-de-la-garza-avances-del-circuito-vial.webp",
+    "foto_original": "https://storage.googleapis.com/mty-cms-static-production/media/images/1_CCUMBRES.width-1600.jpg",
+    "capturado": "2026-11-20T02:32:33.070Z",
+    "foto_ancho": 640,
+    "foto_alto": 427
+  },
+  {
+    "id": "monterrey-2026-11-18-reporta-monterrey-saldo-blanco-durante-operativo-del-buen",
+    "municipio": "monterrey",
+    "titulo": "Reporta Monterrey saldo blanco durante operativo del Buen Fin",
+    "fecha": "2026-11-18",
+    "url": "https://www.monterrey.gob.mx/noticias/reporta-monterrey-saldo-blanco-durante-operativo-del-buen-fin/",
+    "clave": "https://www.monterrey.gob.mx/noticias/reporta-monterrey-saldo-blanco-durante-operativo-del-buen-fin/",
+    "foto": "/avisos/monterrey-2026-11-18-reporta-monterrey-saldo-blanco-durante-operativo-del-buen.webp",
+    "foto_original": "https://storage.googleapis.com/mty-cms-static-production/media/images/3_BUENFIN.width-1600.jpg",
+    "capturado": "2026-11-20T02:32:29.161Z",
     "foto_ancho": 640,
     "foto_alto": 427
   },
