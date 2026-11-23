@@ -1,5 +1,18 @@
 [
   {
+    "id": "san-pedro-2026-11-22-concientiza-san-pedro-sobre-igualdad-con-rodada-por-la",
+    "municipio": "san-pedro",
+    "titulo": "Concientiza San Pedro sobre igualdad con rodada por la inclusión",
+    "fecha": "2026-11-22",
+    "url": "https://blog.sanpedro.gob.mx/news/concientiza-san-pedro-sobre-igualdad-con-rodada-por-la-inclusion/",
+    "clave": "https://blog.sanpedro.gob.mx/news/concientiza-san-pedro-sobre-igualdad-con-rodada-por-la-inclusion/",
+    "foto": "/avisos/san-pedro-2026-11-22-concientiza-san-pedro-sobre-igualdad-con-rodada-por-la.webp",
+    "foto_original": "https://blog.sanpedro.gob.mx/wp-content/uploads/2026/11/blog-5497-7cb9.jpeg",
+    "capturado": "2026-11-23T20:05:30.994Z",
+    "foto_ancho": 640,
+    "foto_alto": 426
+  },
+  {
     "id": "monterrey-2026-11-22-suma-monterrey-mas-de-63-toneladas-de-reciclaje-y-3-mil-600",
     "municipio": "monterrey",
     "titulo": "SUMA MONTERREY MÁS DE 63 TONELADAS DE RECICLAJE Y 3 MIL 600 ÁRBOLES ADOPTADOS",
@@ -11,6 +24,31 @@
     "capturado": "2026-11-22T19:51:50.088Z",
     "foto_ancho": 640,
     "foto_alto": 556
+  },
+  {
+    "id": "san-pedro-2026-11-21-forma-san-pedro-un-kilometro-de-juguetes-con-apoyo-de-la",
+    "municipio": "san-pedro",
+    "titulo": "Forma San Pedro un kilómetro de juguetes con apoyo de la comunidad",
+    "fecha": "2026-11-21",
+    "url": "https://blog.sanpedro.gob.mx/news/forma-san-pedro-un-kilometro-de-juguetes-con-apoyo-de-la-comunidad/",
+    "clave": "https://blog.sanpedro.gob.mx/news/forma-san-pedro-un-kilometro-de-juguetes-con-apoyo-de-la-comunidad/",
+    "foto": null,
+    "foto_original": "https://blog.sanpedro.gob.mx/wp-content/uploads/2026/11/blog-5503-0b5d.jpeg",
+    "capturado": "2026-11-23T20:05:32.939Z",
+    "sin_foto": "menores"
+  },
+  {
+    "id": "guadalupe-2026-11-21-acerca-guadalupe-servicios-veterinarios-gratuitos-a-colonias",
+    "municipio": "guadalupe",
+    "titulo": "Acerca Guadalupe servicios veterinarios gratuitos a colonias",
+    "fecha": "2026-11-21",
+    "url": "https://guadalupe.gob.mx/noticia/acerca-guadalupe-servicios-veterinarios-gratuitos-a-colonias",
+    "clave": "https://guadalupe.gob.mx/noticia/acerca-guadalupe-servicios-veterinarios-gratuitos-a-colonias",
+    "foto": "/avisos/guadalupe-2026-11-21-acerca-guadalupe-servicios-veterinarios-gratuitos-a-colonias.webp",
+    "foto_original": "https://guadalupe.gob.mx/assets/noticias/acerca-guadalupe-servicios-veterinarios-gratuitos-a-colonias/whatsapp-image-2026-11-21-at-12.47.05.jpeg",
+    "capturado": "2026-11-23T20:05:27.885Z",
+    "foto_ancho": 640,
+    "foto_alto": 426
   },
   {
     "id": "monterrey-2026-11-21-fortalece-monterrey-seguridad-en-municipios-del-sur-de-nuevo",
