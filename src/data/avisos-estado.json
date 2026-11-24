@@ -26,7 +26,11 @@
   "san-pedro": {
     "ultimo_exito": "2026-11-24",
     "leidos": 10,
-    "ultimo_error": null
+    "ultimo_error": {
+      "fecha": "2026-11-24",
+      "mensaje": "https://blog.sanpedro.gob.mx/wp-json/wp/v2/news?per_page=10&_embed=wp:featuredmedia: fetch failed",
+      "resuelto": false
+    }
   },
   "san-nicolas": {
     "ultimo_exito": "2026-11-24",
