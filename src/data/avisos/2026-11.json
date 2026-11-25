@@ -1,5 +1,18 @@
 [
   {
+    "id": "guadalupe-2026-11-25-detienen-a-hombre-por-acumular-toneladas-de-basura-en-canada",
+    "municipio": "guadalupe",
+    "titulo": "Detienen a hombre por acumular toneladas de basura en Cañada Blanca",
+    "fecha": "2026-11-25",
+    "url": "https://guadalupe.gob.mx/noticia/detienen-a-hombre-por-acumular-toneladas-de-basura-en-canada-blanca",
+    "clave": "https://guadalupe.gob.mx/noticia/detienen-a-hombre-por-acumular-toneladas-de-basura-en-canada-blanca",
+    "foto": "/avisos/guadalupe-2026-11-25-detienen-a-hombre-por-acumular-toneladas-de-basura-en-canada.webp",
+    "foto_original": "https://guadalupe.gob.mx/assets/noticias/detienen-a-hombre-por-acumular-toneladas-de-basura-en-canada-blanca/whatsapp-image-2026-11-24-at-17.27.11-(1).jpeg",
+    "capturado": "2026-11-25T19:59:11.467Z",
+    "foto_ancho": 640,
+    "foto_alto": 387
+  },
+  {
     "id": "guadalupe-2026-11-24-comunicado-contraflujo-eloy-cavazos",
     "municipio": "guadalupe",
     "titulo": "Comunicado Contraflujo Eloy Cavazos",
@@ -22,6 +35,19 @@
     "foto": "/avisos/monterrey-2026-11-24-retira-monterrey-13-mil-toneladas-de-azolve-del-canal.webp",
     "foto_original": "https://storage.googleapis.com/mty-cms-static-production/media/images/2_MEDULAR.width-1600.jpg",
     "capturado": "2026-11-24T20:05:40.700Z",
+    "foto_ancho": 640,
+    "foto_alto": 426
+  },
+  {
+    "id": "escobedo-2026-11-23-anuncia-escobedo-descuentos-en-el-pago-del-predial",
+    "municipio": "escobedo",
+    "titulo": "ANUNCIA ESCOBEDO DESCUENTOS EN EL PAGO DEL PREDIAL",
+    "fecha": "2026-11-23",
+    "url": "https://escobedo.gob.mx/?p=notas&a=20261123",
+    "clave": "https://escobedo.gob.mx/?p=notas&a=20261123#1795631596",
+    "foto": "/avisos/escobedo-2026-11-23-anuncia-escobedo-descuentos-en-el-pago-del-predial.webp",
+    "foto_original": "https://escobedo.gob.mx/notas/20261123/im00-1795631596.jpg",
+    "capturado": "2026-11-25T19:59:13.607Z",
     "foto_ancho": 640,
     "foto_alto": 426
   },
