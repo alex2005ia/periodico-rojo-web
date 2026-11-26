@@ -1,5 +1,44 @@
 [
   {
+    "id": "guadalupe-2026-11-26-activa-pcgpe-operativo-por-bajas-temperaturas",
+    "municipio": "guadalupe",
+    "titulo": "Activa PCGPE operativo por bajas temperaturas",
+    "fecha": "2026-11-26",
+    "url": "https://guadalupe.gob.mx/noticia/activa-pcgpe-operativo-por-bajas-temperaturas",
+    "clave": "https://guadalupe.gob.mx/noticia/activa-pcgpe-operativo-por-bajas-temperaturas",
+    "foto": "/avisos/guadalupe-2026-11-26-activa-pcgpe-operativo-por-bajas-temperaturas.webp",
+    "foto_original": "https://guadalupe.gob.mx/assets/noticias/activa-pcgpe-operativo-por-bajas-temperaturas/whatsapp-image-2026-11-26-at-07.22.39.jpeg",
+    "capturado": "2026-11-26T20:08:14.851Z",
+    "foto_ancho": 640,
+    "foto_alto": 426
+  },
+  {
+    "id": "monterrey-2026-11-26-firman-alcaldes-red-metropolitana-de-inclusion",
+    "municipio": "monterrey",
+    "titulo": "Firman alcaldes Red Metropolitana de Inclusión",
+    "fecha": "2026-11-26",
+    "url": "https://www.monterrey.gob.mx/noticias/firman-alcaldes-red-metropolitana-de-inclusi%C3%B3n/",
+    "clave": "https://www.monterrey.gob.mx/noticias/firman-alcaldes-red-metropolitana-de-inclusi%C3%B3n/",
+    "foto": "/avisos/monterrey-2026-11-26-firman-alcaldes-red-metropolitana-de-inclusion.webp",
+    "foto_original": "https://storage.googleapis.com/mty-cms-static-production/media/images/3_MUNICIPIOS.width-1600.jpg",
+    "capturado": "2026-11-26T20:08:10.063Z",
+    "foto_ancho": 640,
+    "foto_alto": 427
+  },
+  {
+    "id": "san-pedro-2026-11-25-promueven-un-san-pedro-libre-de-violencia-contra-las-mujeres",
+    "municipio": "san-pedro",
+    "titulo": "Promueven un San Pedro libre de violencia contra las mujeres",
+    "fecha": "2026-11-25",
+    "url": "https://blog.sanpedro.gob.mx/news/promueven-un-san-pedro-libre-de-violencia-contra-las-mujeres/",
+    "clave": "https://blog.sanpedro.gob.mx/news/promueven-un-san-pedro-libre-de-violencia-contra-las-mujeres/",
+    "foto": "/avisos/san-pedro-2026-11-25-promueven-un-san-pedro-libre-de-violencia-contra-las-mujeres.webp",
+    "foto_original": "https://blog.sanpedro.gob.mx/wp-content/uploads/2026/11/blog-5510-249a.jpeg",
+    "capturado": "2026-11-26T20:08:17.794Z",
+    "foto_ancho": 640,
+    "foto_alto": 426
+  },
+  {
     "id": "monterrey-2026-11-25-trabaja-monterrey-durante-la-noche-para-mantener-limpias",
     "municipio": "monterrey",
     "titulo": "TRABAJA MONTERREY DURANTE LA NOCHE PARA MANTENER LIMPIAS CALLES Y AVENIDAS",
@@ -52,6 +91,31 @@
     "foto_alto": 387
   },
   {
+    "id": "san-pedro-2026-11-24-celebra-san-pedro-posada-navidena-para-ninas-y-ninos-de",
+    "municipio": "san-pedro",
+    "titulo": "Celebra San Pedro posada navideña para niñas y niños de centros comunitarios",
+    "fecha": "2026-11-24",
+    "url": "https://blog.sanpedro.gob.mx/news/celebra-san-pedro-posada-navidena-para-ninas-y-ninos-de-centros-comunitarios/",
+    "clave": "https://blog.sanpedro.gob.mx/news/celebra-san-pedro-posada-navidena-para-ninas-y-ninos-de-centros-comunitarios/",
+    "foto": null,
+    "foto_original": "https://blog.sanpedro.gob.mx/wp-content/uploads/2026/11/blog-5510-71b0.jpeg",
+    "capturado": "2026-11-26T20:08:19.857Z",
+    "sin_foto": "menores"
+  },
+  {
+    "id": "san-pedro-2026-11-24-ilumina-san-pedro-calles-y-avenidas-con-nuevo-alumbrado",
+    "municipio": "san-pedro",
+    "titulo": "Ilumina San Pedro calles y avenidas con nuevo alumbrado público",
+    "fecha": "2026-11-24",
+    "url": "https://blog.sanpedro.gob.mx/news/ilumina-san-pedro-calles-y-avenidas-con-nuevo-alumbrado-publico/",
+    "clave": "https://blog.sanpedro.gob.mx/news/ilumina-san-pedro-calles-y-avenidas-con-nuevo-alumbrado-publico/",
+    "foto": "/avisos/san-pedro-2026-11-24-ilumina-san-pedro-calles-y-avenidas-con-nuevo-alumbrado.webp",
+    "foto_original": "https://blog.sanpedro.gob.mx/wp-content/uploads/2026/11/blog-5522-954a.jpeg",
+    "capturado": "2026-11-26T20:08:19.857Z",
+    "foto_ancho": 640,
+    "foto_alto": 427
+  },
+  {
     "id": "guadalupe-2026-11-24-comunicado-contraflujo-eloy-cavazos",
     "municipio": "guadalupe",
     "titulo": "Comunicado Contraflujo Eloy Cavazos",
@@ -74,6 +138,19 @@
     "foto": "/avisos/monterrey-2026-11-24-retira-monterrey-13-mil-toneladas-de-azolve-del-canal.webp",
     "foto_original": "https://storage.googleapis.com/mty-cms-static-production/media/images/2_MEDULAR.width-1600.jpg",
     "capturado": "2026-11-24T20:05:40.700Z",
+    "foto_ancho": 640,
+    "foto_alto": 426
+  },
+  {
+    "id": "san-pedro-2026-11-23-arranca-san-pedro-la-semana-del-25n-con-una-jornada-para",
+    "municipio": "san-pedro",
+    "titulo": "Arranca San Pedro la semana del 25N con una jornada para prevenir el acoso en el deporte",
+    "fecha": "2026-11-23",
+    "url": "https://blog.sanpedro.gob.mx/news/arranca-san-pedro-la-semana-del-25n-con-una-jornada-para-prevenir-el-acoso-en-el-deporte/",
+    "clave": "https://blog.sanpedro.gob.mx/news/arranca-san-pedro-la-semana-del-25n-con-una-jornada-para-prevenir-el-acoso-en-el-deporte/",
+    "foto": "/avisos/san-pedro-2026-11-23-arranca-san-pedro-la-semana-del-25n-con-una-jornada-para.webp",
+    "foto_original": "https://blog.sanpedro.gob.mx/wp-content/uploads/2026/11/blog-5522-cd50.jpeg",
+    "capturado": "2026-11-26T20:08:21.797Z",
     "foto_ancho": 640,
     "foto_alto": 426
   },
